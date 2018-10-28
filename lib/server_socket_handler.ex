@@ -13,7 +13,6 @@ defmodule Server.SocketHandler do
 
   # Called on websocket connection initialization.
   def websocket_init(_type, req, _opts) do
-    IO.puts("websocket INIT ")
     state = %{}
 
     MarioAgent.add_client(self())
@@ -31,6 +30,7 @@ defmodule Server.SocketHandler do
 
     IO.puts("INCOMING MARIO")
     IO.inspect(mario)
+
     {cid, req2} = :cowboy_req.header("sec-websocket-key", req)
 
     # Put this mario in
@@ -50,14 +50,11 @@ defmodule Server.SocketHandler do
 
   # Format and forward elixir messages to client
   def websocket_info(message, req, state) do
-    IO.puts("websocket INFO")
-    IO.inspect(message)
     {:reply, {:text, message}, req, state}
   end
 
   # No matter why we terminate, remove all of this pids subscriptions
   def websocket_terminate(_reason, req, _state) do
-    IO.puts("websocket terminated")
     {cid, req2} = :cowboy_req.header("sec-websocket-key", req)
 
     MarioAgent.kill(cid)

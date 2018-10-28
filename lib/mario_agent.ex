@@ -5,14 +5,33 @@ defmodule MarioAgent do
     Agent.start_link(fn -> %{} end, name: __MODULE__)
   end
 
+  # Mario comes in with dx/dy for x/y
   def set(who, mario) do
     Agent.update(
       __MODULE__,
-      &Map.update(&1, who, mario, fn oldMario ->
-        mario
-        |> Map.update("x", mario["x"], fn dX -> dX + oldMario["x"] end)
-        |> Map.update("y", mario["y"], fn dY -> dY + oldMario["y"] end)
-      end)
+      fn state ->
+        IO.puts("1")
+
+        oldMario =
+          state[who]
+          |> IO.inspect()
+
+        IO.puts("2")
+
+        newMario =
+          if is_nil(oldMario) do
+            IO.puts("its a new me")
+            mario
+          else
+            IO.puts("its a old me")
+
+            mario
+            |> Map.update("x", mario["x"], fn dX -> dX + oldMario["x"] end)
+            |> Map.update("y", mario["y"], fn dY -> dY + oldMario["y"] end)
+          end
+
+        Map.put(state, who, newMario)
+      end
     )
   end
 

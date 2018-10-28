@@ -9,6 +9,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as D
 import Json.Encode as E
+import Random
 
 
 sideLength =
@@ -42,14 +43,15 @@ main =
 
 
 type alias Model =
-    { others : List Player }
+    { others : List Player, apple : ( Int, Int ) }
 
 
 init : ( Model, Cmd Msg )
 init =
     ( { others = []
+      , apple = ( -10, -10 )
       }
-    , Cmd.none
+    , Random.generate NewApple (Random.pair (Random.int 0 15) (Random.int 0 15))
     )
 
 
@@ -64,12 +66,10 @@ mergePlayers newList oldList =
         mapNew n =
             case oldOne n of
                 Nothing ->
-                    Debug.log "newplayer!" <|
-                        buildPlayer n
+                    buildPlayer n
 
                 Just o ->
-                    Debug.log "updatedplayer!" <|
-                        updatePlayer o n.x n.y
+                    updatePlayer o n.x n.y
     in
     newList
         |> List.map mapNew
@@ -132,6 +132,7 @@ type Msg
     = Animate Animation.Msg
     | Move Direction
     | UserUpdate (List BasicPlayer)
+    | NewApple ( Int, Int )
 
 
 updatePlayer : Player -> Int -> Int -> Player
@@ -163,17 +164,13 @@ updatePlayer player x y =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update action model =
     case action of
+        NewApple ( x, y ) ->
+            ( { model | apple = ( x, y ) }, Cmd.none )
+
         UserUpdate players ->
             let
-                oldy =
-                    Debug.log "old-pos" (List.map .pos model.others)
-
-                count =
-                    Debug.log "new-pos" (List.map .pos others)
-
                 others =
                     mergePlayers players model.others
-                        |> Debug.log "mergedplayers"
             in
             ( { model | others = others }, Cmd.none )
 
@@ -212,7 +209,30 @@ view : Model -> Html Msg
 view model =
     div
         []
-        (model.others |> List.map square)
+        ([]
+            ++ (model.others |> List.map square)
+            ++ [ drawApple model.apple ]
+        )
+
+
+drawApple ( x, y ) =
+    let
+        xpx =
+            String.fromInt (x * sideLength)
+
+        ypx =
+            String.fromInt (y * sideLength)
+    in
+    div
+        [ style "position" "absolute"
+        , style "left" (xpx ++ "px")
+        , style "top" (ypx ++ "px")
+        , style "padding" "0px"
+        , style "width" "20px"
+        , style "height" "20px"
+        , style "background-color" "red"
+        ]
+        []
 
 
 square player =
@@ -223,6 +243,8 @@ square player =
          , style "width" (String.fromFloat halfSideLength ++ "px")
          , style "height" (String.fromFloat halfSideLength ++ "px")
          , style "background-color" player.colour
+         , style "background-image" "url(mario.gif)"
+         , style "background-size" "50px 50px"
          ]
             ++ Animation.render player.style
         )
