@@ -18,12 +18,18 @@
     var ws = new WebSocket("ws://" + url + "/ws")
     ws.onopen = evt => console.log("web socket connected.")
 
-    app.ports.wsSend.subscribe(function (msg) {
-      console.log("Sending " + msg);
-      ws.send(msg);
+    app.ports.wsSend.subscribe(function (pos) {
+      ws.send(JSON.stringify({ x: pos[0], y: pos[1], colour: "pink" }));
     });
+
     // Todo: add port for updates from server
-    ws.onmessage = f => console.log(f.data)
+    ws.onmessage = function (f) {
+      var list = JSON.parse(f.data)
+      // { x : Int, y : Int, colour : String, name : String }
+      // merge 'name' in - taking the web socket nonce
+      var e = Object.entries(list).map(bits => Object.assign(bits[1], { name: bits[0] }))
+      app.ports.activeUsers.send(e);
+    }
   </script>
 </body>
 

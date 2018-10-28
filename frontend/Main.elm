@@ -8,6 +8,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as D
+import Json.Encode as E
 
 
 sideLength =
@@ -20,6 +21,10 @@ halfSideLength =
 
 type alias Pos =
     { x : Int, y : Int }
+
+
+type alias BasicPlayer =
+    { x : Int, y : Int, colour : String, name : String }
 
 
 type alias Player =
@@ -46,14 +51,24 @@ init =
             { pos = { x = 0, y = 0 }
             , colour = "silver"
             , name = "Mario"
-            , style =
-                Animation.style
-                    [ Animation.left (px 0), Animation.top (px 0) ]
+            , style = Animation.style [ Animation.left (px 0), Animation.top (px 0) ]
             }
       , others = []
       }
     , Cmd.none
     )
+
+
+buildPlayer ({ x, y, colour, name } as basicPlayer) =
+    { pos = { x = x, y = y }
+    , colour = colour
+    , name = name
+    , style =
+        Animation.style
+            [ Animation.left (px (toFloat (x * sideLength)))
+            , Animation.top (px (toFloat (y * sideLength)))
+            ]
+    }
 
 
 type Direction
@@ -93,12 +108,14 @@ subscriptions model =
     Sub.batch
         [ Animation.subscription Animate [ model.me.style ]
         , Browser.Events.onKeyDown (D.map Move keyDecoder)
+        , activeUsers UserUpdate
         ]
 
 
 type Msg
     = Animate Animation.Msg
     | Move Direction
+    | UserUpdate (List BasicPlayer)
 
 
 updatePlayer : Player -> Int -> Int -> Player
@@ -130,6 +147,13 @@ updatePlayer player x y =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update action ({ me } as model) =
     case action of
+        UserUpdate players ->
+            let
+                others =
+                    Debug.log "Players:" (players |> List.map buildPlayer)
+            in
+            ( { model | others = others }, Cmd.none )
+
         Move direction ->
             let
                 ( dx, dy ) =
@@ -148,9 +172,12 @@ update action ({ me } as model) =
 
                         Other ->
                             ( 0, 0 )
+
+                ( newx, newy ) =
+                    ( me.pos.x + dx, me.pos.y + dy )
             in
-            ( { model | me = updatePlayer model.me (me.pos.x + dx) (me.pos.y + dy) }
-            , wsSend "something"
+            ( { model | me = updatePlayer model.me newx newy }
+            , wsSend ( newx, newy )
             )
 
         Animate animMsg ->
@@ -165,8 +192,10 @@ view : Model -> Html Msg
 view ({ me } as model) =
     div
         []
-        [ square me.style
-        ]
+        ([]
+            ++ (model.others |> List.map .style |> List.map square)
+            ++ [ square me.style ]
+        )
 
 
 square stylefn =
@@ -184,4 +213,7 @@ square stylefn =
         []
 
 
-port wsSend : String -> Cmd msg
+port wsSend : ( Int, Int ) -> Cmd msg
+
+
+port activeUsers : (List BasicPlayer -> msg) -> Sub msg

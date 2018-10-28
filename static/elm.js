@@ -77,14 +77,14 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
   return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
 
+console.warn('Compiled in DEV mode. Follow the advice at https://elm-lang.org/0.19.0/optimize for better performance and smaller assets.');
 
 
+var _List_Nil_UNUSED = { $: 0 };
+var _List_Nil = { $: '[]' };
 
-var _List_Nil = { $: 0 };
-var _List_Nil_UNUSED = { $: '[]' };
-
-function _List_Cons(hd, tl) { return { $: 1, a: hd, b: tl }; }
-function _List_Cons_UNUSED(hd, tl) { return { $: '::', a: hd, b: tl }; }
+function _List_Cons_UNUSED(hd, tl) { return { $: 1, a: hd, b: tl }; }
+function _List_Cons(hd, tl) { return { $: '::', a: hd, b: tl }; }
 
 
 var _List_cons = F2(_List_Cons);
@@ -194,7 +194,7 @@ function _Utils_eqHelp(x, y, depth, stack)
 		return false;
 	}
 
-	/**_UNUSED/
+	/**/
 	if (x.$ === 'Set_elm_builtin')
 	{
 		x = elm$core$Set$toList(x);
@@ -207,7 +207,7 @@ function _Utils_eqHelp(x, y, depth, stack)
 	}
 	//*/
 
-	/**/
+	/**_UNUSED/
 	if (x.$ < 0)
 	{
 		x = elm$core$Dict$toList(x);
@@ -242,7 +242,7 @@ function _Utils_cmp(x, y, ord)
 		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
 	}
 
-	/**_UNUSED/
+	/**/
 	if (x instanceof String)
 	{
 		var a = x.valueOf();
@@ -251,10 +251,10 @@ function _Utils_cmp(x, y, ord)
 	}
 	//*/
 
-	/**/
+	/**_UNUSED/
 	if (!x.$)
 	//*/
-	/**_UNUSED/
+	/**/
 	if (x.$[0] === '#')
 	//*/
 	{
@@ -284,17 +284,17 @@ var _Utils_compare = F2(function(x, y)
 
 // COMMON VALUES
 
-var _Utils_Tuple0 = 0;
-var _Utils_Tuple0_UNUSED = { $: '#0' };
+var _Utils_Tuple0_UNUSED = 0;
+var _Utils_Tuple0 = { $: '#0' };
 
-function _Utils_Tuple2(a, b) { return { a: a, b: b }; }
-function _Utils_Tuple2_UNUSED(a, b) { return { $: '#2', a: a, b: b }; }
+function _Utils_Tuple2_UNUSED(a, b) { return { a: a, b: b }; }
+function _Utils_Tuple2(a, b) { return { $: '#2', a: a, b: b }; }
 
-function _Utils_Tuple3(a, b, c) { return { a: a, b: b, c: c }; }
-function _Utils_Tuple3_UNUSED(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
+function _Utils_Tuple3_UNUSED(a, b, c) { return { a: a, b: b, c: c }; }
+function _Utils_Tuple3(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
 
-function _Utils_chr(c) { return c; }
-function _Utils_chr_UNUSED(c) { return new String(c); }
+function _Utils_chr_UNUSED(c) { return c; }
+function _Utils_chr(c) { return new String(c); }
 
 
 // RECORDS
@@ -499,12 +499,12 @@ var _JsArray_appendN = F3(function(n, dest, source)
 
 // LOG
 
-var _Debug_log = F2(function(tag, value)
+var _Debug_log_UNUSED = F2(function(tag, value)
 {
 	return value;
 });
 
-var _Debug_log_UNUSED = F2(function(tag, value)
+var _Debug_log = F2(function(tag, value)
 {
 	console.log(tag + ': ' + _Debug_toString(value));
 	return value;
@@ -530,12 +530,12 @@ function _Debug_todoCase(moduleName, region, value)
 
 // TO STRING
 
-function _Debug_toString(value)
+function _Debug_toString_UNUSED(value)
 {
 	return '<internals>';
 }
 
-function _Debug_toString_UNUSED(value)
+function _Debug_toString(value)
 {
 	return _Debug_toAnsiString(false, value);
 }
@@ -706,13 +706,13 @@ function _Debug_internalColor(ansi, string)
 // CRASH
 
 
-function _Debug_crash(identifier)
+function _Debug_crash_UNUSED(identifier)
 {
 	throw new Error('https://github.com/elm/core/blob/1.0.0/hints/' + identifier + '.md');
 }
 
 
-function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
+function _Debug_crash(identifier, fact1, fact2, fact3, fact4)
 {
 	switch(identifier)
 	{
@@ -770,11 +770,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.ah.Q === region.ar.Q)
+	if (region.start.line === region.end.line)
 	{
-		return 'on line ' + region.ah.Q;
+		return 'on line ' + region.start.line;
 	}
-	return 'on lines ' + region.ah.Q + ' through ' + region.ar.Q;
+	return 'on lines ' + region.start.line + ' through ' + region.end.line;
 }
 
 
@@ -1200,7 +1200,7 @@ function _String_fromList(chars)
 
 
 
-/**_UNUSED/
+/**/
 function _Json_errorToString(error)
 {
 	return elm$json$Json$Decode$errorToString(error);
@@ -1600,11 +1600,11 @@ var _Json_encode = F2(function(indentLevel, value)
 	return JSON.stringify(_Json_unwrap(value), null, indentLevel) + '';
 });
 
-function _Json_wrap_UNUSED(value) { return { $: 0, a: value }; }
-function _Json_unwrap_UNUSED(value) { return value.a; }
+function _Json_wrap(value) { return { $: 0, a: value }; }
+function _Json_unwrap(value) { return value.a; }
 
-function _Json_wrap(value) { return value; }
-function _Json_unwrap(value) { return value; }
+function _Json_wrap_UNUSED(value) { return value; }
+function _Json_unwrap_UNUSED(value) { return value; }
 
 function _Json_emptyArray() { return []; }
 function _Json_emptyObject() { return {}; }
@@ -1841,9 +1841,9 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.a$,
-		impl.ba,
-		impl.a6,
+		impl.init,
+		impl.update,
+		impl.subscriptions,
 		function() { return function() {} }
 	);
 });
@@ -1856,7 +1856,7 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 function _Platform_initialize(flagDecoder, args, init, update, subscriptions, stepperBuilder)
 {
 	var result = A2(_Json_run, flagDecoder, _Json_wrap(args ? args['flags'] : undefined));
-	elm$core$Result$isOk(result) || _Debug_crash(2 /**_UNUSED/, _Json_errorToString(result.a) /**/);
+	elm$core$Result$isOk(result) || _Debug_crash(2 /**/, _Json_errorToString(result.a) /**/);
 	var managers = {};
 	result = init(result.a);
 	var model = result.a;
@@ -2255,7 +2255,7 @@ function _Platform_setupIncomingPort(name, sendToApp)
 //
 
 
-function _Platform_export(exports)
+function _Platform_export_UNUSED(exports)
 {
 	scope['Elm']
 		? _Platform_mergeExportsProd(scope['Elm'], exports)
@@ -2276,7 +2276,7 @@ function _Platform_mergeExportsProd(obj, exports)
 }
 
 
-function _Platform_export_UNUSED(exports)
+function _Platform_export(exports)
 {
 	scope['Elm']
 		? _Platform_mergeExportsDebug('Elm', scope['Elm'], exports)
@@ -2316,10 +2316,10 @@ var _VirtualDom_init = F4(function(virtualNode, flagDecoder, debugMetadata, args
 {
 	// NOTE: this function needs _Platform_export available to work
 
-	/**/
+	/**_UNUSED/
 	var node = args['node'];
 	//*/
-	/**_UNUSED/
+	/**/
 	var node = args && args['node'] ? args['node'] : _Debug_crash(0);
 	//*/
 
@@ -2574,24 +2574,24 @@ function _VirtualDom_noInnerHtmlOrFormAction(key)
 	return key == 'innerHTML' || key == 'formAction' ? 'data-' + key : key;
 }
 
-function _VirtualDom_noJavaScriptUri(value)
+function _VirtualDom_noJavaScriptUri_UNUSED(value)
 {
 	return /^javascript:/i.test(value.replace(/\s/g,'')) ? '' : value;
 }
 
-function _VirtualDom_noJavaScriptUri_UNUSED(value)
+function _VirtualDom_noJavaScriptUri(value)
 {
 	return /^javascript:/i.test(value.replace(/\s/g,''))
 		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
 		: value;
 }
 
-function _VirtualDom_noJavaScriptOrHtmlUri(value)
+function _VirtualDom_noJavaScriptOrHtmlUri_UNUSED(value)
 {
 	return /^\s*(javascript:|data:text\/html)/i.test(value) ? '' : value;
 }
 
-function _VirtualDom_noJavaScriptOrHtmlUri_UNUSED(value)
+function _VirtualDom_noJavaScriptOrHtmlUri(value)
 {
 	return /^\s*(javascript:|data:text\/html)/i.test(value)
 		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
@@ -2643,9 +2643,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		v: func(record.v),
-		aj: record.aj,
-		ag: record.ag
+		message: func(record.message),
+		stopPropagation: record.stopPropagation,
+		preventDefault: record.preventDefault
 	}
 });
 
@@ -2913,11 +2913,11 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.v;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.aj;
+		var message = !tag ? value : tag < 3 ? value.a : value.message;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.stopPropagation;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.ag) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.preventDefault) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3867,15 +3867,15 @@ var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debug
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.a$,
-		impl.ba,
-		impl.a6,
+		impl.init,
+		impl.update,
+		impl.subscriptions,
 		function(sendToApp, initialModel) {
-			var view = impl.bd;
-			/**/
+			var view = impl.view;
+			/**_UNUSED/
 			var domNode = args['node'];
 			//*/
-			/**_UNUSED/
+			/**/
 			var domNode = args && args['node'] ? args['node'] : _Debug_crash(0);
 			//*/
 			var currNode = _VirtualDom_virtualize(domNode);
@@ -3903,12 +3903,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.a$,
-		impl.ba,
-		impl.a6,
+		impl.init,
+		impl.update,
+		impl.subscriptions,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.T && impl.T(sendToApp)
-			var view = impl.bd;
+			var divertHrefToApp = impl.setup && impl.setup(sendToApp)
+			var view = impl.view;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
 			var currNode = _VirtualDom_virtualize(bodyNode);
@@ -3916,12 +3916,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 			{
 				_VirtualDom_divertHrefToApp = divertHrefToApp;
 				var doc = view(model);
-				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.aT);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.body);
 				var patches = _VirtualDom_diff(currNode, nextNode);
 				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
 				currNode = nextNode;
 				_VirtualDom_divertHrefToApp = 0;
-				(title !== doc.a8) && (_VirtualDom_doc.title = title = doc.a8);
+				(title !== doc.title) && (_VirtualDom_doc.title = title = doc.title);
 			});
 		}
 	);
@@ -3977,12 +3977,12 @@ function _Browser_makeAnimator(model, draw)
 
 function _Browser_application(impl)
 {
-	var onUrlChange = impl.a1;
-	var onUrlRequest = impl.a2;
+	var onUrlChange = impl.onUrlChange;
+	var onUrlRequest = impl.onUrlRequest;
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		T: function(sendToApp)
+		setup: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -3998,9 +3998,9 @@ function _Browser_application(impl)
 					var next = elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.aH === next.aH
-							&& curr.au === next.au
-							&& curr.aD.a === next.aD.a
+							&& curr.protocol === next.protocol
+							&& curr.host === next.host
+							&& curr.port_.a === next.port_.a
 						)
 							? elm$browser$Browser$Internal(next)
 							: elm$browser$Browser$External(href)
@@ -4008,13 +4008,13 @@ function _Browser_application(impl)
 				}
 			});
 		},
-		a$: function(flags)
+		init: function(flags)
 		{
-			return A3(impl.a$, flags, _Browser_getUrl(), key);
+			return A3(impl.init, flags, _Browser_getUrl(), key);
 		},
-		bd: impl.bd,
-		ba: impl.ba,
-		a6: impl.a6
+		view: impl.view,
+		update: impl.update,
+		subscriptions: impl.subscriptions
 	});
 }
 
@@ -4080,17 +4080,17 @@ var _Browser_decodeEvent = F2(function(decoder, event)
 function _Browser_visibilityInfo()
 {
 	return (typeof _VirtualDom_doc.hidden !== 'undefined')
-		? { aZ: 'hidden', aU: 'visibilitychange' }
+		? { hidden: 'hidden', change: 'visibilitychange' }
 		:
 	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
-		? { aZ: 'mozHidden', aU: 'mozvisibilitychange' }
+		? { hidden: 'mozHidden', change: 'mozvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.msHidden !== 'undefined')
-		? { aZ: 'msHidden', aU: 'msvisibilitychange' }
+		? { hidden: 'msHidden', change: 'msvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
-		? { aZ: 'webkitHidden', aU: 'webkitvisibilitychange' }
-		: { aZ: 'hidden', aU: 'visibilitychange' };
+		? { hidden: 'webkitHidden', change: 'webkitvisibilitychange' }
+		: { hidden: 'hidden', change: 'visibilitychange' };
 }
 
 
@@ -4171,12 +4171,12 @@ var _Browser_call = F2(function(functionName, id)
 function _Browser_getViewport()
 {
 	return {
-		aL: _Browser_getScene(),
-		aQ: {
-			_: _Browser_window.pageXOffset,
-			aa: _Browser_window.pageYOffset,
-			K: _Browser_doc.documentElement.clientWidth,
-			E: _Browser_doc.documentElement.clientHeight
+		scene: _Browser_getScene(),
+		viewport: {
+			x: _Browser_window.pageXOffset,
+			y: _Browser_window.pageYOffset,
+			width: _Browser_doc.documentElement.clientWidth,
+			height: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4186,8 +4186,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		K: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		E: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		width: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		height: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4210,15 +4210,15 @@ function _Browser_getViewportOf(id)
 	return _Browser_withNode(id, function(node)
 	{
 		return {
-			aL: {
-				K: node.scrollWidth,
-				E: node.scrollHeight
+			scene: {
+				width: node.scrollWidth,
+				height: node.scrollHeight
 			},
-			aQ: {
-				_: node.scrollLeft,
-				aa: node.scrollTop,
-				K: node.clientWidth,
-				E: node.clientHeight
+			viewport: {
+				x: node.scrollLeft,
+				y: node.scrollTop,
+				width: node.clientWidth,
+				height: node.clientHeight
 			}
 		};
 	});
@@ -4248,18 +4248,18 @@ function _Browser_getElement(id)
 		var x = _Browser_window.pageXOffset;
 		var y = _Browser_window.pageYOffset;
 		return {
-			aL: _Browser_getScene(),
-			aQ: {
-				_: x,
-				aa: y,
-				K: _Browser_doc.documentElement.clientWidth,
-				E: _Browser_doc.documentElement.clientHeight
+			scene: _Browser_getScene(),
+			viewport: {
+				x: x,
+				y: y,
+				width: _Browser_doc.documentElement.clientWidth,
+				height: _Browser_doc.documentElement.clientHeight
 			},
-			aW: {
-				_: x + rect.left,
-				aa: y + rect.top,
-				K: rect.width,
-				E: rect.height
+			element: {
+				x: x + rect.left,
+				y: y + rect.top,
+				width: rect.width,
+				height: rect.height
 			}
 		};
 	});
@@ -4294,23 +4294,23 @@ function _Browser_load(url)
 		}
 	}));
 }
-var elm$core$Basics$False = 1;
-var elm$core$Basics$True = 0;
+var elm$core$Basics$False = {$: 'False'};
+var elm$core$Basics$True = {$: 'True'};
 var elm$core$Result$isOk = function (result) {
-	if (!result.$) {
+	if (result.$ === 'Ok') {
 		return true;
 	} else {
 		return false;
 	}
 };
-var elm$core$Basics$EQ = 1;
-var elm$core$Basics$GT = 2;
-var elm$core$Basics$LT = 0;
+var elm$core$Basics$EQ = {$: 'EQ'};
+var elm$core$Basics$GT = {$: 'GT'};
+var elm$core$Basics$LT = {$: 'LT'};
 var elm$core$Dict$foldr = F3(
 	function (func, acc, t) {
 		foldr:
 		while (true) {
-			if (t.$ === -2) {
+			if (t.$ === 'RBEmpty_elm_builtin') {
 				return acc;
 			} else {
 				var key = t.b;
@@ -4356,7 +4356,7 @@ var elm$core$Dict$keys = function (dict) {
 		dict);
 };
 var elm$core$Set$toList = function (_n0) {
-	var dict = _n0;
+	var dict = _n0.a;
 	return elm$core$Dict$keys(dict);
 };
 var elm$core$Elm$JsArray$foldr = _JsArray_foldr;
@@ -4366,7 +4366,7 @@ var elm$core$Array$foldr = F3(
 		var tail = _n0.d;
 		var helper = F2(
 			function (node, acc) {
-				if (!node.$) {
+				if (node.$ === 'SubTree') {
 					var subTree = node.a;
 					return A3(elm$core$Elm$JsArray$foldr, helper, acc, subTree);
 				} else {
@@ -4386,7 +4386,7 @@ var elm$core$Array$toList = function (array) {
 var elm$core$Array$branchFactor = 32;
 var elm$core$Array$Array_elm_builtin = F4(
 	function (a, b, c, d) {
-		return {$: 0, a: a, b: b, c: c, d: d};
+		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
 	});
 var elm$core$Basics$ceiling = _Basics_ceiling;
 var elm$core$Basics$fdiv = _Basics_fdiv;
@@ -4400,10 +4400,10 @@ var elm$core$Array$shiftStep = elm$core$Basics$ceiling(
 var elm$core$Elm$JsArray$empty = _JsArray_empty;
 var elm$core$Array$empty = A4(elm$core$Array$Array_elm_builtin, 0, elm$core$Array$shiftStep, elm$core$Elm$JsArray$empty, elm$core$Elm$JsArray$empty);
 var elm$core$Array$Leaf = function (a) {
-	return {$: 1, a: a};
+	return {$: 'Leaf', a: a};
 };
 var elm$core$Array$SubTree = function (a) {
-	return {$: 0, a: a};
+	return {$: 'SubTree', a: a};
 };
 var elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
 var elm$core$List$foldl = F3(
@@ -4491,25 +4491,25 @@ var elm$core$Basics$sub = _Basics_sub;
 var elm$core$Elm$JsArray$length = _JsArray_length;
 var elm$core$Array$builderToArray = F2(
 	function (reverseNodeList, builder) {
-		if (!builder.a) {
+		if (!builder.nodeListSize) {
 			return A4(
 				elm$core$Array$Array_elm_builtin,
-				elm$core$Elm$JsArray$length(builder.c),
+				elm$core$Elm$JsArray$length(builder.tail),
 				elm$core$Array$shiftStep,
 				elm$core$Elm$JsArray$empty,
-				builder.c);
+				builder.tail);
 		} else {
-			var treeLen = builder.a * elm$core$Array$branchFactor;
+			var treeLen = builder.nodeListSize * elm$core$Array$branchFactor;
 			var depth = elm$core$Basics$floor(
 				A2(elm$core$Basics$logBase, elm$core$Array$branchFactor, treeLen - 1));
-			var correctNodeList = reverseNodeList ? elm$core$List$reverse(builder.e) : builder.e;
-			var tree = A2(elm$core$Array$treeFromBuilder, correctNodeList, builder.a);
+			var correctNodeList = reverseNodeList ? elm$core$List$reverse(builder.nodeList) : builder.nodeList;
+			var tree = A2(elm$core$Array$treeFromBuilder, correctNodeList, builder.nodeListSize);
 			return A4(
 				elm$core$Array$Array_elm_builtin,
-				elm$core$Elm$JsArray$length(builder.c) + treeLen,
+				elm$core$Elm$JsArray$length(builder.tail) + treeLen,
 				A2(elm$core$Basics$max, 5, depth * elm$core$Array$shiftStep),
 				tree,
-				builder.c);
+				builder.tail);
 		}
 	});
 var elm$core$Basics$idiv = _Basics_idiv;
@@ -4523,7 +4523,7 @@ var elm$core$Array$initializeHelp = F5(
 				return A2(
 					elm$core$Array$builderToArray,
 					false,
-					{e: nodeList, a: (len / elm$core$Array$branchFactor) | 0, c: tail});
+					{nodeList: nodeList, nodeListSize: (len / elm$core$Array$branchFactor) | 0, tail: tail});
 			} else {
 				var leaf = elm$core$Array$Leaf(
 					A3(elm$core$Elm$JsArray$initialize, elm$core$Array$branchFactor, fromIndex, fn));
@@ -4555,29 +4555,29 @@ var elm$core$Array$initialize = F2(
 		}
 	});
 var elm$core$Maybe$Just = function (a) {
-	return {$: 0, a: a};
+	return {$: 'Just', a: a};
 };
-var elm$core$Maybe$Nothing = {$: 1};
+var elm$core$Maybe$Nothing = {$: 'Nothing'};
 var elm$core$Result$Err = function (a) {
-	return {$: 1, a: a};
+	return {$: 'Err', a: a};
 };
 var elm$core$Result$Ok = function (a) {
-	return {$: 0, a: a};
+	return {$: 'Ok', a: a};
 };
 var elm$json$Json$Decode$Failure = F2(
 	function (a, b) {
-		return {$: 3, a: a, b: b};
+		return {$: 'Failure', a: a, b: b};
 	});
 var elm$json$Json$Decode$Field = F2(
 	function (a, b) {
-		return {$: 0, a: a, b: b};
+		return {$: 'Field', a: a, b: b};
 	});
 var elm$json$Json$Decode$Index = F2(
 	function (a, b) {
-		return {$: 1, a: a, b: b};
+		return {$: 'Index', a: a, b: b};
 	});
 var elm$json$Json$Decode$OneOf = function (a) {
-	return {$: 2, a: a};
+	return {$: 'OneOf', a: a};
 };
 var elm$core$Basics$and = _Basics_and;
 var elm$core$Basics$append = _Utils_append;
@@ -4679,12 +4679,12 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 		errorToStringHelp:
 		while (true) {
 			switch (error.$) {
-				case 0:
+				case 'Field':
 					var f = error.a;
 					var err = error.b;
 					var isSimple = function () {
 						var _n1 = elm$core$String$uncons(f);
-						if (_n1.$ === 1) {
+						if (_n1.$ === 'Nothing') {
 							return false;
 						} else {
 							var _n2 = _n1.a;
@@ -4699,7 +4699,7 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 					error = $temp$error;
 					context = $temp$context;
 					continue errorToStringHelp;
-				case 1:
+				case 'Index':
 					var i = error.a;
 					var err = error.b;
 					var indexName = '[' + (elm$core$String$fromInt(i) + ']');
@@ -4708,7 +4708,7 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 					error = $temp$error;
 					context = $temp$context;
 					continue errorToStringHelp;
-				case 2:
+				case 'OneOf':
 					var errors = error.a;
 					if (!errors.b) {
 						return 'Ran into a Json.Decode.oneOf with no possibilities' + function () {
@@ -4772,23 +4772,23 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var mdgriffith$elm_style_animation$Animation$Model$Spring = function (a) {
-	return {$: 0, a: a};
+	return {$: 'Spring', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$initMotion = F2(
 	function (position, unit) {
 		return {
-			F: mdgriffith$elm_style_animation$Animation$Model$Spring(
-				{ap: 26, aM: 170}),
-			a0: elm$core$Maybe$Nothing,
-			a4: position,
-			a7: position,
-			a9: unit,
-			bc: 0
+			interpolation: mdgriffith$elm_style_animation$Animation$Model$Spring(
+				{damping: 26, stiffness: 170}),
+			interpolationOverride: elm$core$Maybe$Nothing,
+			position: position,
+			target: position,
+			unit: unit,
+			velocity: 0
 		};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$Property = F2(
 	function (a, b) {
-		return {$: 3, a: a, b: b};
+		return {$: 'Property', a: a, b: b};
 	});
 var mdgriffith$elm_style_animation$Animation$length = F3(
 	function (name, val, unit) {
@@ -4798,36 +4798,36 @@ var mdgriffith$elm_style_animation$Animation$length = F3(
 			A2(mdgriffith$elm_style_animation$Animation$initMotion, val, unit));
 	});
 var mdgriffith$elm_style_animation$Animation$lengthUnitName = function (unit) {
-	switch (unit) {
-		case 0:
+	switch (unit.$) {
+		case 'NoUnit':
 			return '';
-		case 1:
+		case 'Px':
 			return 'px';
-		case 2:
+		case 'Percent':
 			return '%';
-		case 3:
+		case 'Rem':
 			return 'rem';
-		case 4:
+		case 'Em':
 			return 'em';
-		case 5:
+		case 'Ex':
 			return 'ex';
-		case 6:
+		case 'Ch':
 			return 'ch';
-		case 7:
+		case 'Vh':
 			return 'vh';
-		case 8:
+		case 'Vw':
 			return 'vw';
-		case 9:
+		case 'Vmin':
 			return 'vmin';
-		case 10:
+		case 'Vmax':
 			return 'vmax';
-		case 11:
+		case 'Mm':
 			return 'mm';
-		case 12:
+		case 'Cm':
 			return 'cm';
-		case 13:
+		case 'In':
 			return 'in';
-		case 14:
+		case 'Pt':
 			return 'pt';
 		default:
 			return 'pc';
@@ -4844,11 +4844,11 @@ var mdgriffith$elm_style_animation$Animation$left = function (_n0) {
 };
 var mdgriffith$elm_style_animation$Animation$Length = F2(
 	function (a, b) {
-		return {$: 0, a: a, b: b};
+		return {$: 'Length', a: a, b: b};
 	});
-var mdgriffith$elm_style_animation$Animation$Px = 1;
+var mdgriffith$elm_style_animation$Animation$Px = {$: 'Px'};
 var mdgriffith$elm_style_animation$Animation$px = function (myPx) {
-	return A2(mdgriffith$elm_style_animation$Animation$Length, myPx, 1);
+	return A2(mdgriffith$elm_style_animation$Animation$Length, myPx, mdgriffith$elm_style_animation$Animation$Px);
 };
 var elm$core$List$foldrHelper = F4(
 	function (fn, acc, ctr, ls) {
@@ -4922,60 +4922,65 @@ var elm$core$List$map = F2(
 var elm$core$Basics$identity = function (x) {
 	return x;
 };
-var elm$time$Time$Posix = elm$core$Basics$identity;
-var elm$time$Time$millisToPosix = elm$core$Basics$identity;
-var mdgriffith$elm_style_animation$Animation$Model$Animation = elm$core$Basics$identity;
+var elm$time$Time$Posix = function (a) {
+	return {$: 'Posix', a: a};
+};
+var elm$time$Time$millisToPosix = elm$time$Time$Posix;
+var mdgriffith$elm_style_animation$Animation$Model$Animation = function (a) {
+	return {$: 'Animation', a: a};
+};
 var mdgriffith$elm_style_animation$Animation$initialState = function (current) {
-	return {
-		ad: _List_Nil,
-		Z: false,
-		ai: _List_Nil,
-		x: current,
-		aP: {
-			ao: elm$time$Time$millisToPosix(0),
-			aV: elm$time$Time$millisToPosix(0)
-		}
-	};
+	return mdgriffith$elm_style_animation$Animation$Model$Animation(
+		{
+			interruption: _List_Nil,
+			running: false,
+			steps: _List_Nil,
+			style: current,
+			timing: {
+				current: elm$time$Time$millisToPosix(0),
+				dt: elm$time$Time$millisToPosix(0)
+			}
+		});
 };
 var elm$core$Basics$pi = _Basics_pi;
 var mdgriffith$elm_style_animation$Animation$Model$AtSpeed = function (a) {
-	return {$: 2, a: a};
+	return {$: 'AtSpeed', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$speed = function (speedValue) {
 	return mdgriffith$elm_style_animation$Animation$Model$AtSpeed(speedValue);
 };
 var mdgriffith$elm_style_animation$Animation$Model$Easing = function (a) {
-	return {$: 1, a: a};
+	return {$: 'Easing', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$defaultInterpolationByProperty = function (prop) {
 	var linear = function (duration) {
 		return mdgriffith$elm_style_animation$Animation$Model$Easing(
-			{ab: duration, ac: elm$core$Basics$identity, aG: 1, ah: 0});
+			{duration: duration, ease: elm$core$Basics$identity, progress: 1, start: 0});
 	};
 	var defaultSpring = mdgriffith$elm_style_animation$Animation$Model$Spring(
-		{ap: 26, aM: 170});
+		{damping: 26, stiffness: 170});
 	switch (prop.$) {
-		case 0:
+		case 'ExactProperty':
 			return defaultSpring;
-		case 1:
+		case 'ColorProperty':
 			return linear(
 				elm$time$Time$millisToPosix(400));
-		case 2:
+		case 'ShadowProperty':
 			return defaultSpring;
-		case 3:
+		case 'Property':
 			return defaultSpring;
-		case 4:
+		case 'Property2':
 			return defaultSpring;
-		case 5:
+		case 'Property3':
 			var name = prop.a;
 			return (name === 'rotate3d') ? mdgriffith$elm_style_animation$Animation$speed(
-				{aB: elm$core$Basics$pi}) : defaultSpring;
-		case 6:
+				{perSecond: elm$core$Basics$pi}) : defaultSpring;
+		case 'Property4':
 			return defaultSpring;
-		case 7:
+		case 'AngleProperty':
 			return mdgriffith$elm_style_animation$Animation$speed(
-				{aB: elm$core$Basics$pi});
-		case 8:
+				{perSecond: elm$core$Basics$pi});
+		case 'Points':
 			return defaultSpring;
 		default:
 			return defaultSpring;
@@ -4983,100 +4988,100 @@ var mdgriffith$elm_style_animation$Animation$defaultInterpolationByProperty = fu
 };
 var mdgriffith$elm_style_animation$Animation$Model$AngleProperty = F2(
 	function (a, b) {
-		return {$: 7, a: a, b: b};
+		return {$: 'AngleProperty', a: a, b: b};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$ColorProperty = F5(
 	function (a, b, c, d, e) {
-		return {$: 1, a: a, b: b, c: c, d: d, e: e};
+		return {$: 'ColorProperty', a: a, b: b, c: c, d: d, e: e};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$ExactProperty = F2(
 	function (a, b) {
-		return {$: 0, a: a, b: b};
+		return {$: 'ExactProperty', a: a, b: b};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$Path = function (a) {
-	return {$: 9, a: a};
+	return {$: 'Path', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$Points = function (a) {
-	return {$: 8, a: a};
+	return {$: 'Points', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$Property2 = F3(
 	function (a, b, c) {
-		return {$: 4, a: a, b: b, c: c};
+		return {$: 'Property2', a: a, b: b, c: c};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$Property3 = F4(
 	function (a, b, c, d) {
-		return {$: 5, a: a, b: b, c: c, d: d};
+		return {$: 'Property3', a: a, b: b, c: c, d: d};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$Property4 = F5(
 	function (a, b, c, d, e) {
-		return {$: 6, a: a, b: b, c: c, d: d, e: e};
+		return {$: 'Property4', a: a, b: b, c: c, d: d, e: e};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$ShadowProperty = F3(
 	function (a, b, c) {
-		return {$: 2, a: a, b: b, c: c};
+		return {$: 'ShadowProperty', a: a, b: b, c: c};
 	});
 var elm$core$Tuple$second = function (_n0) {
 	var y = _n0.b;
 	return y;
 };
 var mdgriffith$elm_style_animation$Animation$Model$AntiClockwiseArc = function (a) {
-	return {$: 17, a: a};
+	return {$: 'AntiClockwiseArc', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$ClockwiseArc = function (a) {
-	return {$: 16, a: a};
+	return {$: 'ClockwiseArc', a: a};
 };
-var mdgriffith$elm_style_animation$Animation$Model$Close = {$: 18};
+var mdgriffith$elm_style_animation$Animation$Model$Close = {$: 'Close'};
 var mdgriffith$elm_style_animation$Animation$Model$Curve = function (a) {
-	return {$: 8, a: a};
+	return {$: 'Curve', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$CurveTo = function (a) {
-	return {$: 9, a: a};
+	return {$: 'CurveTo', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$Horizontal = function (a) {
-	return {$: 4, a: a};
+	return {$: 'Horizontal', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$HorizontalTo = function (a) {
-	return {$: 5, a: a};
+	return {$: 'HorizontalTo', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$Line = F2(
 	function (a, b) {
-		return {$: 2, a: a, b: b};
+		return {$: 'Line', a: a, b: b};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$LineTo = F2(
 	function (a, b) {
-		return {$: 3, a: a, b: b};
+		return {$: 'LineTo', a: a, b: b};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$Move = F2(
 	function (a, b) {
-		return {$: 0, a: a, b: b};
+		return {$: 'Move', a: a, b: b};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$MoveTo = F2(
 	function (a, b) {
-		return {$: 1, a: a, b: b};
+		return {$: 'MoveTo', a: a, b: b};
 	});
 var mdgriffith$elm_style_animation$Animation$Model$Quadratic = function (a) {
-	return {$: 10, a: a};
+	return {$: 'Quadratic', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$QuadraticTo = function (a) {
-	return {$: 11, a: a};
+	return {$: 'QuadraticTo', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$Smooth = function (a) {
-	return {$: 14, a: a};
+	return {$: 'Smooth', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$SmoothQuadratic = function (a) {
-	return {$: 12, a: a};
+	return {$: 'SmoothQuadratic', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$SmoothQuadraticTo = function (a) {
-	return {$: 13, a: a};
+	return {$: 'SmoothQuadraticTo', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$SmoothTo = function (a) {
-	return {$: 15, a: a};
+	return {$: 'SmoothTo', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$Vertical = function (a) {
-	return {$: 6, a: a};
+	return {$: 'Vertical', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$VerticalTo = function (a) {
-	return {$: 7, a: a};
+	return {$: 'VerticalTo', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$mapPathMotion = F2(
 	function (fn, cmd) {
@@ -5093,158 +5098,158 @@ var mdgriffith$elm_style_animation$Animation$Model$mapPathMotion = F2(
 				coords);
 		};
 		switch (cmd.$) {
-			case 0:
+			case 'Move':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$Move,
 					fn(m1),
 					fn(m2));
-			case 1:
+			case 'MoveTo':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$MoveTo,
 					fn(m1),
 					fn(m2));
-			case 2:
+			case 'Line':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$Line,
 					fn(m1),
 					fn(m2));
-			case 3:
+			case 'LineTo':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$LineTo,
 					fn(m1),
 					fn(m2));
-			case 4:
+			case 'Horizontal':
 				var motion = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$Horizontal(
 					fn(motion));
-			case 5:
+			case 'HorizontalTo':
 				var motion = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$HorizontalTo(
 					fn(motion));
-			case 6:
+			case 'Vertical':
 				var motion = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$Vertical(
 					fn(motion));
-			case 7:
+			case 'VerticalTo':
 				var motion = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$VerticalTo(
 					fn(motion));
-			case 8:
-				var control1 = cmd.a.N;
-				var control2 = cmd.a.O;
-				var point = cmd.a.p;
+			case 'Curve':
+				var control1 = cmd.a.control1;
+				var control2 = cmd.a.control2;
+				var point = cmd.a.point;
 				return mdgriffith$elm_style_animation$Animation$Model$Curve(
 					{
-						N: _Utils_Tuple2(
+						control1: _Utils_Tuple2(
 							fn(control1.a),
 							fn(control1.b)),
-						O: _Utils_Tuple2(
+						control2: _Utils_Tuple2(
 							fn(control2.a),
 							fn(control2.b)),
-						p: _Utils_Tuple2(
+						point: _Utils_Tuple2(
 							fn(point.a),
 							fn(point.b))
 					});
-			case 9:
-				var control1 = cmd.a.N;
-				var control2 = cmd.a.O;
-				var point = cmd.a.p;
+			case 'CurveTo':
+				var control1 = cmd.a.control1;
+				var control2 = cmd.a.control2;
+				var point = cmd.a.point;
 				return mdgriffith$elm_style_animation$Animation$Model$CurveTo(
 					{
-						N: _Utils_Tuple2(
+						control1: _Utils_Tuple2(
 							fn(control1.a),
 							fn(control1.b)),
-						O: _Utils_Tuple2(
+						control2: _Utils_Tuple2(
 							fn(control2.a),
 							fn(control2.b)),
-						p: _Utils_Tuple2(
+						point: _Utils_Tuple2(
 							fn(point.a),
 							fn(point.b))
 					});
-			case 10:
-				var control = cmd.a.M;
-				var point = cmd.a.p;
+			case 'Quadratic':
+				var control = cmd.a.control;
+				var point = cmd.a.point;
 				return mdgriffith$elm_style_animation$Animation$Model$Quadratic(
 					{
-						M: _Utils_Tuple2(
+						control: _Utils_Tuple2(
 							fn(control.a),
 							fn(control.b)),
-						p: _Utils_Tuple2(
+						point: _Utils_Tuple2(
 							fn(point.a),
 							fn(point.b))
 					});
-			case 11:
-				var control = cmd.a.M;
-				var point = cmd.a.p;
+			case 'QuadraticTo':
+				var control = cmd.a.control;
+				var point = cmd.a.point;
 				return mdgriffith$elm_style_animation$Animation$Model$QuadraticTo(
 					{
-						M: _Utils_Tuple2(
+						control: _Utils_Tuple2(
 							fn(control.a),
 							fn(control.b)),
-						p: _Utils_Tuple2(
+						point: _Utils_Tuple2(
 							fn(point.a),
 							fn(point.b))
 					});
-			case 12:
+			case 'SmoothQuadratic':
 				var coords = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadratic(
 					mapCoords(coords));
-			case 13:
+			case 'SmoothQuadraticTo':
 				var coords = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadraticTo(
 					mapCoords(coords));
-			case 14:
+			case 'Smooth':
 				var coords = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$Smooth(
 					mapCoords(coords));
-			case 15:
+			case 'SmoothTo':
 				var coords = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$SmoothTo(
 					mapCoords(coords));
-			case 16:
+			case 'ClockwiseArc':
 				var arc = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$ClockwiseArc(
 					function () {
-						var y = arc.aa;
-						var x = arc._;
-						var startAngle = arc.U;
-						var radius = arc.S;
-						var endAngle = arc.P;
+						var y = arc.y;
+						var x = arc.x;
+						var startAngle = arc.startAngle;
+						var radius = arc.radius;
+						var endAngle = arc.endAngle;
 						return _Utils_update(
 							arc,
 							{
-								P: fn(endAngle),
-								S: fn(radius),
-								U: fn(startAngle),
-								_: fn(x),
-								aa: fn(y)
+								endAngle: fn(endAngle),
+								radius: fn(radius),
+								startAngle: fn(startAngle),
+								x: fn(x),
+								y: fn(y)
 							});
 					}());
-			case 17:
+			case 'AntiClockwiseArc':
 				var arc = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$AntiClockwiseArc(
 					function () {
-						var y = arc.aa;
-						var x = arc._;
-						var startAngle = arc.U;
-						var radius = arc.S;
-						var endAngle = arc.P;
+						var y = arc.y;
+						var x = arc.x;
+						var startAngle = arc.startAngle;
+						var radius = arc.radius;
+						var endAngle = arc.endAngle;
 						return _Utils_update(
 							arc,
 							{
-								P: fn(endAngle),
-								S: fn(radius),
-								U: fn(startAngle),
-								_: fn(x),
-								aa: fn(y)
+								endAngle: fn(endAngle),
+								radius: fn(radius),
+								startAngle: fn(startAngle),
+								x: fn(x),
+								y: fn(y)
 							});
 					}());
 			default:
@@ -5254,11 +5259,11 @@ var mdgriffith$elm_style_animation$Animation$Model$mapPathMotion = F2(
 var mdgriffith$elm_style_animation$Animation$Model$mapToMotion = F2(
 	function (fn, prop) {
 		switch (prop.$) {
-			case 0:
+			case 'ExactProperty':
 				var name = prop.a;
 				var value = prop.b;
 				return A2(mdgriffith$elm_style_animation$Animation$Model$ExactProperty, name, value);
-			case 1:
+			case 'ColorProperty':
 				var name = prop.a;
 				var m1 = prop.b;
 				var m2 = prop.c;
@@ -5271,40 +5276,40 @@ var mdgriffith$elm_style_animation$Animation$Model$mapToMotion = F2(
 					fn(m2),
 					fn(m3),
 					fn(m4));
-			case 2:
+			case 'ShadowProperty':
 				var name = prop.a;
 				var inset = prop.b;
 				var shadow = prop.c;
-				var size = shadow.q;
-				var red = shadow.k;
-				var offsetY = shadow.n;
-				var offsetX = shadow.m;
-				var green = shadow.j;
-				var blur = shadow.l;
-				var blue = shadow.h;
-				var alpha = shadow.g;
+				var size = shadow.size;
+				var red = shadow.red;
+				var offsetY = shadow.offsetY;
+				var offsetX = shadow.offsetX;
+				var green = shadow.green;
+				var blur = shadow.blur;
+				var blue = shadow.blue;
+				var alpha = shadow.alpha;
 				return A3(
 					mdgriffith$elm_style_animation$Animation$Model$ShadowProperty,
 					name,
 					inset,
 					{
-						g: fn(alpha),
-						h: fn(blue),
-						l: fn(blur),
-						j: fn(green),
-						m: fn(offsetX),
-						n: fn(offsetY),
-						k: fn(red),
-						q: fn(size)
+						alpha: fn(alpha),
+						blue: fn(blue),
+						blur: fn(blur),
+						green: fn(green),
+						offsetX: fn(offsetX),
+						offsetY: fn(offsetY),
+						red: fn(red),
+						size: fn(size)
 					});
-			case 3:
+			case 'Property':
 				var name = prop.a;
 				var m1 = prop.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$Property,
 					name,
 					fn(m1));
-			case 4:
+			case 'Property2':
 				var name = prop.a;
 				var m1 = prop.b;
 				var m2 = prop.c;
@@ -5313,7 +5318,7 @@ var mdgriffith$elm_style_animation$Animation$Model$mapToMotion = F2(
 					name,
 					fn(m1),
 					fn(m2));
-			case 5:
+			case 'Property3':
 				var name = prop.a;
 				var m1 = prop.b;
 				var m2 = prop.c;
@@ -5324,7 +5329,7 @@ var mdgriffith$elm_style_animation$Animation$Model$mapToMotion = F2(
 					fn(m1),
 					fn(m2),
 					fn(m3));
-			case 6:
+			case 'Property4':
 				var name = prop.a;
 				var m1 = prop.b;
 				var m2 = prop.c;
@@ -5337,14 +5342,14 @@ var mdgriffith$elm_style_animation$Animation$Model$mapToMotion = F2(
 					fn(m2),
 					fn(m3),
 					fn(m4));
-			case 7:
+			case 'AngleProperty':
 				var name = prop.a;
 				var m1 = prop.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$AngleProperty,
 					name,
 					fn(m1));
-			case 8:
+			case 'Points':
 				var ms = prop.a;
 				return mdgriffith$elm_style_animation$Animation$Model$Points(
 					A2(
@@ -5373,7 +5378,7 @@ var mdgriffith$elm_style_animation$Animation$setDefaultInterpolation = function 
 		function (m) {
 			return _Utils_update(
 				m,
-				{F: interp});
+				{interpolation: interp});
 		},
 		prop);
 };
@@ -5404,31 +5409,31 @@ var elm$core$List$sort = function (xs) {
 };
 var mdgriffith$elm_style_animation$Animation$Model$propertyName = function (prop) {
 	switch (prop.$) {
-		case 0:
+		case 'ExactProperty':
 			var name = prop.a;
 			return name;
-		case 1:
+		case 'ColorProperty':
 			var name = prop.a;
 			return name;
-		case 2:
+		case 'ShadowProperty':
 			var name = prop.a;
 			return name;
-		case 3:
+		case 'Property':
 			var name = prop.a;
 			return name;
-		case 4:
+		case 'Property2':
 			var name = prop.a;
 			return name;
-		case 5:
+		case 'Property3':
 			var name = prop.a;
 			return name;
-		case 6:
+		case 'Property4':
 			var name = prop.a;
 			return name;
-		case 7:
+		case 'AngleProperty':
 			var name = prop.a;
 			return name;
-		case 8:
+		case 'Points':
 			return 'points';
 		default:
 			return 'path';
@@ -5546,7 +5551,7 @@ var mdgriffith$elm_style_animation$Animation$Render$warnForDoubleListedPropertie
 		elm$core$List$map,
 		function (propGroup) {
 			var _n1 = elm$core$List$head(propGroup);
-			if (_n1.$ === 1) {
+			if (_n1.$ === 'Nothing') {
 				return '';
 			} else {
 				var name = _n1.a;
@@ -5586,11 +5591,11 @@ var mdgriffith$elm_style_animation$Animation$top = function (_n0) {
 };
 var author$project$Main$init = _Utils_Tuple2(
 	{
-		u: {
-			an: 'silver',
-			ax: 'Mario',
-			R: {_: 0, aa: 0},
-			x: mdgriffith$elm_style_animation$Animation$style(
+		me: {
+			colour: 'silver',
+			name: 'Mario',
+			pos: {x: 0, y: 0},
+			style: mdgriffith$elm_style_animation$Animation$style(
 				_List_fromArray(
 					[
 						mdgriffith$elm_style_animation$Animation$left(
@@ -5599,57 +5604,89 @@ var author$project$Main$init = _Utils_Tuple2(
 						mdgriffith$elm_style_animation$Animation$px(0))
 					]))
 		},
-		az: _List_Nil
+		others: _List_Nil
 	},
 	elm$core$Platform$Cmd$none);
 var author$project$Main$Animate = function (a) {
-	return {$: 0, a: a};
+	return {$: 'Animate', a: a};
 };
 var author$project$Main$Move = function (a) {
-	return {$: 1, a: a};
+	return {$: 'Move', a: a};
 };
-var author$project$Main$Down = 3;
-var author$project$Main$Left = 0;
-var author$project$Main$Other = 4;
-var author$project$Main$Right = 1;
-var author$project$Main$Up = 2;
+var author$project$Main$UserUpdate = function (a) {
+	return {$: 'UserUpdate', a: a};
+};
+var elm$json$Json$Decode$andThen = _Json_andThen;
+var elm$json$Json$Decode$field = _Json_decodeField;
+var elm$json$Json$Decode$int = _Json_decodeInt;
+var elm$json$Json$Decode$list = _Json_decodeList;
+var elm$json$Json$Decode$string = _Json_decodeString;
+var elm$json$Json$Decode$succeed = _Json_succeed;
+var author$project$Main$activeUsers = _Platform_incomingPort(
+	'activeUsers',
+	elm$json$Json$Decode$list(
+		A2(
+			elm$json$Json$Decode$andThen,
+			function (y) {
+				return A2(
+					elm$json$Json$Decode$andThen,
+					function (x) {
+						return A2(
+							elm$json$Json$Decode$andThen,
+							function (name) {
+								return A2(
+									elm$json$Json$Decode$andThen,
+									function (colour) {
+										return elm$json$Json$Decode$succeed(
+											{colour: colour, name: name, x: x, y: y});
+									},
+									A2(elm$json$Json$Decode$field, 'colour', elm$json$Json$Decode$string));
+							},
+							A2(elm$json$Json$Decode$field, 'name', elm$json$Json$Decode$string));
+					},
+					A2(elm$json$Json$Decode$field, 'x', elm$json$Json$Decode$int));
+			},
+			A2(elm$json$Json$Decode$field, 'y', elm$json$Json$Decode$int))));
+var author$project$Main$Down = {$: 'Down'};
+var author$project$Main$Left = {$: 'Left'};
+var author$project$Main$Other = {$: 'Other'};
+var author$project$Main$Right = {$: 'Right'};
+var author$project$Main$Up = {$: 'Up'};
 var author$project$Main$toDirection = function (string) {
 	switch (string) {
 		case 'ArrowLeft':
-			return 0;
+			return author$project$Main$Left;
 		case 'ArrowRight':
-			return 1;
+			return author$project$Main$Right;
 		case 'ArrowUp':
-			return 2;
+			return author$project$Main$Up;
 		case 'ArrowDown':
-			return 3;
+			return author$project$Main$Down;
 		default:
-			return 4;
+			return author$project$Main$Other;
 	}
 };
-var elm$json$Json$Decode$field = _Json_decodeField;
 var elm$json$Json$Decode$map = _Json_map1;
-var elm$json$Json$Decode$string = _Json_decodeString;
 var author$project$Main$keyDecoder = A2(
 	elm$json$Json$Decode$map,
 	author$project$Main$toDirection,
 	A2(elm$json$Json$Decode$field, 'key', elm$json$Json$Decode$string));
-var elm$browser$Browser$Events$Document = 0;
+var elm$browser$Browser$Events$Document = {$: 'Document'};
 var elm$browser$Browser$Events$MySub = F3(
 	function (a, b, c) {
-		return {$: 0, a: a, b: b, c: c};
+		return {$: 'MySub', a: a, b: b, c: c};
 	});
 var elm$browser$Browser$Events$State = F2(
 	function (subs, pids) {
-		return {aC: pids, aN: subs};
+		return {pids: pids, subs: subs};
 	});
-var elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
+var elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
 var elm$core$Dict$empty = elm$core$Dict$RBEmpty_elm_builtin;
 var elm$core$Task$succeed = _Scheduler_succeed;
 var elm$browser$Browser$Events$init = elm$core$Task$succeed(
 	A2(elm$browser$Browser$Events$State, _List_Nil, elm$core$Dict$empty));
 var elm$browser$Browser$Events$nodeToKey = function (node) {
-	if (!node) {
+	if (node.$ === 'Document') {
 		return 'd_';
 	} else {
 		return 'w_';
@@ -5666,7 +5703,7 @@ var elm$browser$Browser$Events$addKey = function (sub) {
 };
 var elm$browser$Browser$Events$Event = F2(
 	function (key, event) {
-		return {as: event, av: key};
+		return {event: event, key: key};
 	});
 var elm$core$Platform$sendToSelf = _Platform_sendToSelf;
 var elm$core$Task$andThen = _Scheduler_andThen;
@@ -5681,23 +5718,27 @@ var elm$core$Task$map = F2(
 			taskA);
 	});
 var elm$browser$Browser$External = function (a) {
-	return {$: 1, a: a};
+	return {$: 'External', a: a};
 };
 var elm$browser$Browser$Internal = function (a) {
-	return {$: 0, a: a};
+	return {$: 'Internal', a: a};
 };
-var elm$browser$Browser$Dom$NotFound = elm$core$Basics$identity;
+var elm$browser$Browser$Dom$NotFound = function (a) {
+	return {$: 'NotFound', a: a};
+};
 var elm$core$Basics$never = function (_n0) {
 	never:
 	while (true) {
-		var nvr = _n0;
+		var nvr = _n0.a;
 		var $temp$_n0 = nvr;
 		_n0 = $temp$_n0;
 		continue never;
 	}
 };
-var elm$core$Task$Perform = elm$core$Basics$identity;
-var elm$core$Task$init = elm$core$Task$succeed(0);
+var elm$core$Task$Perform = function (a) {
+	return {$: 'Perform', a: a};
+};
+var elm$core$Task$init = elm$core$Task$succeed(_Utils_Tuple0);
 var elm$core$Task$map2 = F3(
 	function (func, taskA, taskB) {
 		return A2(
@@ -5723,7 +5764,7 @@ var elm$core$Task$sequence = function (tasks) {
 var elm$core$Platform$sendToApp = _Platform_sendToApp;
 var elm$core$Task$spawnCmd = F2(
 	function (router, _n0) {
-		var task = _n0;
+		var task = _n0.a;
 		return _Scheduler_spawn(
 			A2(
 				elm$core$Task$andThen,
@@ -5735,7 +5776,7 @@ var elm$core$Task$onEffects = F3(
 		return A2(
 			elm$core$Task$map,
 			function (_n0) {
-				return 0;
+				return _Utils_Tuple0;
 			},
 			elm$core$Task$sequence(
 				A2(
@@ -5745,29 +5786,30 @@ var elm$core$Task$onEffects = F3(
 	});
 var elm$core$Task$onSelfMsg = F3(
 	function (_n0, _n1, _n2) {
-		return elm$core$Task$succeed(0);
+		return elm$core$Task$succeed(_Utils_Tuple0);
 	});
 var elm$core$Task$cmdMap = F2(
 	function (tagger, _n0) {
-		var task = _n0;
-		return A2(elm$core$Task$map, tagger, task);
+		var task = _n0.a;
+		return elm$core$Task$Perform(
+			A2(elm$core$Task$map, tagger, task));
 	});
 _Platform_effectManagers['Task'] = _Platform_createManager(elm$core$Task$init, elm$core$Task$onEffects, elm$core$Task$onSelfMsg, elm$core$Task$cmdMap);
 var elm$core$Task$command = _Platform_leaf('Task');
 var elm$core$Task$perform = F2(
 	function (toMessage, task) {
 		return elm$core$Task$command(
-			A2(elm$core$Task$map, toMessage, task));
+			elm$core$Task$Perform(
+				A2(elm$core$Task$map, toMessage, task)));
 	});
 var elm$json$Json$Decode$map2 = _Json_map2;
-var elm$json$Json$Decode$succeed = _Json_succeed;
 var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 	switch (handler.$) {
-		case 0:
+		case 'Normal':
 			return 0;
-		case 1:
+		case 'MayStopPropagation':
 			return 1;
-		case 2:
+		case 'MayPreventDefault':
 			return 2;
 		default:
 			return 3;
@@ -5784,8 +5826,8 @@ var elm$core$String$dropLeft = F2(
 			string);
 	});
 var elm$core$String$startsWith = _String_startsWith;
-var elm$url$Url$Http = 0;
-var elm$url$Url$Https = 1;
+var elm$url$Url$Http = {$: 'Http'};
+var elm$url$Url$Https = {$: 'Https'};
 var elm$core$String$indexes = _String_indexes;
 var elm$core$String$isEmpty = function (string) {
 	return string === '';
@@ -5798,7 +5840,7 @@ var elm$core$String$contains = _String_contains;
 var elm$core$String$toInt = _String_toInt;
 var elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {at: fragment, au: host, aA: path, aD: port_, aH: protocol, aI: query};
+		return {fragment: fragment, host: host, path: path, port_: port_, protocol: protocol, query: query};
 	});
 var elm$url$Url$chompBeforePath = F5(
 	function (protocol, path, params, frag, str) {
@@ -5814,7 +5856,7 @@ var elm$url$Url$chompBeforePath = F5(
 					var i = _n0.a;
 					var _n1 = elm$core$String$toInt(
 						A2(elm$core$String$dropLeft, i + 1, str));
-					if (_n1.$ === 1) {
+					if (_n1.$ === 'Nothing') {
 						return elm$core$Maybe$Nothing;
 					} else {
 						var port_ = _n1;
@@ -5896,10 +5938,10 @@ var elm$url$Url$chompAfterProtocol = F2(
 var elm$url$Url$fromString = function (str) {
 	return A2(elm$core$String$startsWith, 'http://', str) ? A2(
 		elm$url$Url$chompAfterProtocol,
-		0,
+		elm$url$Url$Http,
 		A2(elm$core$String$dropLeft, 7, str)) : (A2(elm$core$String$startsWith, 'https://', str) ? A2(
 		elm$url$Url$chompAfterProtocol,
-		1,
+		elm$url$Url$Https,
 		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
 };
 var elm$browser$Browser$Events$spawn = F3(
@@ -5907,7 +5949,7 @@ var elm$browser$Browser$Events$spawn = F3(
 		var node = _n0.a;
 		var name = _n0.b;
 		var actualNode = function () {
-			if (!node) {
+			if (node.$ === 'Document') {
 				return _Browser_doc;
 			} else {
 				return _Browser_window;
@@ -5929,22 +5971,22 @@ var elm$browser$Browser$Events$spawn = F3(
 						A2(elm$browser$Browser$Events$Event, key, event));
 				}));
 	});
-var elm$core$Dict$Black = 1;
+var elm$core$Dict$Black = {$: 'Black'};
 var elm$core$Dict$RBNode_elm_builtin = F5(
 	function (a, b, c, d, e) {
-		return {$: -1, a: a, b: b, c: c, d: d, e: e};
+		return {$: 'RBNode_elm_builtin', a: a, b: b, c: c, d: d, e: e};
 	});
 var elm$core$Basics$compare = _Utils_compare;
-var elm$core$Dict$Red = 0;
+var elm$core$Dict$Red = {$: 'Red'};
 var elm$core$Dict$balance = F5(
 	function (color, key, value, left, right) {
-		if ((right.$ === -1) && (!right.a)) {
+		if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Red')) {
 			var _n1 = right.a;
 			var rK = right.b;
 			var rV = right.c;
 			var rLeft = right.d;
 			var rRight = right.e;
-			if ((left.$ === -1) && (!left.a)) {
+			if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
 				var _n3 = left.a;
 				var lK = left.b;
 				var lV = left.c;
@@ -5952,22 +5994,22 @@ var elm$core$Dict$balance = F5(
 				var lRight = left.e;
 				return A5(
 					elm$core$Dict$RBNode_elm_builtin,
-					0,
+					elm$core$Dict$Red,
 					key,
 					value,
-					A5(elm$core$Dict$RBNode_elm_builtin, 1, lK, lV, lLeft, lRight),
-					A5(elm$core$Dict$RBNode_elm_builtin, 1, rK, rV, rLeft, rRight));
+					A5(elm$core$Dict$RBNode_elm_builtin, elm$core$Dict$Black, lK, lV, lLeft, lRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, elm$core$Dict$Black, rK, rV, rLeft, rRight));
 			} else {
 				return A5(
 					elm$core$Dict$RBNode_elm_builtin,
 					color,
 					rK,
 					rV,
-					A5(elm$core$Dict$RBNode_elm_builtin, 0, key, value, left, rLeft),
+					A5(elm$core$Dict$RBNode_elm_builtin, elm$core$Dict$Red, key, value, left, rLeft),
 					rRight);
 			}
 		} else {
-			if ((((left.$ === -1) && (!left.a)) && (left.d.$ === -1)) && (!left.d.a)) {
+			if ((((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) && (left.d.$ === 'RBNode_elm_builtin')) && (left.d.a.$ === 'Red')) {
 				var _n5 = left.a;
 				var lK = left.b;
 				var lV = left.c;
@@ -5980,11 +6022,11 @@ var elm$core$Dict$balance = F5(
 				var lRight = left.e;
 				return A5(
 					elm$core$Dict$RBNode_elm_builtin,
-					0,
+					elm$core$Dict$Red,
 					lK,
 					lV,
-					A5(elm$core$Dict$RBNode_elm_builtin, 1, llK, llV, llLeft, llRight),
-					A5(elm$core$Dict$RBNode_elm_builtin, 1, key, value, lRight, right));
+					A5(elm$core$Dict$RBNode_elm_builtin, elm$core$Dict$Black, llK, llV, llLeft, llRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, elm$core$Dict$Black, key, value, lRight, right));
 			} else {
 				return A5(elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
 			}
@@ -5992,8 +6034,8 @@ var elm$core$Dict$balance = F5(
 	});
 var elm$core$Dict$insertHelp = F3(
 	function (key, value, dict) {
-		if (dict.$ === -2) {
-			return A5(elm$core$Dict$RBNode_elm_builtin, 0, key, value, elm$core$Dict$RBEmpty_elm_builtin, elm$core$Dict$RBEmpty_elm_builtin);
+		if (dict.$ === 'RBEmpty_elm_builtin') {
+			return A5(elm$core$Dict$RBNode_elm_builtin, elm$core$Dict$Red, key, value, elm$core$Dict$RBEmpty_elm_builtin, elm$core$Dict$RBEmpty_elm_builtin);
 		} else {
 			var nColor = dict.a;
 			var nKey = dict.b;
@@ -6001,8 +6043,8 @@ var elm$core$Dict$insertHelp = F3(
 			var nLeft = dict.d;
 			var nRight = dict.e;
 			var _n1 = A2(elm$core$Basics$compare, key, nKey);
-			switch (_n1) {
-				case 0:
+			switch (_n1.$) {
+				case 'LT':
 					return A5(
 						elm$core$Dict$balance,
 						nColor,
@@ -6010,7 +6052,7 @@ var elm$core$Dict$insertHelp = F3(
 						nValue,
 						A3(elm$core$Dict$insertHelp, key, value, nLeft),
 						nRight);
-				case 1:
+				case 'EQ':
 					return A5(elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
 				default:
 					return A5(
@@ -6026,13 +6068,13 @@ var elm$core$Dict$insertHelp = F3(
 var elm$core$Dict$insert = F3(
 	function (key, value, dict) {
 		var _n0 = A3(elm$core$Dict$insertHelp, key, value, dict);
-		if ((_n0.$ === -1) && (!_n0.a)) {
+		if ((_n0.$ === 'RBNode_elm_builtin') && (_n0.a.$ === 'Red')) {
 			var _n1 = _n0.a;
 			var k = _n0.b;
 			var v = _n0.c;
 			var l = _n0.d;
 			var r = _n0.e;
-			return A5(elm$core$Dict$RBNode_elm_builtin, 1, k, v, l, r);
+			return A5(elm$core$Dict$RBNode_elm_builtin, elm$core$Dict$Black, k, v, l, r);
 		} else {
 			var x = _n0;
 			return x;
@@ -6054,7 +6096,7 @@ var elm$core$Dict$foldl = F3(
 	function (func, acc, dict) {
 		foldl:
 		while (true) {
-			if (dict.$ === -2) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
 				return acc;
 			} else {
 				var key = dict.b;
@@ -6182,7 +6224,7 @@ var elm$browser$Browser$Events$onEffects = F3(
 			stepLeft,
 			stepBoth,
 			stepRight,
-			state.aC,
+			state.pids,
 			elm$core$Dict$fromList(newSubs),
 			_Utils_Tuple3(_List_Nil, elm$core$Dict$empty, _List_Nil));
 		var deadPids = _n0.a;
@@ -6211,7 +6253,7 @@ var elm$browser$Browser$Events$onEffects = F3(
 var elm$core$List$maybeCons = F3(
 	function (f, mx, xs) {
 		var _n0 = f(mx);
-		if (!_n0.$) {
+		if (_n0.$ === 'Just') {
 			var x = _n0.a;
 			return A2(elm$core$List$cons, x, xs);
 		} else {
@@ -6228,8 +6270,8 @@ var elm$core$List$filterMap = F2(
 	});
 var elm$browser$Browser$Events$onSelfMsg = F3(
 	function (router, _n0, state) {
-		var key = _n0.av;
-		var event = _n0.as;
+		var key = _n0.key;
+		var event = _n0.event;
 		var toMessage = function (_n2) {
 			var subKey = _n2.a;
 			var _n3 = _n2.b;
@@ -6238,7 +6280,7 @@ var elm$browser$Browser$Events$onSelfMsg = F3(
 			var decoder = _n3.c;
 			return _Utils_eq(subKey, key) ? A2(_Browser_decodeEvent, decoder, event) : elm$core$Maybe$Nothing;
 		};
-		var messages = A2(elm$core$List$filterMap, toMessage, state.aN);
+		var messages = A2(elm$core$List$filterMap, toMessage, state.subs);
 		return A2(
 			elm$core$Task$andThen,
 			function (_n1) {
@@ -6268,26 +6310,26 @@ var elm$browser$Browser$Events$on = F3(
 		return elm$browser$Browser$Events$subscription(
 			A3(elm$browser$Browser$Events$MySub, node, name, decoder));
 	});
-var elm$browser$Browser$Events$onKeyDown = A2(elm$browser$Browser$Events$on, 0, 'keydown');
+var elm$browser$Browser$Events$onKeyDown = A2(elm$browser$Browser$Events$on, elm$browser$Browser$Events$Document, 'keydown');
 var elm$core$Platform$Sub$batch = _Platform_batch;
 var elm$browser$Browser$AnimationManager$Time = function (a) {
-	return {$: 0, a: a};
+	return {$: 'Time', a: a};
 };
 var elm$browser$Browser$AnimationManager$State = F3(
 	function (subs, request, oldTime) {
-		return {af: oldTime, aK: request, aN: subs};
+		return {oldTime: oldTime, request: request, subs: subs};
 	});
 var elm$browser$Browser$AnimationManager$init = elm$core$Task$succeed(
 	A3(elm$browser$Browser$AnimationManager$State, _List_Nil, elm$core$Maybe$Nothing, 0));
-var elm$browser$Browser$AnimationManager$now = _Browser_now(0);
-var elm$browser$Browser$AnimationManager$rAF = _Browser_rAF(0);
+var elm$browser$Browser$AnimationManager$now = _Browser_now(_Utils_Tuple0);
+var elm$browser$Browser$AnimationManager$rAF = _Browser_rAF(_Utils_Tuple0);
 var elm$core$Process$spawn = _Scheduler_spawn;
 var elm$browser$Browser$AnimationManager$onEffects = F3(
 	function (router, subs, _n0) {
-		var request = _n0.aK;
-		var oldTime = _n0.af;
+		var request = _n0.request;
+		var oldTime = _n0.oldTime;
 		var _n1 = _Utils_Tuple2(request, subs);
-		if (_n1.a.$ === 1) {
+		if (_n1.a.$ === 'Nothing') {
 			if (!_n1.b.b) {
 				var _n2 = _n1.a;
 				return elm$browser$Browser$AnimationManager$init;
@@ -6331,10 +6373,10 @@ var elm$browser$Browser$AnimationManager$onEffects = F3(
 	});
 var elm$browser$Browser$AnimationManager$onSelfMsg = F3(
 	function (router, newTime, _n0) {
-		var subs = _n0.aN;
-		var oldTime = _n0.af;
+		var subs = _n0.subs;
+		var oldTime = _n0.oldTime;
 		var send = function (sub) {
-			if (!sub.$) {
+			if (sub.$ === 'Time') {
 				var tagger = sub.a;
 				return A2(
 					elm$core$Platform$sendToApp,
@@ -6372,7 +6414,7 @@ var elm$browser$Browser$AnimationManager$onSelfMsg = F3(
 					elm$browser$Browser$AnimationManager$rAF)));
 	});
 var elm$browser$Browser$AnimationManager$Delta = function (a) {
-	return {$: 1, a: a};
+	return {$: 'Delta', a: a};
 };
 var elm$core$Basics$composeL = F3(
 	function (g, f, x) {
@@ -6381,7 +6423,7 @@ var elm$core$Basics$composeL = F3(
 	});
 var elm$browser$Browser$AnimationManager$subMap = F2(
 	function (func, sub) {
-		if (!sub.$) {
+		if (sub.$ === 'Time') {
 			var tagger = sub.a;
 			return elm$browser$Browser$AnimationManager$Time(
 				A2(elm$core$Basics$composeL, func, tagger));
@@ -6401,16 +6443,18 @@ var elm$browser$Browser$Events$onAnimationFrame = elm$browser$Browser$AnimationM
 var elm$core$Platform$Sub$map = _Platform_map;
 var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
 var mdgriffith$elm_style_animation$Animation$isRunning = function (_n0) {
-	var model = _n0;
-	return model.Z;
+	var model = _n0.a;
+	return model.running;
 };
-var mdgriffith$elm_style_animation$Animation$Model$Tick = elm$core$Basics$identity;
+var mdgriffith$elm_style_animation$Animation$Model$Tick = function (a) {
+	return {$: 'Tick', a: a};
+};
 var mdgriffith$elm_style_animation$Animation$subscription = F2(
 	function (msg, states) {
 		return A2(elm$core$List$any, mdgriffith$elm_style_animation$Animation$isRunning, states) ? A2(
 			elm$core$Platform$Sub$map,
 			msg,
-			elm$browser$Browser$Events$onAnimationFrame(elm$core$Basics$identity)) : elm$core$Platform$Sub$none;
+			elm$browser$Browser$Events$onAnimationFrame(mdgriffith$elm_style_animation$Animation$Model$Tick)) : elm$core$Platform$Sub$none;
 	});
 var author$project$Main$subscriptions = function (model) {
 	return elm$core$Platform$Sub$batch(
@@ -6420,12 +6464,32 @@ var author$project$Main$subscriptions = function (model) {
 				mdgriffith$elm_style_animation$Animation$subscription,
 				author$project$Main$Animate,
 				_List_fromArray(
-					[model.u.x])),
+					[model.me.style])),
 				elm$browser$Browser$Events$onKeyDown(
-				A2(elm$json$Json$Decode$map, author$project$Main$Move, author$project$Main$keyDecoder))
+				A2(elm$json$Json$Decode$map, author$project$Main$Move, author$project$Main$keyDecoder)),
+				author$project$Main$activeUsers(author$project$Main$UserUpdate)
 			]));
 };
 var author$project$Main$sideLength = 100;
+var author$project$Main$buildPlayer = function (basicPlayer) {
+	var x = basicPlayer.x;
+	var y = basicPlayer.y;
+	var colour = basicPlayer.colour;
+	var name = basicPlayer.name;
+	return {
+		colour: colour,
+		name: name,
+		pos: {x: x, y: y},
+		style: mdgriffith$elm_style_animation$Animation$style(
+			_List_fromArray(
+				[
+					mdgriffith$elm_style_animation$Animation$left(
+					mdgriffith$elm_style_animation$Animation$px(x * author$project$Main$sideLength)),
+					mdgriffith$elm_style_animation$Animation$top(
+					mdgriffith$elm_style_animation$Animation$px(y * author$project$Main$sideLength))
+				]))
+	};
+};
 var elm$core$List$drop = F2(
 	function (n, list) {
 		drop:
@@ -6448,18 +6512,18 @@ var elm$core$List$drop = F2(
 		}
 	});
 var elm$time$Time$posixToMillis = function (_n0) {
-	var millis = _n0;
+	var millis = _n0.a;
 	return millis;
 };
 var mdgriffith$elm_style_animation$Animation$extractInitialWait = function (steps) {
 	var _n0 = elm$core$List$head(steps);
-	if (_n0.$ === 1) {
+	if (_n0.$ === 'Nothing') {
 		return _Utils_Tuple2(
 			elm$time$Time$millisToPosix(0),
 			_List_Nil);
 	} else {
 		var step = _n0.a;
-		if (step.$ === 4) {
+		if (step.$ === 'Wait') {
 			var till = step.a;
 			var _n2 = mdgriffith$elm_style_animation$Animation$extractInitialWait(
 				A2(elm$core$List$drop, 1, steps));
@@ -6478,22 +6542,23 @@ var mdgriffith$elm_style_animation$Animation$extractInitialWait = function (step
 };
 var mdgriffith$elm_style_animation$Animation$interrupt = F2(
 	function (steps, _n0) {
-		var model = _n0;
-		return _Utils_update(
-			model,
-			{
-				ad: A2(
-					elm$core$List$cons,
-					mdgriffith$elm_style_animation$Animation$extractInitialWait(steps),
-					model.ad),
-				Z: true
-			});
+		var model = _n0.a;
+		return mdgriffith$elm_style_animation$Animation$Model$Animation(
+			_Utils_update(
+				model,
+				{
+					interruption: A2(
+						elm$core$List$cons,
+						mdgriffith$elm_style_animation$Animation$extractInitialWait(steps),
+						model.interruption),
+					running: true
+				}));
 	});
 var mdgriffith$elm_style_animation$Animation$spring = function (settings) {
 	return mdgriffith$elm_style_animation$Animation$Model$Spring(settings);
 };
 var mdgriffith$elm_style_animation$Animation$Model$ToWith = function (a) {
-	return {$: 2, a: a};
+	return {$: 'ToWith', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$toWith = F2(
 	function (interp, props) {
@@ -6504,21 +6569,21 @@ var mdgriffith$elm_style_animation$Animation$toWith = F2(
 					function (m) {
 						return _Utils_update(
 							m,
-							{F: interp});
+							{interpolation: interp});
 					}),
 				props));
 	});
-var mdgriffith$elm_style_animation$Animation$Spring$Presets$wobbly = {ap: 12, aM: 180};
+var mdgriffith$elm_style_animation$Animation$Spring$Presets$wobbly = {damping: 12, stiffness: 180};
 var author$project$Main$updatePlayer = F3(
 	function (player, x, y) {
 		var ypx = y * author$project$Main$sideLength;
 		var xpx = x * author$project$Main$sideLength;
-		var newPos = {_: x, aa: y};
+		var newPos = {x: x, y: y};
 		return _Utils_update(
 			player,
 			{
-				R: newPos,
-				x: A2(
+				pos: newPos,
+				style: A2(
 					mdgriffith$elm_style_animation$Animation$interrupt,
 					_List_fromArray(
 						[
@@ -6533,14 +6598,37 @@ var author$project$Main$updatePlayer = F3(
 									mdgriffith$elm_style_animation$Animation$px(ypx))
 								]))
 						]),
-					player.x)
+					player.style)
 			});
 	});
-var elm$json$Json$Encode$string = _Json_wrap;
-var author$project$Main$wsSend = _Platform_outgoingPort('wsSend', elm$json$Json$Encode$string);
+var elm$json$Json$Encode$int = _Json_wrap;
+var elm$json$Json$Encode$list = F2(
+	function (func, entries) {
+		return _Json_wrap(
+			A3(
+				elm$core$List$foldl,
+				_Json_addEntry(func),
+				_Json_emptyArray(_Utils_Tuple0),
+				entries));
+	});
+var author$project$Main$wsSend = _Platform_outgoingPort(
+	'wsSend',
+	function ($) {
+		var a = $.a;
+		var b = $.b;
+		return A2(
+			elm$json$Json$Encode$list,
+			elm$core$Basics$identity,
+			_List_fromArray(
+				[
+					elm$json$Json$Encode$int(a),
+					elm$json$Json$Encode$int(b)
+				]));
+	});
 var elm$core$Basics$negate = function (n) {
 	return -n;
 };
+var elm$core$Debug$log = _Debug_log;
 var elm$core$Basics$neq = _Utils_notEqual;
 var elm$core$List$partition = F2(
 	function (pred, list) {
@@ -6563,10 +6651,10 @@ var elm$core$List$partition = F2(
 var elm$core$Basics$round = _Basics_round;
 var mdgriffith$elm_style_animation$Animation$Model$refreshTiming = F2(
 	function (now, timing) {
-		var dt = elm$time$Time$posixToMillis(now) - elm$time$Time$posixToMillis(timing.ao);
+		var dt = elm$time$Time$posixToMillis(now) - elm$time$Time$posixToMillis(timing.current);
 		return {
-			ao: now,
-			aV: ((dt > 34) || (!elm$time$Time$posixToMillis(timing.ao))) ? elm$time$Time$millisToPosix(
+			current: now,
+			dt: ((dt > 34) || (!elm$time$Time$posixToMillis(timing.current))) ? elm$time$Time$millisToPosix(
 				elm$core$Basics$round(16.666)) : elm$time$Time$millisToPosix(dt)
 		};
 	});
@@ -6578,19 +6666,19 @@ var elm$core$List$all = F2(
 			list);
 	});
 var mdgriffith$elm_style_animation$Animation$Model$Loop = function (a) {
-	return {$: 7, a: a};
+	return {$: 'Loop', a: a};
 };
 var mdgriffith$elm_style_animation$Animation$Model$Repeat = F2(
 	function (a, b) {
-		return {$: 6, a: a, b: b};
+		return {$: 'Repeat', a: a, b: b};
 	});
-var mdgriffith$elm_style_animation$Animation$Model$Step = {$: 0};
+var mdgriffith$elm_style_animation$Animation$Model$Step = {$: 'Step'};
 var mdgriffith$elm_style_animation$Animation$Model$Wait = function (a) {
-	return {$: 4, a: a};
+	return {$: 'Wait', a: a};
 };
 var elm$core$Maybe$withDefault = F2(
 	function (_default, maybe) {
-		if (!maybe.$) {
+		if (maybe.$ === 'Just') {
 			var value = maybe.a;
 			return value;
 		} else {
@@ -6599,56 +6687,56 @@ var elm$core$Maybe$withDefault = F2(
 	});
 var mdgriffith$elm_style_animation$Animation$Model$isCmdDone = function (cmd) {
 	var motionDone = function (motion) {
-		return (!motion.bc) && _Utils_eq(motion.a4, motion.a7);
+		return (!motion.velocity) && _Utils_eq(motion.position, motion.target);
 	};
 	switch (cmd.$) {
-		case 0:
+		case 'Move':
 			var m1 = cmd.a;
 			var m2 = cmd.b;
 			return motionDone(m1) && motionDone(m2);
-		case 1:
+		case 'MoveTo':
 			var m1 = cmd.a;
 			var m2 = cmd.b;
 			return motionDone(m1) && motionDone(m2);
-		case 2:
+		case 'Line':
 			var m1 = cmd.a;
 			var m2 = cmd.b;
 			return motionDone(m1) && motionDone(m2);
-		case 3:
+		case 'LineTo':
 			var m1 = cmd.a;
 			var m2 = cmd.b;
 			return motionDone(m1) && motionDone(m2);
-		case 4:
+		case 'Horizontal':
 			var motion = cmd.a;
 			return motionDone(motion);
-		case 5:
+		case 'HorizontalTo':
 			var motion = cmd.a;
 			return motionDone(motion);
-		case 6:
+		case 'Vertical':
 			var motion = cmd.a;
 			return motionDone(motion);
-		case 7:
+		case 'VerticalTo':
 			var motion = cmd.a;
 			return motionDone(motion);
-		case 8:
-			var control1 = cmd.a.N;
-			var control2 = cmd.a.O;
-			var point = cmd.a.p;
+		case 'Curve':
+			var control1 = cmd.a.control1;
+			var control2 = cmd.a.control2;
+			var point = cmd.a.point;
 			return motionDone(control1.a) && (motionDone(control1.b) && (motionDone(control2.a) && (motionDone(control2.b) && (motionDone(point.a) && motionDone(point.b)))));
-		case 9:
-			var control1 = cmd.a.N;
-			var control2 = cmd.a.O;
-			var point = cmd.a.p;
+		case 'CurveTo':
+			var control1 = cmd.a.control1;
+			var control2 = cmd.a.control2;
+			var point = cmd.a.point;
 			return motionDone(control1.a) && (motionDone(control1.b) && (motionDone(control2.a) && (motionDone(control2.b) && (motionDone(point.a) && motionDone(point.b)))));
-		case 10:
-			var control = cmd.a.M;
-			var point = cmd.a.p;
+		case 'Quadratic':
+			var control = cmd.a.control;
+			var point = cmd.a.point;
 			return motionDone(control.a) && (motionDone(control.b) && (motionDone(point.a) && motionDone(point.b)));
-		case 11:
-			var control = cmd.a.M;
-			var point = cmd.a.p;
+		case 'QuadraticTo':
+			var control = cmd.a.control;
+			var point = cmd.a.point;
 			return motionDone(control.a) && (motionDone(control.b) && (motionDone(point.a) && motionDone(point.b)));
-		case 12:
+		case 'SmoothQuadratic':
 			var coords = cmd.a;
 			return A2(
 				elm$core$List$all,
@@ -6658,7 +6746,7 @@ var mdgriffith$elm_style_animation$Animation$Model$isCmdDone = function (cmd) {
 					return motionDone(x) && motionDone(y);
 				},
 				coords);
-		case 13:
+		case 'SmoothQuadraticTo':
 			var coords = cmd.a;
 			return A2(
 				elm$core$List$all,
@@ -6668,7 +6756,7 @@ var mdgriffith$elm_style_animation$Animation$Model$isCmdDone = function (cmd) {
 					return motionDone(x) && motionDone(y);
 				},
 				coords);
-		case 14:
+		case 'Smooth':
 			var coords = cmd.a;
 			return A2(
 				elm$core$List$all,
@@ -6678,7 +6766,7 @@ var mdgriffith$elm_style_animation$Animation$Model$isCmdDone = function (cmd) {
 					return motionDone(x) && motionDone(y);
 				},
 				coords);
-		case 15:
+		case 'SmoothTo':
 			var coords = cmd.a;
 			return A2(
 				elm$core$List$all,
@@ -6688,34 +6776,34 @@ var mdgriffith$elm_style_animation$Animation$Model$isCmdDone = function (cmd) {
 					return motionDone(x) && motionDone(y);
 				},
 				coords);
-		case 16:
+		case 'ClockwiseArc':
 			var arc = cmd.a;
-			return motionDone(arc._) && (motionDone(arc.aa) && (motionDone(arc.S) && (motionDone(arc.U) && motionDone(arc.P))));
-		case 17:
+			return motionDone(arc.x) && (motionDone(arc.y) && (motionDone(arc.radius) && (motionDone(arc.startAngle) && motionDone(arc.endAngle))));
+		case 'AntiClockwiseArc':
 			var arc = cmd.a;
-			return motionDone(arc._) && (motionDone(arc.aa) && (motionDone(arc.S) && (motionDone(arc.U) && motionDone(arc.P))));
+			return motionDone(arc.x) && (motionDone(arc.y) && (motionDone(arc.radius) && (motionDone(arc.startAngle) && motionDone(arc.endAngle))));
 		default:
 			return true;
 	}
 };
 var mdgriffith$elm_style_animation$Animation$Model$isDone = function (property) {
 	var motionDone = function (motion) {
-		var runningInterpolation = A2(elm$core$Maybe$withDefault, motion.F, motion.a0);
+		var runningInterpolation = A2(elm$core$Maybe$withDefault, motion.interpolation, motion.interpolationOverride);
 		switch (runningInterpolation.$) {
-			case 0:
-				return (!motion.bc) && _Utils_eq(motion.a4, motion.a7);
-			case 1:
+			case 'Spring':
+				return (!motion.velocity) && _Utils_eq(motion.position, motion.target);
+			case 'Easing':
 				var eased = runningInterpolation.a;
-				return (eased.aG === 1) || ((!eased.aG) && _Utils_eq(motion.a4, motion.a7));
+				return (eased.progress === 1) || ((!eased.progress) && _Utils_eq(motion.position, motion.target));
 			default:
 				var speed = runningInterpolation.a;
-				return _Utils_eq(motion.a4, motion.a7);
+				return _Utils_eq(motion.position, motion.target);
 		}
 	};
 	switch (property.$) {
-		case 0:
+		case 'ExactProperty':
 			return true;
-		case 1:
+		case 'ColorProperty':
 			var m1 = property.b;
 			var m2 = property.c;
 			var m3 = property.d;
@@ -6725,21 +6813,21 @@ var mdgriffith$elm_style_animation$Animation$Model$isDone = function (property) 
 				motionDone,
 				_List_fromArray(
 					[m1, m2, m3, m4]));
-		case 2:
+		case 'ShadowProperty':
 			var shadow = property.c;
 			return A2(
 				elm$core$List$all,
 				motionDone,
 				_List_fromArray(
-					[shadow.m, shadow.n, shadow.q, shadow.l, shadow.k, shadow.j, shadow.h, shadow.g]));
-		case 3:
+					[shadow.offsetX, shadow.offsetY, shadow.size, shadow.blur, shadow.red, shadow.green, shadow.blue, shadow.alpha]));
+		case 'Property':
 			var m1 = property.b;
 			return motionDone(m1);
-		case 4:
+		case 'Property2':
 			var m1 = property.b;
 			var m2 = property.c;
 			return motionDone(m1) && motionDone(m2);
-		case 5:
+		case 'Property3':
 			var m1 = property.b;
 			var m2 = property.c;
 			var m3 = property.d;
@@ -6748,7 +6836,7 @@ var mdgriffith$elm_style_animation$Animation$Model$isDone = function (property) 
 				motionDone,
 				_List_fromArray(
 					[m1, m2, m3]));
-		case 6:
+		case 'Property4':
 			var m1 = property.b;
 			var m2 = property.c;
 			var m3 = property.d;
@@ -6758,10 +6846,10 @@ var mdgriffith$elm_style_animation$Animation$Model$isDone = function (property) 
 				motionDone,
 				_List_fromArray(
 					[m1, m2, m3, m4]));
-		case 7:
+		case 'AngleProperty':
 			var m1 = property.b;
 			return motionDone(m1);
-		case 8:
+		case 'Points':
 			var ms = property.a;
 			return A2(
 				elm$core$List$all,
@@ -6806,7 +6894,7 @@ var mdgriffith$elm_style_animation$Animation$Model$matchPoints = F2(
 		if (diff > 0) {
 			var _n0 = elm$core$List$head(
 				elm$core$List$reverse(points2));
-			if (_n0.$ === 1) {
+			if (_n0.$ === 'Nothing') {
 				return _Utils_Tuple2(points1, points2);
 			} else {
 				var last2 = _n0.a;
@@ -6823,7 +6911,7 @@ var mdgriffith$elm_style_animation$Animation$Model$matchPoints = F2(
 			if (diff < 0) {
 				var _n1 = elm$core$List$head(
 					elm$core$List$reverse(points1));
-				if (_n1.$ === 1) {
+				if (_n1.$ === 'Nothing') {
 					return _Utils_Tuple2(points1, points2);
 				} else {
 					var last1 = _n1.a;
@@ -6845,29 +6933,29 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 	function (cmd, targetCmd) {
 		var setMotionTarget = F2(
 			function (motion, targetMotion) {
-				var _n27 = motion.F;
-				if (_n27.$ === 1) {
+				var _n27 = motion.interpolation;
+				if (_n27.$ === 'Easing') {
 					var ease = _n27.a;
 					return _Utils_update(
 						motion,
 						{
-							F: mdgriffith$elm_style_animation$Animation$Model$Easing(
+							interpolation: mdgriffith$elm_style_animation$Animation$Model$Easing(
 								_Utils_update(
 									ease,
-									{ah: motion.a4})),
-							a7: targetMotion.a4
+									{start: motion.position})),
+							target: targetMotion.position
 						});
 				} else {
 					return _Utils_update(
 						motion,
-						{a7: targetMotion.a4});
+						{target: targetMotion.position});
 				}
 			});
 		switch (cmd.$) {
-			case 0:
+			case 'Move':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
-				if (!targetCmd.$) {
+				if (targetCmd.$ === 'Move') {
 					var t1 = targetCmd.a;
 					var t2 = targetCmd.b;
 					return A2(
@@ -6877,10 +6965,10 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 				} else {
 					return cmd;
 				}
-			case 1:
+			case 'MoveTo':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
-				if (targetCmd.$ === 1) {
+				if (targetCmd.$ === 'MoveTo') {
 					var t1 = targetCmd.a;
 					var t2 = targetCmd.b;
 					return A2(
@@ -6890,10 +6978,10 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 				} else {
 					return cmd;
 				}
-			case 2:
+			case 'Line':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
-				if (targetCmd.$ === 2) {
+				if (targetCmd.$ === 'Line') {
 					var t1 = targetCmd.a;
 					var t2 = targetCmd.b;
 					return A2(
@@ -6903,10 +6991,10 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 				} else {
 					return cmd;
 				}
-			case 3:
+			case 'LineTo':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
-				if (targetCmd.$ === 3) {
+				if (targetCmd.$ === 'LineTo') {
 					var t1 = targetCmd.a;
 					var t2 = targetCmd.b;
 					return A2(
@@ -6916,115 +7004,115 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 				} else {
 					return cmd;
 				}
-			case 4:
+			case 'Horizontal':
 				var m1 = cmd.a;
-				if (targetCmd.$ === 4) {
+				if (targetCmd.$ === 'Horizontal') {
 					var t1 = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$Horizontal(
 						A2(setMotionTarget, m1, t1));
 				} else {
 					return cmd;
 				}
-			case 5:
+			case 'HorizontalTo':
 				var m1 = cmd.a;
-				if (targetCmd.$ === 5) {
+				if (targetCmd.$ === 'HorizontalTo') {
 					var t1 = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$HorizontalTo(
 						A2(setMotionTarget, m1, t1));
 				} else {
 					return cmd;
 				}
-			case 6:
+			case 'Vertical':
 				var m1 = cmd.a;
-				if (targetCmd.$ === 6) {
+				if (targetCmd.$ === 'Vertical') {
 					var t1 = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$Vertical(
 						A2(setMotionTarget, m1, t1));
 				} else {
 					return cmd;
 				}
-			case 7:
+			case 'VerticalTo':
 				var m1 = cmd.a;
-				if (targetCmd.$ === 7) {
+				if (targetCmd.$ === 'VerticalTo') {
 					var t1 = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$VerticalTo(
 						A2(setMotionTarget, m1, t1));
 				} else {
 					return cmd;
 				}
-			case 8:
+			case 'Curve':
 				var points = cmd.a;
-				if (targetCmd.$ === 8) {
+				if (targetCmd.$ === 'Curve') {
 					var targets = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$Curve(
 						{
-							N: _Utils_Tuple2(
-								A2(setMotionTarget, points.N.a, targets.N.a),
-								A2(setMotionTarget, points.N.b, targets.N.b)),
-							O: _Utils_Tuple2(
-								A2(setMotionTarget, points.O.a, targets.O.a),
-								A2(setMotionTarget, points.O.b, targets.O.b)),
-							p: _Utils_Tuple2(
-								A2(setMotionTarget, points.p.a, targets.p.a),
-								A2(setMotionTarget, points.p.b, targets.p.b))
+							control1: _Utils_Tuple2(
+								A2(setMotionTarget, points.control1.a, targets.control1.a),
+								A2(setMotionTarget, points.control1.b, targets.control1.b)),
+							control2: _Utils_Tuple2(
+								A2(setMotionTarget, points.control2.a, targets.control2.a),
+								A2(setMotionTarget, points.control2.b, targets.control2.b)),
+							point: _Utils_Tuple2(
+								A2(setMotionTarget, points.point.a, targets.point.a),
+								A2(setMotionTarget, points.point.b, targets.point.b))
 						});
 				} else {
 					return cmd;
 				}
-			case 9:
+			case 'CurveTo':
 				var points = cmd.a;
-				if (targetCmd.$ === 9) {
+				if (targetCmd.$ === 'CurveTo') {
 					var targets = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$CurveTo(
 						{
-							N: _Utils_Tuple2(
-								A2(setMotionTarget, points.N.a, targets.N.a),
-								A2(setMotionTarget, points.N.b, targets.N.b)),
-							O: _Utils_Tuple2(
-								A2(setMotionTarget, points.O.a, targets.O.a),
-								A2(setMotionTarget, points.O.b, targets.O.b)),
-							p: _Utils_Tuple2(
-								A2(setMotionTarget, points.p.a, targets.p.a),
-								A2(setMotionTarget, points.p.b, targets.p.b))
+							control1: _Utils_Tuple2(
+								A2(setMotionTarget, points.control1.a, targets.control1.a),
+								A2(setMotionTarget, points.control1.b, targets.control1.b)),
+							control2: _Utils_Tuple2(
+								A2(setMotionTarget, points.control2.a, targets.control2.a),
+								A2(setMotionTarget, points.control2.b, targets.control2.b)),
+							point: _Utils_Tuple2(
+								A2(setMotionTarget, points.point.a, targets.point.a),
+								A2(setMotionTarget, points.point.b, targets.point.b))
 						});
 				} else {
 					return cmd;
 				}
-			case 10:
+			case 'Quadratic':
 				var points = cmd.a;
-				if (targetCmd.$ === 10) {
+				if (targetCmd.$ === 'Quadratic') {
 					var targets = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$Quadratic(
 						{
-							M: _Utils_Tuple2(
-								A2(setMotionTarget, points.M.a, targets.M.a),
-								A2(setMotionTarget, points.M.b, targets.M.b)),
-							p: _Utils_Tuple2(
-								A2(setMotionTarget, points.p.a, targets.p.a),
-								A2(setMotionTarget, points.p.b, targets.p.b))
+							control: _Utils_Tuple2(
+								A2(setMotionTarget, points.control.a, targets.control.a),
+								A2(setMotionTarget, points.control.b, targets.control.b)),
+							point: _Utils_Tuple2(
+								A2(setMotionTarget, points.point.a, targets.point.a),
+								A2(setMotionTarget, points.point.b, targets.point.b))
 						});
 				} else {
 					return cmd;
 				}
-			case 11:
+			case 'QuadraticTo':
 				var points = cmd.a;
-				if (targetCmd.$ === 11) {
+				if (targetCmd.$ === 'QuadraticTo') {
 					var targets = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$QuadraticTo(
 						{
-							M: _Utils_Tuple2(
-								A2(setMotionTarget, points.M.a, targets.M.a),
-								A2(setMotionTarget, points.M.b, targets.M.b)),
-							p: _Utils_Tuple2(
-								A2(setMotionTarget, points.p.a, targets.p.a),
-								A2(setMotionTarget, points.p.b, targets.p.b))
+							control: _Utils_Tuple2(
+								A2(setMotionTarget, points.control.a, targets.control.a),
+								A2(setMotionTarget, points.control.b, targets.control.b)),
+							point: _Utils_Tuple2(
+								A2(setMotionTarget, points.point.a, targets.point.a),
+								A2(setMotionTarget, points.point.b, targets.point.b))
 						});
 				} else {
 					return cmd;
 				}
-			case 12:
+			case 'SmoothQuadratic':
 				var coords = cmd.a;
-				if (targetCmd.$ === 12) {
+				if (targetCmd.$ === 'SmoothQuadratic') {
 					var targetCoords = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadratic(
 						A3(
@@ -7044,9 +7132,9 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 				} else {
 					return cmd;
 				}
-			case 13:
+			case 'SmoothQuadraticTo':
 				var coords = cmd.a;
-				if (targetCmd.$ === 13) {
+				if (targetCmd.$ === 'SmoothQuadraticTo') {
 					var targetCoords = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadraticTo(
 						A3(
@@ -7066,9 +7154,9 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 				} else {
 					return cmd;
 				}
-			case 14:
+			case 'Smooth':
 				var coords = cmd.a;
-				if (targetCmd.$ === 14) {
+				if (targetCmd.$ === 'Smooth') {
 					var targetCoords = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$Smooth(
 						A3(
@@ -7088,9 +7176,9 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 				} else {
 					return cmd;
 				}
-			case 15:
+			case 'SmoothTo':
 				var coords = cmd.a;
-				if (targetCmd.$ === 15) {
+				if (targetCmd.$ === 'SmoothTo') {
 					var targetCoords = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$SmoothTo(
 						A3(
@@ -7110,49 +7198,49 @@ var mdgriffith$elm_style_animation$Animation$Model$setPathTarget = F2(
 				} else {
 					return cmd;
 				}
-			case 16:
+			case 'ClockwiseArc':
 				var arc = cmd.a;
-				if (targetCmd.$ === 16) {
+				if (targetCmd.$ === 'ClockwiseArc') {
 					var target = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$ClockwiseArc(
 						function () {
-							var y = arc.aa;
-							var x = arc._;
-							var startAngle = arc.U;
-							var radius = arc.S;
-							var endAngle = arc.P;
+							var y = arc.y;
+							var x = arc.x;
+							var startAngle = arc.startAngle;
+							var radius = arc.radius;
+							var endAngle = arc.endAngle;
 							return _Utils_update(
 								arc,
 								{
-									P: A2(setMotionTarget, endAngle, target.P),
-									S: A2(setMotionTarget, radius, target.S),
-									U: A2(setMotionTarget, startAngle, target.U),
-									_: A2(setMotionTarget, x, target._),
-									aa: A2(setMotionTarget, y, target.aa)
+									endAngle: A2(setMotionTarget, endAngle, target.endAngle),
+									radius: A2(setMotionTarget, radius, target.radius),
+									startAngle: A2(setMotionTarget, startAngle, target.startAngle),
+									x: A2(setMotionTarget, x, target.x),
+									y: A2(setMotionTarget, y, target.y)
 								});
 						}());
 				} else {
 					return cmd;
 				}
-			case 17:
+			case 'AntiClockwiseArc':
 				var arc = cmd.a;
-				if (targetCmd.$ === 17) {
+				if (targetCmd.$ === 'AntiClockwiseArc') {
 					var target = targetCmd.a;
 					return mdgriffith$elm_style_animation$Animation$Model$AntiClockwiseArc(
 						function () {
-							var y = arc.aa;
-							var x = arc._;
-							var startAngle = arc.U;
-							var radius = arc.S;
-							var endAngle = arc.P;
+							var y = arc.y;
+							var x = arc.x;
+							var startAngle = arc.startAngle;
+							var radius = arc.radius;
+							var endAngle = arc.endAngle;
 							return _Utils_update(
 								arc,
 								{
-									P: A2(setMotionTarget, endAngle, target.P),
-									S: A2(setMotionTarget, radius, target.S),
-									U: A2(setMotionTarget, startAngle, target.U),
-									_: A2(setMotionTarget, x, target._),
-									aa: A2(setMotionTarget, y, target.aa)
+									endAngle: A2(setMotionTarget, endAngle, target.endAngle),
+									radius: A2(setMotionTarget, radius, target.radius),
+									startAngle: A2(setMotionTarget, startAngle, target.startAngle),
+									x: A2(setMotionTarget, x, target.x),
+									y: A2(setMotionTarget, y, target.y)
 								});
 						}());
 				} else {
@@ -7169,60 +7257,60 @@ var mdgriffith$elm_style_animation$Animation$Model$setTarget = F3(
 				var newMotion = overrideInterpolation ? _Utils_update(
 					motion,
 					{
-						a0: elm$core$Maybe$Just(targetMotion.F)
+						interpolationOverride: elm$core$Maybe$Just(targetMotion.interpolation)
 					}) : motion;
-				var _n13 = newMotion.a0;
-				if (_n13.$ === 1) {
-					var _n14 = newMotion.F;
-					if (_n14.$ === 1) {
+				var _n13 = newMotion.interpolationOverride;
+				if (_n13.$ === 'Nothing') {
+					var _n14 = newMotion.interpolation;
+					if (_n14.$ === 'Easing') {
 						var ease = _n14.a;
 						return _Utils_update(
 							newMotion,
 							{
-								F: mdgriffith$elm_style_animation$Animation$Model$Easing(
+								interpolation: mdgriffith$elm_style_animation$Animation$Model$Easing(
 									_Utils_update(
 										ease,
-										{aG: 0, ah: motion.a4})),
-								a7: targetMotion.a4
+										{progress: 0, start: motion.position})),
+								target: targetMotion.position
 							});
 					} else {
 						return _Utils_update(
 							newMotion,
-							{a7: targetMotion.a4});
+							{target: targetMotion.position});
 					}
 				} else {
 					var override = _n13.a;
-					if (override.$ === 1) {
+					if (override.$ === 'Easing') {
 						var ease = override.a;
 						return _Utils_update(
 							newMotion,
 							{
-								a0: elm$core$Maybe$Just(
+								interpolationOverride: elm$core$Maybe$Just(
 									mdgriffith$elm_style_animation$Animation$Model$Easing(
 										_Utils_update(
 											ease,
-											{aG: 0, ah: motion.a4}))),
-								a7: targetMotion.a4
+											{progress: 0, start: motion.position}))),
+								target: targetMotion.position
 							});
 					} else {
 						return _Utils_update(
 							newMotion,
-							{a7: targetMotion.a4});
+							{target: targetMotion.position});
 					}
 				}
 			});
 		switch (current.$) {
-			case 0:
+			case 'ExactProperty':
 				var name = current.a;
 				var value = current.b;
 				return A2(mdgriffith$elm_style_animation$Animation$Model$ExactProperty, name, value);
-			case 1:
+			case 'ColorProperty':
 				var name = current.a;
 				var m1 = current.b;
 				var m2 = current.c;
 				var m3 = current.d;
 				var m4 = current.e;
-				if (newTarget.$ === 1) {
+				if (newTarget.$ === 'ColorProperty') {
 					var t1 = newTarget.b;
 					var t2 = newTarget.c;
 					var t3 = newTarget.d;
@@ -7237,33 +7325,33 @@ var mdgriffith$elm_style_animation$Animation$Model$setTarget = F3(
 				} else {
 					return current;
 				}
-			case 2:
+			case 'ShadowProperty':
 				var name = current.a;
 				var inset = current.b;
 				var shadow = current.c;
-				if (newTarget.$ === 2) {
+				if (newTarget.$ === 'ShadowProperty') {
 					var targetShadow = newTarget.c;
 					return A3(
 						mdgriffith$elm_style_animation$Animation$Model$ShadowProperty,
 						name,
 						inset,
 						{
-							g: A2(setMotionTarget, shadow.g, targetShadow.g),
-							h: A2(setMotionTarget, shadow.h, targetShadow.h),
-							l: A2(setMotionTarget, shadow.l, targetShadow.l),
-							j: A2(setMotionTarget, shadow.j, targetShadow.j),
-							m: A2(setMotionTarget, shadow.m, targetShadow.m),
-							n: A2(setMotionTarget, shadow.n, targetShadow.n),
-							k: A2(setMotionTarget, shadow.k, targetShadow.k),
-							q: A2(setMotionTarget, shadow.q, targetShadow.q)
+							alpha: A2(setMotionTarget, shadow.alpha, targetShadow.alpha),
+							blue: A2(setMotionTarget, shadow.blue, targetShadow.blue),
+							blur: A2(setMotionTarget, shadow.blur, targetShadow.blur),
+							green: A2(setMotionTarget, shadow.green, targetShadow.green),
+							offsetX: A2(setMotionTarget, shadow.offsetX, targetShadow.offsetX),
+							offsetY: A2(setMotionTarget, shadow.offsetY, targetShadow.offsetY),
+							red: A2(setMotionTarget, shadow.red, targetShadow.red),
+							size: A2(setMotionTarget, shadow.size, targetShadow.size)
 						});
 				} else {
 					return current;
 				}
-			case 3:
+			case 'Property':
 				var name = current.a;
 				var m1 = current.b;
-				if (newTarget.$ === 3) {
+				if (newTarget.$ === 'Property') {
 					var t1 = newTarget.b;
 					return A2(
 						mdgriffith$elm_style_animation$Animation$Model$Property,
@@ -7272,11 +7360,11 @@ var mdgriffith$elm_style_animation$Animation$Model$setTarget = F3(
 				} else {
 					return current;
 				}
-			case 4:
+			case 'Property2':
 				var name = current.a;
 				var m1 = current.b;
 				var m2 = current.c;
-				if (newTarget.$ === 4) {
+				if (newTarget.$ === 'Property2') {
 					var t1 = newTarget.b;
 					var t2 = newTarget.c;
 					return A3(
@@ -7287,12 +7375,12 @@ var mdgriffith$elm_style_animation$Animation$Model$setTarget = F3(
 				} else {
 					return current;
 				}
-			case 5:
+			case 'Property3':
 				var name = current.a;
 				var m1 = current.b;
 				var m2 = current.c;
 				var m3 = current.d;
-				if (newTarget.$ === 5) {
+				if (newTarget.$ === 'Property3') {
 					var t1 = newTarget.b;
 					var t2 = newTarget.c;
 					var t3 = newTarget.d;
@@ -7305,13 +7393,13 @@ var mdgriffith$elm_style_animation$Animation$Model$setTarget = F3(
 				} else {
 					return current;
 				}
-			case 6:
+			case 'Property4':
 				var name = current.a;
 				var m1 = current.b;
 				var m2 = current.c;
 				var m3 = current.d;
 				var m4 = current.e;
-				if (newTarget.$ === 6) {
+				if (newTarget.$ === 'Property4') {
 					var t1 = newTarget.b;
 					var t2 = newTarget.c;
 					var t3 = newTarget.d;
@@ -7326,10 +7414,10 @@ var mdgriffith$elm_style_animation$Animation$Model$setTarget = F3(
 				} else {
 					return current;
 				}
-			case 7:
+			case 'AngleProperty':
 				var name = current.a;
 				var m1 = current.b;
-				if (newTarget.$ === 7) {
+				if (newTarget.$ === 'AngleProperty') {
 					var t1 = newTarget.b;
 					return A2(
 						mdgriffith$elm_style_animation$Animation$Model$AngleProperty,
@@ -7338,9 +7426,9 @@ var mdgriffith$elm_style_animation$Animation$Model$setTarget = F3(
 				} else {
 					return current;
 				}
-			case 8:
+			case 'Points':
 				var currentPts = current.a;
-				if (newTarget.$ === 8) {
+				if (newTarget.$ === 'Points') {
 					var targetPts = newTarget.a;
 					var _n9 = A2(mdgriffith$elm_style_animation$Animation$Model$matchPoints, currentPts, targetPts);
 					var m1s = _n9.a;
@@ -7365,7 +7453,7 @@ var mdgriffith$elm_style_animation$Animation$Model$setTarget = F3(
 				}
 			default:
 				var cmds = current.a;
-				if (newTarget.$ === 9) {
+				if (newTarget.$ === 'Path') {
 					var targets = newTarget.a;
 					return mdgriffith$elm_style_animation$Animation$Model$Path(
 						A3(elm$core$List$map2, mdgriffith$elm_style_animation$Animation$Model$setPathTarget, cmds, targets));
@@ -7390,7 +7478,7 @@ var mdgriffith$elm_style_animation$Animation$Model$zipPropertiesGreedy = F2(
 					var stackB = _n2.b;
 					var result = _n2.c;
 					var _n3 = elm$core$List$head(stackA);
-					if (_n3.$ === 1) {
+					if (_n3.$ === 'Nothing') {
 						return _Utils_Tuple3(stackA, stackB, result);
 					} else {
 						var a = _n3.a;
@@ -7434,7 +7522,7 @@ var mdgriffith$elm_style_animation$Animation$Model$startTowards = F3(
 		return A2(
 			elm$core$List$filterMap,
 			function (propPair) {
-				if (!propPair.b.$) {
+				if (propPair.b.$ === 'Just') {
 					var cur = propPair.a;
 					var to = propPair.b.a;
 					return elm$core$Maybe$Just(
@@ -7453,79 +7541,79 @@ var mdgriffith$elm_style_animation$Animation$Model$tolerance = 1.0e-2;
 var mdgriffith$elm_style_animation$Animation$Model$vTolerance = 0.1;
 var mdgriffith$elm_style_animation$Animation$Model$stepInterpolation = F2(
 	function (posix, motion) {
-		var interpolationToUse = A2(elm$core$Maybe$withDefault, motion.F, motion.a0);
+		var interpolationToUse = A2(elm$core$Maybe$withDefault, motion.interpolation, motion.interpolationOverride);
 		var dtms = elm$time$Time$posixToMillis(posix);
 		switch (interpolationToUse.$) {
-			case 2:
-				var perSecond = interpolationToUse.a.aB;
+			case 'AtSpeed':
+				var perSecond = interpolationToUse.a.perSecond;
 				var _n1 = function () {
-					if (_Utils_cmp(motion.a4, motion.a7) < 0) {
-						var _new = motion.a4 + (perSecond * (dtms / 1000));
+					if (_Utils_cmp(motion.position, motion.target) < 0) {
+						var _new = motion.position + (perSecond * (dtms / 1000));
 						return _Utils_Tuple2(
 							_new,
-							_Utils_cmp(_new, motion.a7) > -1);
+							_Utils_cmp(_new, motion.target) > -1);
 					} else {
-						var _new = motion.a4 - (perSecond * (dtms / 1000));
+						var _new = motion.position - (perSecond * (dtms / 1000));
 						return _Utils_Tuple2(
 							_new,
-							_Utils_cmp(_new, motion.a7) < 1);
+							_Utils_cmp(_new, motion.target) < 1);
 					}
 				}();
 				var newPos = _n1.a;
 				var finished = _n1.b;
 				return finished ? _Utils_update(
 					motion,
-					{a4: motion.a7, bc: 0.0}) : _Utils_update(
+					{position: motion.target, velocity: 0.0}) : _Utils_update(
 					motion,
-					{a4: newPos, bc: perSecond * 1000});
-			case 0:
-				var stiffness = interpolationToUse.a.aM;
-				var damping = interpolationToUse.a.ap;
-				var fspring = stiffness * (motion.a7 - motion.a4);
-				var fdamper = ((-1) * damping) * motion.bc;
+					{position: newPos, velocity: perSecond * 1000});
+			case 'Spring':
+				var stiffness = interpolationToUse.a.stiffness;
+				var damping = interpolationToUse.a.damping;
+				var fspring = stiffness * (motion.target - motion.position);
+				var fdamper = ((-1) * damping) * motion.velocity;
 				var dt = dtms / 1000;
 				var a = fspring + fdamper;
-				var newVelocity = motion.bc + (a * dt);
-				var newPos = motion.a4 + (newVelocity * dt);
-				var dx = elm$core$Basics$abs(motion.a7 - newPos);
+				var newVelocity = motion.velocity + (a * dt);
+				var newPos = motion.position + (newVelocity * dt);
+				var dx = elm$core$Basics$abs(motion.target - newPos);
 				return ((_Utils_cmp(dx, mdgriffith$elm_style_animation$Animation$Model$tolerance) < 0) && (_Utils_cmp(
 					elm$core$Basics$abs(newVelocity),
 					mdgriffith$elm_style_animation$Animation$Model$vTolerance) < 0)) ? _Utils_update(
 					motion,
-					{a4: motion.a7, bc: 0.0}) : _Utils_update(
+					{position: motion.target, velocity: 0.0}) : _Utils_update(
 					motion,
-					{a4: newPos, bc: newVelocity});
+					{position: newPos, velocity: newVelocity});
 			default:
-				var progress = interpolationToUse.a.aG;
-				var duration = interpolationToUse.a.ab;
-				var ease = interpolationToUse.a.ac;
-				var start = interpolationToUse.a.ah;
+				var progress = interpolationToUse.a.progress;
+				var duration = interpolationToUse.a.duration;
+				var ease = interpolationToUse.a.ease;
+				var start = interpolationToUse.a.start;
 				var durationMs = elm$time$Time$posixToMillis(duration);
 				var newProgress = (((dtms / durationMs) + progress) < 1) ? ((dtms / durationMs) + progress) : 1;
 				var eased = ease(newProgress);
-				var distance = motion.a7 - start;
+				var distance = motion.target - start;
 				var newPos = ((((eased * distance) + start) * 10000) | 0) / 10000;
-				var newVelocity = (newProgress === 1) ? 0 : ((newPos - motion.a4) / dtms);
-				var _n2 = motion.a0;
-				if (_n2.$ === 1) {
+				var newVelocity = (newProgress === 1) ? 0 : ((newPos - motion.position) / dtms);
+				var _n2 = motion.interpolationOverride;
+				if (_n2.$ === 'Nothing') {
 					return _Utils_update(
 						motion,
 						{
-							F: mdgriffith$elm_style_animation$Animation$Model$Easing(
-								{ab: duration, ac: ease, aG: newProgress, ah: start}),
-							a4: newPos,
-							bc: newVelocity
+							interpolation: mdgriffith$elm_style_animation$Animation$Model$Easing(
+								{duration: duration, ease: ease, progress: newProgress, start: start}),
+							position: newPos,
+							velocity: newVelocity
 						});
 				} else {
 					var override = _n2.a;
 					return _Utils_update(
 						motion,
 						{
-							a0: elm$core$Maybe$Just(
+							interpolationOverride: elm$core$Maybe$Just(
 								mdgriffith$elm_style_animation$Animation$Model$Easing(
-									{ab: duration, ac: ease, aG: newProgress, ah: start})),
-							a4: newPos,
-							bc: newVelocity
+									{duration: duration, ease: ease, progress: newProgress, start: start})),
+							position: newPos,
+							velocity: newVelocity
 						});
 				}
 		}
@@ -7545,145 +7633,145 @@ var mdgriffith$elm_style_animation$Animation$Model$stepPath = F2(
 				coords);
 		};
 		switch (cmd.$) {
-			case 0:
+			case 'Move':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$Move,
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, m1),
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, m2));
-			case 1:
+			case 'MoveTo':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$MoveTo,
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, m1),
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, m2));
-			case 2:
+			case 'Line':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$Line,
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, m1),
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, m2));
-			case 3:
+			case 'LineTo':
 				var m1 = cmd.a;
 				var m2 = cmd.b;
 				return A2(
 					mdgriffith$elm_style_animation$Animation$Model$LineTo,
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, m1),
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, m2));
-			case 4:
+			case 'Horizontal':
 				var motion = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$Horizontal(
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion));
-			case 5:
+			case 'HorizontalTo':
 				var motion = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$HorizontalTo(
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion));
-			case 6:
+			case 'Vertical':
 				var motion = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$Vertical(
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion));
-			case 7:
+			case 'VerticalTo':
 				var motion = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$VerticalTo(
 					A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion));
-			case 8:
-				var control1 = cmd.a.N;
-				var control2 = cmd.a.O;
-				var point = cmd.a.p;
+			case 'Curve':
+				var control1 = cmd.a.control1;
+				var control2 = cmd.a.control2;
+				var point = cmd.a.point;
 				return mdgriffith$elm_style_animation$Animation$Model$Curve(
 					{
-						N: _Utils_Tuple2(
+						control1: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control1.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control1.b)),
-						O: _Utils_Tuple2(
+						control2: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control2.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control2.b)),
-						p: _Utils_Tuple2(
+						point: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, point.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, point.b))
 					});
-			case 9:
-				var control1 = cmd.a.N;
-				var control2 = cmd.a.O;
-				var point = cmd.a.p;
+			case 'CurveTo':
+				var control1 = cmd.a.control1;
+				var control2 = cmd.a.control2;
+				var point = cmd.a.point;
 				return mdgriffith$elm_style_animation$Animation$Model$CurveTo(
 					{
-						N: _Utils_Tuple2(
+						control1: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control1.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control1.b)),
-						O: _Utils_Tuple2(
+						control2: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control2.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control2.b)),
-						p: _Utils_Tuple2(
+						point: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, point.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, point.b))
 					});
-			case 10:
-				var control = cmd.a.M;
-				var point = cmd.a.p;
+			case 'Quadratic':
+				var control = cmd.a.control;
+				var point = cmd.a.point;
 				return mdgriffith$elm_style_animation$Animation$Model$Quadratic(
 					{
-						M: _Utils_Tuple2(
+						control: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control.b)),
-						p: _Utils_Tuple2(
+						point: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, point.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, point.b))
 					});
-			case 11:
-				var control = cmd.a.M;
-				var point = cmd.a.p;
+			case 'QuadraticTo':
+				var control = cmd.a.control;
+				var point = cmd.a.point;
 				return mdgriffith$elm_style_animation$Animation$Model$QuadraticTo(
 					{
-						M: _Utils_Tuple2(
+						control: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, control.b)),
-						p: _Utils_Tuple2(
+						point: _Utils_Tuple2(
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, point.a),
 							A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, point.b))
 					});
-			case 12:
+			case 'SmoothQuadratic':
 				var coords = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadratic(
 					stepCoords(coords));
-			case 13:
+			case 'SmoothQuadraticTo':
 				var coords = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadraticTo(
 					stepCoords(coords));
-			case 14:
+			case 'Smooth':
 				var coords = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$Smooth(
 					stepCoords(coords));
-			case 15:
+			case 'SmoothTo':
 				var coords = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$SmoothTo(
 					stepCoords(coords));
-			case 16:
+			case 'ClockwiseArc':
 				var arc = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$ClockwiseArc(
 					_Utils_update(
 						arc,
 						{
-							P: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.P),
-							S: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.S),
-							U: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.U),
-							_: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc._),
-							aa: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.aa)
+							endAngle: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.endAngle),
+							radius: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.radius),
+							startAngle: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.startAngle),
+							x: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.x),
+							y: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.y)
 						}));
-			case 17:
+			case 'AntiClockwiseArc':
 				var arc = cmd.a;
 				return mdgriffith$elm_style_animation$Animation$Model$AntiClockwiseArc(
 					_Utils_update(
 						arc,
 						{
-							P: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.P),
-							S: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.S),
-							U: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.U),
-							_: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc._),
-							aa: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.aa)
+							endAngle: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.endAngle),
+							radius: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.radius),
+							startAngle: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.startAngle),
+							x: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.x),
+							y: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, arc.y)
 						}));
 			default:
 				return mdgriffith$elm_style_animation$Animation$Model$Close;
@@ -7693,18 +7781,18 @@ var mdgriffith$elm_style_animation$Animation$Model$step = F2(
 	function (dt, props) {
 		var stepProp = function (property) {
 			switch (property.$) {
-				case 0:
+				case 'ExactProperty':
 					var name = property.a;
 					var value = property.b;
 					return A2(mdgriffith$elm_style_animation$Animation$Model$ExactProperty, name, value);
-				case 3:
+				case 'Property':
 					var name = property.a;
 					var motion = property.b;
 					return A2(
 						mdgriffith$elm_style_animation$Animation$Model$Property,
 						name,
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion));
-				case 4:
+				case 'Property2':
 					var name = property.a;
 					var motion1 = property.b;
 					var motion2 = property.c;
@@ -7713,7 +7801,7 @@ var mdgriffith$elm_style_animation$Animation$Model$step = F2(
 						name,
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion1),
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion2));
-				case 5:
+				case 'Property3':
 					var name = property.a;
 					var motion1 = property.b;
 					var motion2 = property.c;
@@ -7724,7 +7812,7 @@ var mdgriffith$elm_style_animation$Animation$Model$step = F2(
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion1),
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion2),
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion3));
-				case 6:
+				case 'Property4':
 					var name = property.a;
 					var motion1 = property.b;
 					var motion2 = property.c;
@@ -7737,14 +7825,14 @@ var mdgriffith$elm_style_animation$Animation$Model$step = F2(
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion2),
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion3),
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion4));
-				case 7:
+				case 'AngleProperty':
 					var name = property.a;
 					var motion = property.b;
 					return A2(
 						mdgriffith$elm_style_animation$Animation$Model$AngleProperty,
 						name,
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, motion));
-				case 1:
+				case 'ColorProperty':
 					var name = property.a;
 					var red = property.b;
 					var green = property.c;
@@ -7757,7 +7845,7 @@ var mdgriffith$elm_style_animation$Animation$Model$step = F2(
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, green),
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, blue),
 						A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, alpha));
-				case 2:
+				case 'ShadowProperty':
 					var name = property.a;
 					var inset = property.b;
 					var shadow = property.c;
@@ -7766,16 +7854,16 @@ var mdgriffith$elm_style_animation$Animation$Model$step = F2(
 						name,
 						inset,
 						{
-							g: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.g),
-							h: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.h),
-							l: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.l),
-							j: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.j),
-							m: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.m),
-							n: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.n),
-							k: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.k),
-							q: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.q)
+							alpha: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.alpha),
+							blue: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.blue),
+							blur: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.blur),
+							green: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.green),
+							offsetX: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.offsetX),
+							offsetY: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.offsetY),
+							red: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.red),
+							size: A2(mdgriffith$elm_style_animation$Animation$Model$stepInterpolation, dt, shadow.size)
 						});
-				case 8:
+				case 'Points':
 					var points = property.a;
 					return mdgriffith$elm_style_animation$Animation$Model$Points(
 						A2(
@@ -7828,12 +7916,12 @@ var mdgriffith$elm_style_animation$Animation$Model$resolveSteps = F3(
 		resolveSteps:
 		while (true) {
 			var _n0 = elm$core$List$head(steps);
-			if (_n0.$ === 1) {
+			if (_n0.$ === 'Nothing') {
 				return _Utils_Tuple3(currentStyle, _List_Nil, _List_Nil);
 			} else {
 				var currentStep = _n0.a;
 				switch (currentStep.$) {
-					case 4:
+					case 'Wait':
 						var n = currentStep.a;
 						if (elm$time$Time$posixToMillis(n) <= 0) {
 							var $temp$currentStyle = currentStyle,
@@ -7854,7 +7942,7 @@ var mdgriffith$elm_style_animation$Animation$Model$resolveSteps = F3(
 											elm$time$Time$posixToMillis(n) - elm$time$Time$posixToMillis(dt))),
 									A2(elm$core$List$drop, 1, steps)));
 						}
-					case 5:
+					case 'Send':
 						var msg = currentStep.a;
 						var _n2 = A3(
 							mdgriffith$elm_style_animation$Animation$Model$resolveSteps,
@@ -7868,7 +7956,7 @@ var mdgriffith$elm_style_animation$Animation$Model$resolveSteps = F3(
 							newStyle,
 							A2(elm$core$List$cons, msg, msgs),
 							remainingSteps);
-					case 1:
+					case 'To':
 						var target = currentStep.a;
 						if (A2(mdgriffith$elm_style_animation$Animation$Model$alreadyThere, currentStyle, target)) {
 							return _Utils_Tuple3(
@@ -7887,7 +7975,7 @@ var mdgriffith$elm_style_animation$Animation$Model$resolveSteps = F3(
 							dt = $temp$dt;
 							continue resolveSteps;
 						}
-					case 2:
+					case 'ToWith':
 						var target = currentStep.a;
 						if (A2(mdgriffith$elm_style_animation$Animation$Model$alreadyThere, currentStyle, target)) {
 							return _Utils_Tuple3(
@@ -7906,7 +7994,7 @@ var mdgriffith$elm_style_animation$Animation$Model$resolveSteps = F3(
 							dt = $temp$dt;
 							continue resolveSteps;
 						}
-					case 3:
+					case 'Set':
 						var props = currentStep.a;
 						var $temp$currentStyle = A2(mdgriffith$elm_style_animation$Animation$Model$replaceProps, currentStyle, props),
 							$temp$steps = A2(elm$core$List$drop, 1, steps),
@@ -7915,7 +8003,7 @@ var mdgriffith$elm_style_animation$Animation$Model$resolveSteps = F3(
 						steps = $temp$steps;
 						dt = $temp$dt;
 						continue resolveSteps;
-					case 0:
+					case 'Step':
 						var stepped = A2(mdgriffith$elm_style_animation$Animation$Model$step, dt, currentStyle);
 						return A2(elm$core$List$all, mdgriffith$elm_style_animation$Animation$Model$isDone, stepped) ? _Utils_Tuple3(
 							A2(
@@ -7924,12 +8012,12 @@ var mdgriffith$elm_style_animation$Animation$Model$resolveSteps = F3(
 									function (m) {
 										return _Utils_update(
 											m,
-											{a0: elm$core$Maybe$Nothing});
+											{interpolationOverride: elm$core$Maybe$Nothing});
 									}),
 								stepped),
 							_List_Nil,
 							A2(elm$core$List$drop, 1, steps)) : _Utils_Tuple3(stepped, _List_Nil, steps);
-					case 7:
+					case 'Loop':
 						var substeps = currentStep.a;
 						var $temp$currentStyle = currentStyle,
 							$temp$steps = _Utils_ap(
@@ -7976,9 +8064,9 @@ var mdgriffith$elm_style_animation$Animation$Model$resolveSteps = F3(
 	});
 var mdgriffith$elm_style_animation$Animation$Model$updateAnimation = F2(
 	function (_n0, _n1) {
-		var now = _n0;
-		var model = _n1;
-		var timing = A2(mdgriffith$elm_style_animation$Animation$Model$refreshTiming, now, model.aP);
+		var now = _n0.a;
+		var model = _n1.a;
+		var timing = A2(mdgriffith$elm_style_animation$Animation$Model$refreshTiming, now, model.timing);
 		var _n2 = A2(
 			elm$core$List$partition,
 			function (_n4) {
@@ -7993,15 +8081,15 @@ var mdgriffith$elm_style_animation$Animation$Model$updateAnimation = F2(
 					var mySteps = _n3.b;
 					return _Utils_Tuple2(
 						elm$time$Time$millisToPosix(
-							elm$time$Time$posixToMillis(wait) - elm$time$Time$posixToMillis(timing.aV)),
+							elm$time$Time$posixToMillis(wait) - elm$time$Time$posixToMillis(timing.dt)),
 						mySteps);
 				},
-				model.ad));
+				model.interruption));
 		var readyInterruption = _n2.a;
 		var queuedInterruptions = _n2.b;
 		var _n5 = function () {
 			var _n6 = elm$core$List$head(readyInterruption);
-			if (!_n6.$) {
+			if (_n6.$ === 'Just') {
 				var _n7 = _n6.a;
 				var wait = _n7.a;
 				var interrupt = _n7.b;
@@ -8013,29 +8101,30 @@ var mdgriffith$elm_style_animation$Animation$Model$updateAnimation = F2(
 							function (m) {
 								return _Utils_update(
 									m,
-									{a0: elm$core$Maybe$Nothing});
+									{interpolationOverride: elm$core$Maybe$Nothing});
 							}),
-						model.x));
+						model.style));
 			} else {
-				return _Utils_Tuple2(model.ai, model.x);
+				return _Utils_Tuple2(model.steps, model.style);
 			}
 		}();
 		var steps = _n5.a;
 		var style = _n5.b;
-		var _n8 = A3(mdgriffith$elm_style_animation$Animation$Model$resolveSteps, style, steps, timing.aV);
+		var _n8 = A3(mdgriffith$elm_style_animation$Animation$Model$resolveSteps, style, steps, timing.dt);
 		var revisedStyle = _n8.a;
 		var sentMessages = _n8.b;
 		var revisedSteps = _n8.c;
 		return _Utils_Tuple2(
-			_Utils_update(
-				model,
-				{
-					ad: queuedInterruptions,
-					Z: elm$core$List$length(revisedSteps) || elm$core$List$length(queuedInterruptions),
-					ai: revisedSteps,
-					x: revisedStyle,
-					aP: timing
-				}),
+			mdgriffith$elm_style_animation$Animation$Model$Animation(
+				_Utils_update(
+					model,
+					{
+						interruption: queuedInterruptions,
+						running: elm$core$List$length(revisedSteps) || elm$core$List$length(queuedInterruptions),
+						steps: revisedSteps,
+						style: revisedStyle,
+						timing: timing
+					})),
 			elm$core$Platform$Cmd$batch(
 				A2(
 					elm$core$List$map,
@@ -8053,45 +8142,61 @@ var mdgriffith$elm_style_animation$Animation$update = F2(
 	});
 var author$project$Main$update = F2(
 	function (action, model) {
-		var me = model.u;
-		if (action.$ === 1) {
-			var direction = action.a;
-			var _n1 = function () {
-				switch (direction) {
-					case 0:
-						return _Utils_Tuple2(-1, -1);
-					case 1:
-						return _Utils_Tuple2(1, 1);
-					case 2:
-						return _Utils_Tuple2(1, -1);
-					case 3:
-						return _Utils_Tuple2(-1, 1);
-					default:
-						return _Utils_Tuple2(0, 0);
-				}
-			}();
-			var dx = _n1.a;
-			var dy = _n1.b;
-			return _Utils_Tuple2(
-				_Utils_update(
-					model,
-					{
-						u: A3(author$project$Main$updatePlayer, model.u, me.R._ + dx, me.R.aa + dy)
-					}),
-				author$project$Main$wsSend('something'));
-		} else {
-			var animMsg = action.a;
-			return _Utils_Tuple2(
-				_Utils_update(
-					model,
-					{
-						u: _Utils_update(
-							me,
-							{
-								x: A2(mdgriffith$elm_style_animation$Animation$update, animMsg, me.x)
-							})
-					}),
-				elm$core$Platform$Cmd$none);
+		var me = model.me;
+		switch (action.$) {
+			case 'UserUpdate':
+				var players = action.a;
+				var others = A2(
+					elm$core$Debug$log,
+					'Players:',
+					A2(elm$core$List$map, author$project$Main$buildPlayer, players));
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{others: others}),
+					elm$core$Platform$Cmd$none);
+			case 'Move':
+				var direction = action.a;
+				var _n1 = function () {
+					switch (direction.$) {
+						case 'Left':
+							return _Utils_Tuple2(-1, -1);
+						case 'Right':
+							return _Utils_Tuple2(1, 1);
+						case 'Up':
+							return _Utils_Tuple2(1, -1);
+						case 'Down':
+							return _Utils_Tuple2(-1, 1);
+						default:
+							return _Utils_Tuple2(0, 0);
+					}
+				}();
+				var dx = _n1.a;
+				var dy = _n1.b;
+				var _n3 = _Utils_Tuple2(me.pos.x + dx, me.pos.y + dy);
+				var newx = _n3.a;
+				var newy = _n3.b;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							me: A3(author$project$Main$updatePlayer, model.me, newx, newy)
+						}),
+					author$project$Main$wsSend(
+						_Utils_Tuple2(newx, newy)));
+			default:
+				var animMsg = action.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							me: _Utils_update(
+								me,
+								{
+									style: A2(mdgriffith$elm_style_animation$Animation$update, animMsg, me.style)
+								})
+						}),
+					elm$core$Platform$Cmd$none);
 		}
 	});
 var author$project$Main$halfSideLength = 50;
@@ -8193,43 +8298,43 @@ var mdgriffith$elm_style_animation$Animation$Render$pathCmdValue = function (cmd
 				function (_n11) {
 					var x = _n11.a;
 					var y = _n11.b;
-					return elm$core$String$fromFloat(x.a4) + (',' + elm$core$String$fromFloat(y.a4));
+					return elm$core$String$fromFloat(x.position) + (',' + elm$core$String$fromFloat(y.position));
 				},
 				coords));
 	};
 	switch (cmd.$) {
-		case 0:
+		case 'Move':
 			var x = cmd.a;
 			var y = cmd.b;
-			return 'm ' + (elm$core$String$fromFloat(x.a4) + (',' + elm$core$String$fromFloat(y.a4)));
-		case 1:
+			return 'm ' + (elm$core$String$fromFloat(x.position) + (',' + elm$core$String$fromFloat(y.position)));
+		case 'MoveTo':
 			var x = cmd.a;
 			var y = cmd.b;
-			return 'M ' + (elm$core$String$fromFloat(x.a4) + (',' + elm$core$String$fromFloat(y.a4)));
-		case 2:
+			return 'M ' + (elm$core$String$fromFloat(x.position) + (',' + elm$core$String$fromFloat(y.position)));
+		case 'Line':
 			var x = cmd.a;
 			var y = cmd.b;
-			return 'l ' + (elm$core$String$fromFloat(x.a4) + (',' + elm$core$String$fromFloat(y.a4)));
-		case 3:
+			return 'l ' + (elm$core$String$fromFloat(x.position) + (',' + elm$core$String$fromFloat(y.position)));
+		case 'LineTo':
 			var x = cmd.a;
 			var y = cmd.b;
-			return 'L ' + (elm$core$String$fromFloat(x.a4) + (',' + elm$core$String$fromFloat(y.a4)));
-		case 4:
+			return 'L ' + (elm$core$String$fromFloat(x.position) + (',' + elm$core$String$fromFloat(y.position)));
+		case 'Horizontal':
 			var a = cmd.a;
-			return 'h ' + elm$core$String$fromFloat(a.a4);
-		case 5:
+			return 'h ' + elm$core$String$fromFloat(a.position);
+		case 'HorizontalTo':
 			var a = cmd.a;
-			return 'H ' + elm$core$String$fromFloat(a.a4);
-		case 6:
+			return 'H ' + elm$core$String$fromFloat(a.position);
+		case 'Vertical':
 			var a = cmd.a;
-			return 'v ' + elm$core$String$fromFloat(a.a4);
-		case 7:
+			return 'v ' + elm$core$String$fromFloat(a.position);
+		case 'VerticalTo':
 			var a = cmd.a;
-			return 'V ' + elm$core$String$fromFloat(a.a4);
-		case 8:
-			var control1 = cmd.a.N;
-			var control2 = cmd.a.O;
-			var point = cmd.a.p;
+			return 'V ' + elm$core$String$fromFloat(a.position);
+		case 'Curve':
+			var control1 = cmd.a.control1;
+			var control2 = cmd.a.control2;
+			var point = cmd.a.point;
 			var _n1 = point;
 			var p1x = _n1.a;
 			var p1y = _n1.b;
@@ -8239,11 +8344,11 @@ var mdgriffith$elm_style_animation$Animation$Render$pathCmdValue = function (cmd
 			var _n3 = control1;
 			var c1x = _n3.a;
 			var c1y = _n3.b;
-			return 'c ' + (elm$core$String$fromFloat(c1x.a4) + (' ' + (elm$core$String$fromFloat(c1y.a4) + (', ' + (elm$core$String$fromFloat(c2x.a4) + (' ' + (elm$core$String$fromFloat(c2y.a4) + (', ' + (elm$core$String$fromFloat(p1x.a4) + (' ' + elm$core$String$fromFloat(p1y.a4)))))))))));
-		case 9:
-			var control1 = cmd.a.N;
-			var control2 = cmd.a.O;
-			var point = cmd.a.p;
+			return 'c ' + (elm$core$String$fromFloat(c1x.position) + (' ' + (elm$core$String$fromFloat(c1y.position) + (', ' + (elm$core$String$fromFloat(c2x.position) + (' ' + (elm$core$String$fromFloat(c2y.position) + (', ' + (elm$core$String$fromFloat(p1x.position) + (' ' + elm$core$String$fromFloat(p1y.position)))))))))));
+		case 'CurveTo':
+			var control1 = cmd.a.control1;
+			var control2 = cmd.a.control2;
+			var point = cmd.a.point;
 			var _n4 = point;
 			var p1x = _n4.a;
 			var p1y = _n4.b;
@@ -8253,68 +8358,68 @@ var mdgriffith$elm_style_animation$Animation$Render$pathCmdValue = function (cmd
 			var _n6 = control1;
 			var c1x = _n6.a;
 			var c1y = _n6.b;
-			return 'C ' + (elm$core$String$fromFloat(c1x.a4) + (' ' + (elm$core$String$fromFloat(c1y.a4) + (', ' + (elm$core$String$fromFloat(c2x.a4) + (' ' + (elm$core$String$fromFloat(c2y.a4) + (', ' + (elm$core$String$fromFloat(p1x.a4) + (' ' + elm$core$String$fromFloat(p1y.a4)))))))))));
-		case 10:
-			var control = cmd.a.M;
-			var point = cmd.a.p;
+			return 'C ' + (elm$core$String$fromFloat(c1x.position) + (' ' + (elm$core$String$fromFloat(c1y.position) + (', ' + (elm$core$String$fromFloat(c2x.position) + (' ' + (elm$core$String$fromFloat(c2y.position) + (', ' + (elm$core$String$fromFloat(p1x.position) + (' ' + elm$core$String$fromFloat(p1y.position)))))))))));
+		case 'Quadratic':
+			var control = cmd.a.control;
+			var point = cmd.a.point;
 			var _n7 = point;
 			var p1x = _n7.a;
 			var p1y = _n7.b;
 			var _n8 = control;
 			var c1x = _n8.a;
 			var c1y = _n8.b;
-			return 'q ' + (elm$core$String$fromFloat(c1x.a4) + (' ' + (elm$core$String$fromFloat(c1y.a4) + (', ' + (elm$core$String$fromFloat(p1x.a4) + (' ' + elm$core$String$fromFloat(p1y.a4)))))));
-		case 11:
-			var control = cmd.a.M;
-			var point = cmd.a.p;
+			return 'q ' + (elm$core$String$fromFloat(c1x.position) + (' ' + (elm$core$String$fromFloat(c1y.position) + (', ' + (elm$core$String$fromFloat(p1x.position) + (' ' + elm$core$String$fromFloat(p1y.position)))))));
+		case 'QuadraticTo':
+			var control = cmd.a.control;
+			var point = cmd.a.point;
 			var _n9 = point;
 			var p1x = _n9.a;
 			var p1y = _n9.b;
 			var _n10 = control;
 			var c1x = _n10.a;
 			var c1y = _n10.b;
-			return 'Q ' + (elm$core$String$fromFloat(c1x.a4) + (' ' + (elm$core$String$fromFloat(c1y.a4) + (', ' + (elm$core$String$fromFloat(p1x.a4) + (' ' + elm$core$String$fromFloat(p1y.a4)))))));
-		case 12:
+			return 'Q ' + (elm$core$String$fromFloat(c1x.position) + (' ' + (elm$core$String$fromFloat(c1y.position) + (', ' + (elm$core$String$fromFloat(p1x.position) + (' ' + elm$core$String$fromFloat(p1y.position)))))));
+		case 'SmoothQuadratic':
 			var points = cmd.a;
 			return 't ' + renderPoints(points);
-		case 13:
+		case 'SmoothQuadraticTo':
 			var points = cmd.a;
 			return 'T ' + renderPoints(points);
-		case 14:
+		case 'Smooth':
 			var points = cmd.a;
 			return 's ' + renderPoints(points);
-		case 15:
+		case 'SmoothTo':
 			var points = cmd.a;
 			return 'S ' + renderPoints(points);
-		case 16:
+		case 'ClockwiseArc':
 			var arc = cmd.a;
-			var deltaAngle = arc.P.a4 - arc.U.a4;
+			var deltaAngle = arc.endAngle.position - arc.startAngle.position;
 			if (_Utils_cmp(deltaAngle, 360 - 1.0e-6) > 0) {
-				var dy = arc.S.a4 * elm$core$Basics$sin(
-					elm$core$Basics$degrees(arc.U.a4));
-				var dx = arc.S.a4 * elm$core$Basics$cos(
-					elm$core$Basics$degrees(arc.U.a4));
-				return 'A ' + (elm$core$String$fromFloat(arc.S.a4) + (',' + (elm$core$String$fromFloat(arc.S.a4) + (',0,1,1,' + (elm$core$String$fromFloat(arc._.a4 - dx) + (',' + (elm$core$String$fromFloat(arc.aa.a4 - dy) + (' A ' + (elm$core$String$fromFloat(arc.S.a4) + (',' + (elm$core$String$fromFloat(arc.S.a4) + (',0,1,1,' + (elm$core$String$fromFloat(arc._.a4 + dx) + (',' + elm$core$String$fromFloat(arc.aa.a4 + dy)))))))))))))));
+				var dy = arc.radius.position * elm$core$Basics$sin(
+					elm$core$Basics$degrees(arc.startAngle.position));
+				var dx = arc.radius.position * elm$core$Basics$cos(
+					elm$core$Basics$degrees(arc.startAngle.position));
+				return 'A ' + (elm$core$String$fromFloat(arc.radius.position) + (',' + (elm$core$String$fromFloat(arc.radius.position) + (',0,1,1,' + (elm$core$String$fromFloat(arc.x.position - dx) + (',' + (elm$core$String$fromFloat(arc.y.position - dy) + (' A ' + (elm$core$String$fromFloat(arc.radius.position) + (',' + (elm$core$String$fromFloat(arc.radius.position) + (',0,1,1,' + (elm$core$String$fromFloat(arc.x.position + dx) + (',' + elm$core$String$fromFloat(arc.y.position + dy)))))))))))))));
 			} else {
-				return 'A ' + (elm$core$String$fromFloat(arc.S.a4) + (',' + (elm$core$String$fromFloat(arc.S.a4) + (' 0 ' + (((deltaAngle >= 180) ? '1' : '0') + (' ' + ('1' + (' ' + (elm$core$String$fromFloat(
-					arc._.a4 + (arc.S.a4 * elm$core$Basics$cos(
-						elm$core$Basics$degrees(arc.P.a4)))) + (',' + elm$core$String$fromFloat(
-					arc.aa.a4 + (arc.S.a4 * elm$core$Basics$sin(
-						elm$core$Basics$degrees(arc.P.a4))))))))))))));
+				return 'A ' + (elm$core$String$fromFloat(arc.radius.position) + (',' + (elm$core$String$fromFloat(arc.radius.position) + (' 0 ' + (((deltaAngle >= 180) ? '1' : '0') + (' ' + ('1' + (' ' + (elm$core$String$fromFloat(
+					arc.x.position + (arc.radius.position * elm$core$Basics$cos(
+						elm$core$Basics$degrees(arc.endAngle.position)))) + (',' + elm$core$String$fromFloat(
+					arc.y.position + (arc.radius.position * elm$core$Basics$sin(
+						elm$core$Basics$degrees(arc.endAngle.position))))))))))))));
 			}
-		case 17:
+		case 'AntiClockwiseArc':
 			var arc = cmd.a;
-			var deltaAngle = arc.P.a4 - arc.U.a4;
+			var deltaAngle = arc.endAngle.position - arc.startAngle.position;
 			if (_Utils_cmp(deltaAngle, 360 - 1.0e-6) > 0) {
-				var dy = arc.S.a4 * elm$core$Basics$sin(
-					elm$core$Basics$degrees(arc.U.a4));
-				var dx = arc.S.a4 * elm$core$Basics$cos(
-					elm$core$Basics$degrees(arc.U.a4));
-				return 'A ' + (elm$core$String$fromFloat(arc.S.a4) + (',' + (elm$core$String$fromFloat(arc.S.a4) + (',0,1,0,' + (elm$core$String$fromFloat(arc._.a4 - dx) + (',' + (elm$core$String$fromFloat(arc.aa.a4 - dy) + (' A ' + (elm$core$String$fromFloat(arc.S.a4) + (',' + (elm$core$String$fromFloat(arc.S.a4) + (',0,1,1,' + (elm$core$String$fromFloat(arc._.a4 + dx) + (',' + elm$core$String$fromFloat(arc.aa.a4 + dy)))))))))))))));
+				var dy = arc.radius.position * elm$core$Basics$sin(
+					elm$core$Basics$degrees(arc.startAngle.position));
+				var dx = arc.radius.position * elm$core$Basics$cos(
+					elm$core$Basics$degrees(arc.startAngle.position));
+				return 'A ' + (elm$core$String$fromFloat(arc.radius.position) + (',' + (elm$core$String$fromFloat(arc.radius.position) + (',0,1,0,' + (elm$core$String$fromFloat(arc.x.position - dx) + (',' + (elm$core$String$fromFloat(arc.y.position - dy) + (' A ' + (elm$core$String$fromFloat(arc.radius.position) + (',' + (elm$core$String$fromFloat(arc.radius.position) + (',0,1,1,' + (elm$core$String$fromFloat(arc.x.position + dx) + (',' + elm$core$String$fromFloat(arc.y.position + dy)))))))))))))));
 			} else {
-				return 'A ' + (elm$core$String$fromFloat(arc.S.a4) + (',' + (elm$core$String$fromFloat(arc.S.a4) + (' 0 ' + ((((arc.U.a4 - arc.P.a4) >= 180) ? '1' : '0') + (' ' + ('0' + (' ' + (elm$core$String$fromFloat(
-					arc._.a4 + (arc.S.a4 * elm$core$Basics$cos(arc.P.a4))) + (',' + elm$core$String$fromFloat(
-					arc.aa.a4 + (arc.S.a4 * elm$core$Basics$sin(arc.P.a4)))))))))))));
+				return 'A ' + (elm$core$String$fromFloat(arc.radius.position) + (',' + (elm$core$String$fromFloat(arc.radius.position) + (' 0 ' + ((((arc.startAngle.position - arc.endAngle.position) >= 180) ? '1' : '0') + (' ' + ('0' + (' ' + (elm$core$String$fromFloat(
+					arc.x.position + (arc.radius.position * elm$core$Basics$cos(arc.endAngle.position))) + (',' + elm$core$String$fromFloat(
+					arc.y.position + (arc.radius.position * elm$core$Basics$sin(arc.endAngle.position)))))))))))));
 			}
 		default:
 			return 'z';
@@ -8323,94 +8428,94 @@ var mdgriffith$elm_style_animation$Animation$Render$pathCmdValue = function (cmd
 var mdgriffith$elm_style_animation$Animation$Render$propertyValue = F2(
 	function (prop, delim) {
 		switch (prop.$) {
-			case 0:
+			case 'ExactProperty':
 				var value = prop.b;
 				return value;
-			case 1:
+			case 'ColorProperty':
 				var r = prop.b;
 				var g = prop.c;
 				var b = prop.d;
 				var a = prop.e;
 				return 'rgba(' + (elm$core$String$fromInt(
-					elm$core$Basics$round(r.a4)) + (',' + (elm$core$String$fromInt(
-					elm$core$Basics$round(g.a4)) + (',' + (elm$core$String$fromInt(
-					elm$core$Basics$round(b.a4)) + (',' + (elm$core$String$fromFloat(a.a4) + ')')))))));
-			case 2:
+					elm$core$Basics$round(r.position)) + (',' + (elm$core$String$fromInt(
+					elm$core$Basics$round(g.position)) + (',' + (elm$core$String$fromInt(
+					elm$core$Basics$round(b.position)) + (',' + (elm$core$String$fromFloat(a.position) + ')')))))));
+			case 'ShadowProperty':
 				var name = prop.a;
 				var inset = prop.b;
 				var shadow = prop.c;
-				return (inset ? 'inset ' : '') + (elm$core$String$fromFloat(shadow.m.a4) + ('px' + (' ' + (elm$core$String$fromFloat(shadow.n.a4) + ('px' + (' ' + (elm$core$String$fromFloat(shadow.l.a4) + ('px' + (' ' + ((((name === 'text-shadow') || (name === 'drop-shadow')) ? '' : (elm$core$String$fromFloat(shadow.q.a4) + ('px' + ' '))) + ('rgba(' + (elm$core$String$fromInt(
-					elm$core$Basics$round(shadow.k.a4)) + (', ' + (elm$core$String$fromInt(
-					elm$core$Basics$round(shadow.j.a4)) + (', ' + (elm$core$String$fromInt(
-					elm$core$Basics$round(shadow.h.a4)) + (', ' + (elm$core$String$fromFloat(shadow.g.a4) + ')'))))))))))))))))));
-			case 3:
+				return (inset ? 'inset ' : '') + (elm$core$String$fromFloat(shadow.offsetX.position) + ('px' + (' ' + (elm$core$String$fromFloat(shadow.offsetY.position) + ('px' + (' ' + (elm$core$String$fromFloat(shadow.blur.position) + ('px' + (' ' + ((((name === 'text-shadow') || (name === 'drop-shadow')) ? '' : (elm$core$String$fromFloat(shadow.size.position) + ('px' + ' '))) + ('rgba(' + (elm$core$String$fromInt(
+					elm$core$Basics$round(shadow.red.position)) + (', ' + (elm$core$String$fromInt(
+					elm$core$Basics$round(shadow.green.position)) + (', ' + (elm$core$String$fromInt(
+					elm$core$Basics$round(shadow.blue.position)) + (', ' + (elm$core$String$fromFloat(shadow.alpha.position) + ')'))))))))))))))))));
+			case 'Property':
 				var x = prop.b;
 				return _Utils_ap(
-					elm$core$String$fromFloat(x.a4),
-					x.a9);
-			case 4:
+					elm$core$String$fromFloat(x.position),
+					x.unit);
+			case 'Property2':
 				var x = prop.b;
 				var y = prop.c;
 				return _Utils_ap(
-					elm$core$String$fromFloat(x.a4),
+					elm$core$String$fromFloat(x.position),
 					_Utils_ap(
-						x.a9,
+						x.unit,
 						_Utils_ap(
 							delim,
 							_Utils_ap(
-								elm$core$String$fromFloat(y.a4),
-								y.a9))));
-			case 5:
+								elm$core$String$fromFloat(y.position),
+								y.unit))));
+			case 'Property3':
 				var x = prop.b;
 				var y = prop.c;
 				var z = prop.d;
 				return _Utils_ap(
-					elm$core$String$fromFloat(x.a4),
+					elm$core$String$fromFloat(x.position),
 					_Utils_ap(
-						x.a9,
+						x.unit,
 						_Utils_ap(
 							delim,
 							_Utils_ap(
-								elm$core$String$fromFloat(y.a4),
+								elm$core$String$fromFloat(y.position),
 								_Utils_ap(
-									y.a9,
+									y.unit,
 									_Utils_ap(
 										delim,
 										_Utils_ap(
-											elm$core$String$fromFloat(z.a4),
-											z.a9)))))));
-			case 6:
+											elm$core$String$fromFloat(z.position),
+											z.unit)))))));
+			case 'Property4':
 				var w = prop.b;
 				var x = prop.c;
 				var y = prop.d;
 				var z = prop.e;
 				return _Utils_ap(
-					elm$core$String$fromFloat(w.a4),
+					elm$core$String$fromFloat(w.position),
 					_Utils_ap(
-						w.a9,
+						w.unit,
 						_Utils_ap(
 							delim,
 							_Utils_ap(
-								elm$core$String$fromFloat(x.a4),
+								elm$core$String$fromFloat(x.position),
 								_Utils_ap(
-									x.a9,
+									x.unit,
 									_Utils_ap(
 										delim,
 										_Utils_ap(
-											elm$core$String$fromFloat(y.a4),
+											elm$core$String$fromFloat(y.position),
 											_Utils_ap(
-												y.a9,
+												y.unit,
 												_Utils_ap(
 													delim,
 													_Utils_ap(
-														elm$core$String$fromFloat(z.a4),
-														z.a9))))))))));
-			case 7:
+														elm$core$String$fromFloat(z.position),
+														z.unit))))))))));
+			case 'AngleProperty':
 				var x = prop.b;
 				return _Utils_ap(
-					elm$core$String$fromFloat(x.a4),
-					x.a9);
-			case 8:
+					elm$core$String$fromFloat(x.position),
+					x.unit);
+			case 'Points':
 				var coords = prop.a;
 				return A2(
 					elm$core$String$join,
@@ -8420,7 +8525,7 @@ var mdgriffith$elm_style_animation$Animation$Render$propertyValue = F2(
 						function (_n1) {
 							var x = _n1.a;
 							var y = _n1.b;
-							return elm$core$String$fromFloat(x.a4) + (',' + elm$core$String$fromFloat(y.a4));
+							return elm$core$String$fromFloat(x.position) + (',' + elm$core$String$fromFloat(y.position));
 						},
 						coords));
 			default:
@@ -8446,17 +8551,17 @@ var mdgriffith$elm_style_animation$Animation$Render$renderAttrs = function (prop
 				A2(mdgriffith$elm_style_animation$Animation$Render$propertyValue, prop, ' ')));
 	} else {
 		switch (prop.$) {
-			case 8:
+			case 'Points':
 				var pts = prop.a;
 				return elm$core$Maybe$Just(
 					elm$svg$Svg$Attributes$points(
 						A2(mdgriffith$elm_style_animation$Animation$Render$propertyValue, prop, ' ')));
-			case 9:
+			case 'Path':
 				var cmds = prop.a;
 				return elm$core$Maybe$Just(
 					elm$svg$Svg$Attributes$d(
 						A2(mdgriffith$elm_style_animation$Animation$Render$propertyValue, prop, ' ')));
-			case 3:
+			case 'Property':
 				var name = prop.a;
 				var m1 = prop.b;
 				switch (name) {
@@ -8495,7 +8600,7 @@ var mdgriffith$elm_style_animation$Animation$Render$renderAttrs = function (prop
 					default:
 						return elm$core$Maybe$Nothing;
 				}
-			case 6:
+			case 'Property4':
 				var name = prop.a;
 				var m1 = prop.b;
 				var m2 = prop.c;
@@ -8522,14 +8627,14 @@ var mdgriffith$elm_style_animation$Animation$Render$isAttr = function (prop) {
 		'attr:',
 		mdgriffith$elm_style_animation$Animation$Model$propertyName(prop)) || function () {
 		switch (prop.$) {
-			case 8:
+			case 'Points':
 				return true;
-			case 9:
+			case 'Path':
 				return true;
-			case 3:
+			case 'Property':
 				var name = prop.a;
 				return (name === 'cx') || ((name === 'cy') || ((name === 'x') || ((name === 'y') || ((name === 'rx') || ((name === 'ry') || ((name === 'r') || (name === 'offset')))))));
-			case 6:
+			case 'Property4':
 				var name = prop.a;
 				return name === 'viewBox';
 			default:
@@ -8545,18 +8650,18 @@ var mdgriffith$elm_style_animation$Animation$Render$isFilter = function (prop) {
 			['filter-url', 'blur', 'brightness', 'contrast', 'grayscale', 'hue-rotate', 'invert', 'saturate', 'sepia', 'drop-shadow']));
 };
 var mdgriffith$elm_style_animation$Animation$Render$render3dRotation = function (prop) {
-	if (prop.$ === 5) {
+	if (prop.$ === 'Property3') {
 		var x = prop.b;
 		var y = prop.c;
 		var z = prop.d;
-		return 'rotateX(' + (elm$core$String$fromFloat(x.a4) + (x.a9 + (') rotateY(' + (elm$core$String$fromFloat(y.a4) + (y.a9 + (') rotateZ(' + (elm$core$String$fromFloat(z.a4) + (z.a9 + ')'))))))));
+		return 'rotateX(' + (elm$core$String$fromFloat(x.position) + (x.unit + (') rotateY(' + (elm$core$String$fromFloat(y.position) + (y.unit + (') rotateZ(' + (elm$core$String$fromFloat(z.position) + (z.unit + ')'))))))));
 	} else {
 		return '';
 	}
 };
 var mdgriffith$elm_style_animation$Animation$Render$renderValues = function (_n0) {
-	var model = _n0;
-	var _n1 = A2(elm$core$List$partition, mdgriffith$elm_style_animation$Animation$Render$isAttr, model.x);
+	var model = _n0.a;
+	var _n1 = A2(elm$core$List$partition, mdgriffith$elm_style_animation$Animation$Render$isAttr, model.style);
 	var attrProps = _n1.a;
 	var styleProps = _n1.b;
 	var _n2 = A3(
@@ -8674,14 +8779,26 @@ var author$project$Main$square = function (stylefn) {
 		_List_Nil);
 };
 var author$project$Main$view = function (model) {
-	var me = model.u;
+	var me = model.me;
 	return A2(
 		elm$html$Html$div,
 		_List_Nil,
-		_List_fromArray(
-			[
-				author$project$Main$square(me.x)
-			]));
+		_Utils_ap(
+			_List_Nil,
+			_Utils_ap(
+				A2(
+					elm$core$List$map,
+					author$project$Main$square,
+					A2(
+						elm$core$List$map,
+						function ($) {
+							return $.style;
+						},
+						model.others)),
+				_List_fromArray(
+					[
+						author$project$Main$square(me.style)
+					]))));
 };
 var elm$browser$Browser$element = _Browser_element;
 var elm$core$Basics$always = F2(
@@ -8690,10 +8807,10 @@ var elm$core$Basics$always = F2(
 	});
 var author$project$Main$main = elm$browser$Browser$element(
 	{
-		a$: elm$core$Basics$always(author$project$Main$init),
-		a6: author$project$Main$subscriptions,
-		ba: author$project$Main$update,
-		bd: author$project$Main$view
+		init: elm$core$Basics$always(author$project$Main$init),
+		subscriptions: author$project$Main$subscriptions,
+		update: author$project$Main$update,
+		view: author$project$Main$view
 	});
 _Platform_export({'Main':{'init':author$project$Main$main(
-	elm$json$Json$Decode$succeed(0))(0)}});}(this));
+	elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
