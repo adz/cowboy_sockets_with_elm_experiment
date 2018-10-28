@@ -7,3 +7,13 @@ erl_crash.dump
 *.ez
 *.beam
 /config/*.secret.exs
+
+# buildartifacts
+elm-stuff/
+
+# Generated on crash
+npm-debug.log
+
+# IDE/Editors
+/tags
+.vscode
