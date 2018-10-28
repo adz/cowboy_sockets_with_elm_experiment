@@ -4771,841 +4771,8 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 	});
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
-var mdgriffith$elm_style_animation$Animation$Model$Spring = function (a) {
-	return {$: 'Spring', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$initMotion = F2(
-	function (position, unit) {
-		return {
-			interpolation: mdgriffith$elm_style_animation$Animation$Model$Spring(
-				{damping: 26, stiffness: 170}),
-			interpolationOverride: elm$core$Maybe$Nothing,
-			position: position,
-			target: position,
-			unit: unit,
-			velocity: 0
-		};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$Property = F2(
-	function (a, b) {
-		return {$: 'Property', a: a, b: b};
-	});
-var mdgriffith$elm_style_animation$Animation$length = F3(
-	function (name, val, unit) {
-		return A2(
-			mdgriffith$elm_style_animation$Animation$Model$Property,
-			name,
-			A2(mdgriffith$elm_style_animation$Animation$initMotion, val, unit));
-	});
-var mdgriffith$elm_style_animation$Animation$lengthUnitName = function (unit) {
-	switch (unit.$) {
-		case 'NoUnit':
-			return '';
-		case 'Px':
-			return 'px';
-		case 'Percent':
-			return '%';
-		case 'Rem':
-			return 'rem';
-		case 'Em':
-			return 'em';
-		case 'Ex':
-			return 'ex';
-		case 'Ch':
-			return 'ch';
-		case 'Vh':
-			return 'vh';
-		case 'Vw':
-			return 'vw';
-		case 'Vmin':
-			return 'vmin';
-		case 'Vmax':
-			return 'vmax';
-		case 'Mm':
-			return 'mm';
-		case 'Cm':
-			return 'cm';
-		case 'In':
-			return 'in';
-		case 'Pt':
-			return 'pt';
-		default:
-			return 'pc';
-	}
-};
-var mdgriffith$elm_style_animation$Animation$left = function (_n0) {
-	var val = _n0.a;
-	var len = _n0.b;
-	return A3(
-		mdgriffith$elm_style_animation$Animation$length,
-		'left',
-		val,
-		mdgriffith$elm_style_animation$Animation$lengthUnitName(len));
-};
-var mdgriffith$elm_style_animation$Animation$Length = F2(
-	function (a, b) {
-		return {$: 'Length', a: a, b: b};
-	});
-var mdgriffith$elm_style_animation$Animation$Px = {$: 'Px'};
-var mdgriffith$elm_style_animation$Animation$px = function (myPx) {
-	return A2(mdgriffith$elm_style_animation$Animation$Length, myPx, mdgriffith$elm_style_animation$Animation$Px);
-};
-var elm$core$List$foldrHelper = F4(
-	function (fn, acc, ctr, ls) {
-		if (!ls.b) {
-			return acc;
-		} else {
-			var a = ls.a;
-			var r1 = ls.b;
-			if (!r1.b) {
-				return A2(fn, a, acc);
-			} else {
-				var b = r1.a;
-				var r2 = r1.b;
-				if (!r2.b) {
-					return A2(
-						fn,
-						a,
-						A2(fn, b, acc));
-				} else {
-					var c = r2.a;
-					var r3 = r2.b;
-					if (!r3.b) {
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(fn, c, acc)));
-					} else {
-						var d = r3.a;
-						var r4 = r3.b;
-						var res = (ctr > 500) ? A3(
-							elm$core$List$foldl,
-							fn,
-							acc,
-							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(
-									fn,
-									c,
-									A2(fn, d, res))));
-					}
-				}
-			}
-		}
-	});
-var elm$core$List$foldr = F3(
-	function (fn, acc, ls) {
-		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
-	});
-var elm$core$List$map = F2(
-	function (f, xs) {
-		return A3(
-			elm$core$List$foldr,
-			F2(
-				function (x, acc) {
-					return A2(
-						elm$core$List$cons,
-						f(x),
-						acc);
-				}),
-			_List_Nil,
-			xs);
-	});
-var elm$core$Basics$identity = function (x) {
-	return x;
-};
-var elm$time$Time$Posix = function (a) {
-	return {$: 'Posix', a: a};
-};
-var elm$time$Time$millisToPosix = elm$time$Time$Posix;
-var mdgriffith$elm_style_animation$Animation$Model$Animation = function (a) {
-	return {$: 'Animation', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$initialState = function (current) {
-	return mdgriffith$elm_style_animation$Animation$Model$Animation(
-		{
-			interruption: _List_Nil,
-			running: false,
-			steps: _List_Nil,
-			style: current,
-			timing: {
-				current: elm$time$Time$millisToPosix(0),
-				dt: elm$time$Time$millisToPosix(0)
-			}
-		});
-};
-var elm$core$Basics$pi = _Basics_pi;
-var mdgriffith$elm_style_animation$Animation$Model$AtSpeed = function (a) {
-	return {$: 'AtSpeed', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$speed = function (speedValue) {
-	return mdgriffith$elm_style_animation$Animation$Model$AtSpeed(speedValue);
-};
-var mdgriffith$elm_style_animation$Animation$Model$Easing = function (a) {
-	return {$: 'Easing', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$defaultInterpolationByProperty = function (prop) {
-	var linear = function (duration) {
-		return mdgriffith$elm_style_animation$Animation$Model$Easing(
-			{duration: duration, ease: elm$core$Basics$identity, progress: 1, start: 0});
-	};
-	var defaultSpring = mdgriffith$elm_style_animation$Animation$Model$Spring(
-		{damping: 26, stiffness: 170});
-	switch (prop.$) {
-		case 'ExactProperty':
-			return defaultSpring;
-		case 'ColorProperty':
-			return linear(
-				elm$time$Time$millisToPosix(400));
-		case 'ShadowProperty':
-			return defaultSpring;
-		case 'Property':
-			return defaultSpring;
-		case 'Property2':
-			return defaultSpring;
-		case 'Property3':
-			var name = prop.a;
-			return (name === 'rotate3d') ? mdgriffith$elm_style_animation$Animation$speed(
-				{perSecond: elm$core$Basics$pi}) : defaultSpring;
-		case 'Property4':
-			return defaultSpring;
-		case 'AngleProperty':
-			return mdgriffith$elm_style_animation$Animation$speed(
-				{perSecond: elm$core$Basics$pi});
-		case 'Points':
-			return defaultSpring;
-		default:
-			return defaultSpring;
-	}
-};
-var mdgriffith$elm_style_animation$Animation$Model$AngleProperty = F2(
-	function (a, b) {
-		return {$: 'AngleProperty', a: a, b: b};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$ColorProperty = F5(
-	function (a, b, c, d, e) {
-		return {$: 'ColorProperty', a: a, b: b, c: c, d: d, e: e};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$ExactProperty = F2(
-	function (a, b) {
-		return {$: 'ExactProperty', a: a, b: b};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$Path = function (a) {
-	return {$: 'Path', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$Points = function (a) {
-	return {$: 'Points', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$Property2 = F3(
-	function (a, b, c) {
-		return {$: 'Property2', a: a, b: b, c: c};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$Property3 = F4(
-	function (a, b, c, d) {
-		return {$: 'Property3', a: a, b: b, c: c, d: d};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$Property4 = F5(
-	function (a, b, c, d, e) {
-		return {$: 'Property4', a: a, b: b, c: c, d: d, e: e};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$ShadowProperty = F3(
-	function (a, b, c) {
-		return {$: 'ShadowProperty', a: a, b: b, c: c};
-	});
-var elm$core$Tuple$second = function (_n0) {
-	var y = _n0.b;
-	return y;
-};
-var mdgriffith$elm_style_animation$Animation$Model$AntiClockwiseArc = function (a) {
-	return {$: 'AntiClockwiseArc', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$ClockwiseArc = function (a) {
-	return {$: 'ClockwiseArc', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$Close = {$: 'Close'};
-var mdgriffith$elm_style_animation$Animation$Model$Curve = function (a) {
-	return {$: 'Curve', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$CurveTo = function (a) {
-	return {$: 'CurveTo', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$Horizontal = function (a) {
-	return {$: 'Horizontal', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$HorizontalTo = function (a) {
-	return {$: 'HorizontalTo', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$Line = F2(
-	function (a, b) {
-		return {$: 'Line', a: a, b: b};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$LineTo = F2(
-	function (a, b) {
-		return {$: 'LineTo', a: a, b: b};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$Move = F2(
-	function (a, b) {
-		return {$: 'Move', a: a, b: b};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$MoveTo = F2(
-	function (a, b) {
-		return {$: 'MoveTo', a: a, b: b};
-	});
-var mdgriffith$elm_style_animation$Animation$Model$Quadratic = function (a) {
-	return {$: 'Quadratic', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$QuadraticTo = function (a) {
-	return {$: 'QuadraticTo', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$Smooth = function (a) {
-	return {$: 'Smooth', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$SmoothQuadratic = function (a) {
-	return {$: 'SmoothQuadratic', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$SmoothQuadraticTo = function (a) {
-	return {$: 'SmoothQuadraticTo', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$SmoothTo = function (a) {
-	return {$: 'SmoothTo', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$Vertical = function (a) {
-	return {$: 'Vertical', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$VerticalTo = function (a) {
-	return {$: 'VerticalTo', a: a};
-};
-var mdgriffith$elm_style_animation$Animation$Model$mapPathMotion = F2(
-	function (fn, cmd) {
-		var mapCoords = function (coords) {
-			return A2(
-				elm$core$List$map,
-				function (_n1) {
-					var x = _n1.a;
-					var y = _n1.b;
-					return _Utils_Tuple2(
-						fn(x),
-						fn(y));
-				},
-				coords);
-		};
-		switch (cmd.$) {
-			case 'Move':
-				var m1 = cmd.a;
-				var m2 = cmd.b;
-				return A2(
-					mdgriffith$elm_style_animation$Animation$Model$Move,
-					fn(m1),
-					fn(m2));
-			case 'MoveTo':
-				var m1 = cmd.a;
-				var m2 = cmd.b;
-				return A2(
-					mdgriffith$elm_style_animation$Animation$Model$MoveTo,
-					fn(m1),
-					fn(m2));
-			case 'Line':
-				var m1 = cmd.a;
-				var m2 = cmd.b;
-				return A2(
-					mdgriffith$elm_style_animation$Animation$Model$Line,
-					fn(m1),
-					fn(m2));
-			case 'LineTo':
-				var m1 = cmd.a;
-				var m2 = cmd.b;
-				return A2(
-					mdgriffith$elm_style_animation$Animation$Model$LineTo,
-					fn(m1),
-					fn(m2));
-			case 'Horizontal':
-				var motion = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$Horizontal(
-					fn(motion));
-			case 'HorizontalTo':
-				var motion = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$HorizontalTo(
-					fn(motion));
-			case 'Vertical':
-				var motion = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$Vertical(
-					fn(motion));
-			case 'VerticalTo':
-				var motion = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$VerticalTo(
-					fn(motion));
-			case 'Curve':
-				var control1 = cmd.a.control1;
-				var control2 = cmd.a.control2;
-				var point = cmd.a.point;
-				return mdgriffith$elm_style_animation$Animation$Model$Curve(
-					{
-						control1: _Utils_Tuple2(
-							fn(control1.a),
-							fn(control1.b)),
-						control2: _Utils_Tuple2(
-							fn(control2.a),
-							fn(control2.b)),
-						point: _Utils_Tuple2(
-							fn(point.a),
-							fn(point.b))
-					});
-			case 'CurveTo':
-				var control1 = cmd.a.control1;
-				var control2 = cmd.a.control2;
-				var point = cmd.a.point;
-				return mdgriffith$elm_style_animation$Animation$Model$CurveTo(
-					{
-						control1: _Utils_Tuple2(
-							fn(control1.a),
-							fn(control1.b)),
-						control2: _Utils_Tuple2(
-							fn(control2.a),
-							fn(control2.b)),
-						point: _Utils_Tuple2(
-							fn(point.a),
-							fn(point.b))
-					});
-			case 'Quadratic':
-				var control = cmd.a.control;
-				var point = cmd.a.point;
-				return mdgriffith$elm_style_animation$Animation$Model$Quadratic(
-					{
-						control: _Utils_Tuple2(
-							fn(control.a),
-							fn(control.b)),
-						point: _Utils_Tuple2(
-							fn(point.a),
-							fn(point.b))
-					});
-			case 'QuadraticTo':
-				var control = cmd.a.control;
-				var point = cmd.a.point;
-				return mdgriffith$elm_style_animation$Animation$Model$QuadraticTo(
-					{
-						control: _Utils_Tuple2(
-							fn(control.a),
-							fn(control.b)),
-						point: _Utils_Tuple2(
-							fn(point.a),
-							fn(point.b))
-					});
-			case 'SmoothQuadratic':
-				var coords = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadratic(
-					mapCoords(coords));
-			case 'SmoothQuadraticTo':
-				var coords = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadraticTo(
-					mapCoords(coords));
-			case 'Smooth':
-				var coords = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$Smooth(
-					mapCoords(coords));
-			case 'SmoothTo':
-				var coords = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$SmoothTo(
-					mapCoords(coords));
-			case 'ClockwiseArc':
-				var arc = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$ClockwiseArc(
-					function () {
-						var y = arc.y;
-						var x = arc.x;
-						var startAngle = arc.startAngle;
-						var radius = arc.radius;
-						var endAngle = arc.endAngle;
-						return _Utils_update(
-							arc,
-							{
-								endAngle: fn(endAngle),
-								radius: fn(radius),
-								startAngle: fn(startAngle),
-								x: fn(x),
-								y: fn(y)
-							});
-					}());
-			case 'AntiClockwiseArc':
-				var arc = cmd.a;
-				return mdgriffith$elm_style_animation$Animation$Model$AntiClockwiseArc(
-					function () {
-						var y = arc.y;
-						var x = arc.x;
-						var startAngle = arc.startAngle;
-						var radius = arc.radius;
-						var endAngle = arc.endAngle;
-						return _Utils_update(
-							arc,
-							{
-								endAngle: fn(endAngle),
-								radius: fn(radius),
-								startAngle: fn(startAngle),
-								x: fn(x),
-								y: fn(y)
-							});
-					}());
-			default:
-				return mdgriffith$elm_style_animation$Animation$Model$Close;
-		}
-	});
-var mdgriffith$elm_style_animation$Animation$Model$mapToMotion = F2(
-	function (fn, prop) {
-		switch (prop.$) {
-			case 'ExactProperty':
-				var name = prop.a;
-				var value = prop.b;
-				return A2(mdgriffith$elm_style_animation$Animation$Model$ExactProperty, name, value);
-			case 'ColorProperty':
-				var name = prop.a;
-				var m1 = prop.b;
-				var m2 = prop.c;
-				var m3 = prop.d;
-				var m4 = prop.e;
-				return A5(
-					mdgriffith$elm_style_animation$Animation$Model$ColorProperty,
-					name,
-					fn(m1),
-					fn(m2),
-					fn(m3),
-					fn(m4));
-			case 'ShadowProperty':
-				var name = prop.a;
-				var inset = prop.b;
-				var shadow = prop.c;
-				var size = shadow.size;
-				var red = shadow.red;
-				var offsetY = shadow.offsetY;
-				var offsetX = shadow.offsetX;
-				var green = shadow.green;
-				var blur = shadow.blur;
-				var blue = shadow.blue;
-				var alpha = shadow.alpha;
-				return A3(
-					mdgriffith$elm_style_animation$Animation$Model$ShadowProperty,
-					name,
-					inset,
-					{
-						alpha: fn(alpha),
-						blue: fn(blue),
-						blur: fn(blur),
-						green: fn(green),
-						offsetX: fn(offsetX),
-						offsetY: fn(offsetY),
-						red: fn(red),
-						size: fn(size)
-					});
-			case 'Property':
-				var name = prop.a;
-				var m1 = prop.b;
-				return A2(
-					mdgriffith$elm_style_animation$Animation$Model$Property,
-					name,
-					fn(m1));
-			case 'Property2':
-				var name = prop.a;
-				var m1 = prop.b;
-				var m2 = prop.c;
-				return A3(
-					mdgriffith$elm_style_animation$Animation$Model$Property2,
-					name,
-					fn(m1),
-					fn(m2));
-			case 'Property3':
-				var name = prop.a;
-				var m1 = prop.b;
-				var m2 = prop.c;
-				var m3 = prop.d;
-				return A4(
-					mdgriffith$elm_style_animation$Animation$Model$Property3,
-					name,
-					fn(m1),
-					fn(m2),
-					fn(m3));
-			case 'Property4':
-				var name = prop.a;
-				var m1 = prop.b;
-				var m2 = prop.c;
-				var m3 = prop.d;
-				var m4 = prop.e;
-				return A5(
-					mdgriffith$elm_style_animation$Animation$Model$Property4,
-					name,
-					fn(m1),
-					fn(m2),
-					fn(m3),
-					fn(m4));
-			case 'AngleProperty':
-				var name = prop.a;
-				var m1 = prop.b;
-				return A2(
-					mdgriffith$elm_style_animation$Animation$Model$AngleProperty,
-					name,
-					fn(m1));
-			case 'Points':
-				var ms = prop.a;
-				return mdgriffith$elm_style_animation$Animation$Model$Points(
-					A2(
-						elm$core$List$map,
-						function (_n1) {
-							var x = _n1.a;
-							var y = _n1.b;
-							return _Utils_Tuple2(
-								fn(x),
-								fn(y));
-						},
-						ms));
-			default:
-				var cmds = prop.a;
-				return mdgriffith$elm_style_animation$Animation$Model$Path(
-					A2(
-						elm$core$List$map,
-						mdgriffith$elm_style_animation$Animation$Model$mapPathMotion(fn),
-						cmds));
-		}
-	});
-var mdgriffith$elm_style_animation$Animation$setDefaultInterpolation = function (prop) {
-	var interp = mdgriffith$elm_style_animation$Animation$defaultInterpolationByProperty(prop);
-	return A2(
-		mdgriffith$elm_style_animation$Animation$Model$mapToMotion,
-		function (m) {
-			return _Utils_update(
-				m,
-				{interpolation: interp});
-		},
-		prop);
-};
-var elm$core$Basics$not = _Basics_not;
-var elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2(elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return elm$core$Maybe$Just(x);
-	} else {
-		return elm$core$Maybe$Nothing;
-	}
-};
-var elm$core$List$sortBy = _List_sortBy;
-var elm$core$List$sort = function (xs) {
-	return A2(elm$core$List$sortBy, elm$core$Basics$identity, xs);
-};
-var mdgriffith$elm_style_animation$Animation$Model$propertyName = function (prop) {
-	switch (prop.$) {
-		case 'ExactProperty':
-			var name = prop.a;
-			return name;
-		case 'ColorProperty':
-			var name = prop.a;
-			return name;
-		case 'ShadowProperty':
-			var name = prop.a;
-			return name;
-		case 'Property':
-			var name = prop.a;
-			return name;
-		case 'Property2':
-			var name = prop.a;
-			return name;
-		case 'Property3':
-			var name = prop.a;
-			return name;
-		case 'Property4':
-			var name = prop.a;
-			return name;
-		case 'AngleProperty':
-			var name = prop.a;
-			return name;
-		case 'Points':
-			return 'points';
-		default:
-			return 'path';
-	}
-};
-var mdgriffith$elm_style_animation$Animation$Render$dropWhile = F2(
-	function (predicate, list) {
-		dropWhile:
-		while (true) {
-			if (!list.b) {
-				return _List_Nil;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				if (predicate(x)) {
-					var $temp$predicate = predicate,
-						$temp$list = xs;
-					predicate = $temp$predicate;
-					list = $temp$list;
-					continue dropWhile;
-				} else {
-					return list;
-				}
-			}
-		}
-	});
-var mdgriffith$elm_style_animation$Animation$Render$takeWhile = function (predicate) {
-	var takeWhileMemo = F2(
-		function (memo, list) {
-			takeWhileMemo:
-			while (true) {
-				if (!list.b) {
-					return elm$core$List$reverse(memo);
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					if (predicate(x)) {
-						var $temp$memo = A2(elm$core$List$cons, x, memo),
-							$temp$list = xs;
-						memo = $temp$memo;
-						list = $temp$list;
-						continue takeWhileMemo;
-					} else {
-						return elm$core$List$reverse(memo);
-					}
-				}
-			}
-		});
-	return takeWhileMemo(_List_Nil);
-};
-var mdgriffith$elm_style_animation$Animation$Render$span = F2(
-	function (p, xs) {
-		return _Utils_Tuple2(
-			A2(mdgriffith$elm_style_animation$Animation$Render$takeWhile, p, xs),
-			A2(mdgriffith$elm_style_animation$Animation$Render$dropWhile, p, xs));
-	});
-var mdgriffith$elm_style_animation$Animation$Render$groupWhile = F2(
-	function (eq, xs_) {
-		if (!xs_.b) {
-			return _List_Nil;
-		} else {
-			var x = xs_.a;
-			var xs = xs_.b;
-			var _n1 = A2(
-				mdgriffith$elm_style_animation$Animation$Render$span,
-				eq(x),
-				xs);
-			var ys = _n1.a;
-			var zs = _n1.b;
-			return A2(
-				elm$core$List$cons,
-				A2(elm$core$List$cons, x, ys),
-				A2(mdgriffith$elm_style_animation$Animation$Render$groupWhile, eq, zs));
-		}
-	});
-var elm$core$List$any = F2(
-	function (isOkay, list) {
-		any:
-		while (true) {
-			if (!list.b) {
-				return false;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				if (isOkay(x)) {
-					return true;
-				} else {
-					var $temp$isOkay = isOkay,
-						$temp$list = xs;
-					isOkay = $temp$isOkay;
-					list = $temp$list;
-					continue any;
-				}
-			}
-		}
-	});
-var elm$core$List$member = F2(
-	function (x, xs) {
-		return A2(
-			elm$core$List$any,
-			function (a) {
-				return _Utils_eq(a, x);
-			},
-			xs);
-	});
-var mdgriffith$elm_style_animation$Animation$Render$isTransformation = function (prop) {
-	return A2(
-		elm$core$List$member,
-		mdgriffith$elm_style_animation$Animation$Model$propertyName(prop),
-		_List_fromArray(
-			['rotate', 'rotateX', 'rotateY', 'rotateZ', 'rotate3d', 'translate', 'translate3d', 'scale', 'scale3d']));
-};
-var mdgriffith$elm_style_animation$Animation$Render$warnForDoubleListedProperties = function (props) {
-	var _n0 = A2(
-		elm$core$List$map,
-		function (propGroup) {
-			var _n1 = elm$core$List$head(propGroup);
-			if (_n1.$ === 'Nothing') {
-				return '';
-			} else {
-				var name = _n1.a;
-				return (elm$core$List$length(propGroup) > 1) ? '' : '';
-			}
-		},
-		A2(
-			mdgriffith$elm_style_animation$Animation$Render$groupWhile,
-			elm$core$Basics$eq,
-			elm$core$List$sort(
-				A2(
-					elm$core$List$map,
-					mdgriffith$elm_style_animation$Animation$Model$propertyName,
-					A2(
-						elm$core$List$filter,
-						function (prop) {
-							return !mdgriffith$elm_style_animation$Animation$Render$isTransformation(prop);
-						},
-						props)))));
-	return props;
-};
-var mdgriffith$elm_style_animation$Animation$style = function (props) {
-	return mdgriffith$elm_style_animation$Animation$initialState(
-		A2(
-			elm$core$List$map,
-			mdgriffith$elm_style_animation$Animation$setDefaultInterpolation,
-			mdgriffith$elm_style_animation$Animation$Render$warnForDoubleListedProperties(props)));
-};
-var mdgriffith$elm_style_animation$Animation$top = function (_n0) {
-	var val = _n0.a;
-	var len = _n0.b;
-	return A3(
-		mdgriffith$elm_style_animation$Animation$length,
-		'top',
-		val,
-		mdgriffith$elm_style_animation$Animation$lengthUnitName(len));
-};
 var author$project$Main$init = _Utils_Tuple2(
-	{
-		me: {
-			colour: 'silver',
-			name: 'Mario',
-			pos: {x: 0, y: 0},
-			style: mdgriffith$elm_style_animation$Animation$style(
-				_List_fromArray(
-					[
-						mdgriffith$elm_style_animation$Animation$left(
-						mdgriffith$elm_style_animation$Animation$px(0)),
-						mdgriffith$elm_style_animation$Animation$top(
-						mdgriffith$elm_style_animation$Animation$px(0))
-					]))
-		},
-		others: _List_Nil
-	},
+	{others: _List_Nil},
 	elm$core$Platform$Cmd$none);
 var author$project$Main$Animate = function (a) {
 	return {$: 'Animate', a: a};
@@ -5735,10 +4902,82 @@ var elm$core$Basics$never = function (_n0) {
 		continue never;
 	}
 };
+var elm$core$Basics$identity = function (x) {
+	return x;
+};
 var elm$core$Task$Perform = function (a) {
 	return {$: 'Perform', a: a};
 };
 var elm$core$Task$init = elm$core$Task$succeed(_Utils_Tuple0);
+var elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							elm$core$List$foldl,
+							fn,
+							acc,
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
 var elm$core$Task$map2 = F3(
 	function (func, taskA, taskB) {
 		return A2(
@@ -6371,6 +5610,10 @@ var elm$browser$Browser$AnimationManager$onEffects = F3(
 			}
 		}
 	});
+var elm$time$Time$Posix = function (a) {
+	return {$: 'Posix', a: a};
+};
+var elm$time$Time$millisToPosix = elm$time$Time$Posix;
 var elm$browser$Browser$AnimationManager$onSelfMsg = F3(
 	function (router, newTime, _n0) {
 		var subs = _n0.subs;
@@ -6440,6 +5683,27 @@ var elm$browser$Browser$AnimationManager$onAnimationFrame = function (tagger) {
 		elm$browser$Browser$AnimationManager$Time(tagger));
 };
 var elm$browser$Browser$Events$onAnimationFrame = elm$browser$Browser$AnimationManager$onAnimationFrame;
+var elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
 var elm$core$Platform$Sub$map = _Platform_map;
 var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
 var mdgriffith$elm_style_animation$Animation$isRunning = function (_n0) {
@@ -6463,21 +5727,739 @@ var author$project$Main$subscriptions = function (model) {
 				A2(
 				mdgriffith$elm_style_animation$Animation$subscription,
 				author$project$Main$Animate,
-				_Utils_ap(
-					_List_fromArray(
-						[model.me.style]),
-					A2(
-						elm$core$List$map,
-						function ($) {
-							return $.style;
-						},
-						model.others))),
+				A2(
+					elm$core$List$map,
+					function ($) {
+						return $.style;
+					},
+					model.others)),
 				elm$browser$Browser$Events$onKeyDown(
 				A2(elm$json$Json$Decode$map, author$project$Main$Move, author$project$Main$keyDecoder)),
 				author$project$Main$activeUsers(author$project$Main$UserUpdate)
 			]));
 };
 var author$project$Main$sideLength = 100;
+var mdgriffith$elm_style_animation$Animation$Model$Spring = function (a) {
+	return {$: 'Spring', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$initMotion = F2(
+	function (position, unit) {
+		return {
+			interpolation: mdgriffith$elm_style_animation$Animation$Model$Spring(
+				{damping: 26, stiffness: 170}),
+			interpolationOverride: elm$core$Maybe$Nothing,
+			position: position,
+			target: position,
+			unit: unit,
+			velocity: 0
+		};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$Property = F2(
+	function (a, b) {
+		return {$: 'Property', a: a, b: b};
+	});
+var mdgriffith$elm_style_animation$Animation$length = F3(
+	function (name, val, unit) {
+		return A2(
+			mdgriffith$elm_style_animation$Animation$Model$Property,
+			name,
+			A2(mdgriffith$elm_style_animation$Animation$initMotion, val, unit));
+	});
+var mdgriffith$elm_style_animation$Animation$lengthUnitName = function (unit) {
+	switch (unit.$) {
+		case 'NoUnit':
+			return '';
+		case 'Px':
+			return 'px';
+		case 'Percent':
+			return '%';
+		case 'Rem':
+			return 'rem';
+		case 'Em':
+			return 'em';
+		case 'Ex':
+			return 'ex';
+		case 'Ch':
+			return 'ch';
+		case 'Vh':
+			return 'vh';
+		case 'Vw':
+			return 'vw';
+		case 'Vmin':
+			return 'vmin';
+		case 'Vmax':
+			return 'vmax';
+		case 'Mm':
+			return 'mm';
+		case 'Cm':
+			return 'cm';
+		case 'In':
+			return 'in';
+		case 'Pt':
+			return 'pt';
+		default:
+			return 'pc';
+	}
+};
+var mdgriffith$elm_style_animation$Animation$left = function (_n0) {
+	var val = _n0.a;
+	var len = _n0.b;
+	return A3(
+		mdgriffith$elm_style_animation$Animation$length,
+		'left',
+		val,
+		mdgriffith$elm_style_animation$Animation$lengthUnitName(len));
+};
+var mdgriffith$elm_style_animation$Animation$Length = F2(
+	function (a, b) {
+		return {$: 'Length', a: a, b: b};
+	});
+var mdgriffith$elm_style_animation$Animation$Px = {$: 'Px'};
+var mdgriffith$elm_style_animation$Animation$px = function (myPx) {
+	return A2(mdgriffith$elm_style_animation$Animation$Length, myPx, mdgriffith$elm_style_animation$Animation$Px);
+};
+var mdgriffith$elm_style_animation$Animation$Model$Animation = function (a) {
+	return {$: 'Animation', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$initialState = function (current) {
+	return mdgriffith$elm_style_animation$Animation$Model$Animation(
+		{
+			interruption: _List_Nil,
+			running: false,
+			steps: _List_Nil,
+			style: current,
+			timing: {
+				current: elm$time$Time$millisToPosix(0),
+				dt: elm$time$Time$millisToPosix(0)
+			}
+		});
+};
+var elm$core$Basics$pi = _Basics_pi;
+var mdgriffith$elm_style_animation$Animation$Model$AtSpeed = function (a) {
+	return {$: 'AtSpeed', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$speed = function (speedValue) {
+	return mdgriffith$elm_style_animation$Animation$Model$AtSpeed(speedValue);
+};
+var mdgriffith$elm_style_animation$Animation$Model$Easing = function (a) {
+	return {$: 'Easing', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$defaultInterpolationByProperty = function (prop) {
+	var linear = function (duration) {
+		return mdgriffith$elm_style_animation$Animation$Model$Easing(
+			{duration: duration, ease: elm$core$Basics$identity, progress: 1, start: 0});
+	};
+	var defaultSpring = mdgriffith$elm_style_animation$Animation$Model$Spring(
+		{damping: 26, stiffness: 170});
+	switch (prop.$) {
+		case 'ExactProperty':
+			return defaultSpring;
+		case 'ColorProperty':
+			return linear(
+				elm$time$Time$millisToPosix(400));
+		case 'ShadowProperty':
+			return defaultSpring;
+		case 'Property':
+			return defaultSpring;
+		case 'Property2':
+			return defaultSpring;
+		case 'Property3':
+			var name = prop.a;
+			return (name === 'rotate3d') ? mdgriffith$elm_style_animation$Animation$speed(
+				{perSecond: elm$core$Basics$pi}) : defaultSpring;
+		case 'Property4':
+			return defaultSpring;
+		case 'AngleProperty':
+			return mdgriffith$elm_style_animation$Animation$speed(
+				{perSecond: elm$core$Basics$pi});
+		case 'Points':
+			return defaultSpring;
+		default:
+			return defaultSpring;
+	}
+};
+var mdgriffith$elm_style_animation$Animation$Model$AngleProperty = F2(
+	function (a, b) {
+		return {$: 'AngleProperty', a: a, b: b};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$ColorProperty = F5(
+	function (a, b, c, d, e) {
+		return {$: 'ColorProperty', a: a, b: b, c: c, d: d, e: e};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$ExactProperty = F2(
+	function (a, b) {
+		return {$: 'ExactProperty', a: a, b: b};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$Path = function (a) {
+	return {$: 'Path', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$Points = function (a) {
+	return {$: 'Points', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$Property2 = F3(
+	function (a, b, c) {
+		return {$: 'Property2', a: a, b: b, c: c};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$Property3 = F4(
+	function (a, b, c, d) {
+		return {$: 'Property3', a: a, b: b, c: c, d: d};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$Property4 = F5(
+	function (a, b, c, d, e) {
+		return {$: 'Property4', a: a, b: b, c: c, d: d, e: e};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$ShadowProperty = F3(
+	function (a, b, c) {
+		return {$: 'ShadowProperty', a: a, b: b, c: c};
+	});
+var elm$core$Tuple$second = function (_n0) {
+	var y = _n0.b;
+	return y;
+};
+var mdgriffith$elm_style_animation$Animation$Model$AntiClockwiseArc = function (a) {
+	return {$: 'AntiClockwiseArc', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$ClockwiseArc = function (a) {
+	return {$: 'ClockwiseArc', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$Close = {$: 'Close'};
+var mdgriffith$elm_style_animation$Animation$Model$Curve = function (a) {
+	return {$: 'Curve', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$CurveTo = function (a) {
+	return {$: 'CurveTo', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$Horizontal = function (a) {
+	return {$: 'Horizontal', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$HorizontalTo = function (a) {
+	return {$: 'HorizontalTo', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$Line = F2(
+	function (a, b) {
+		return {$: 'Line', a: a, b: b};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$LineTo = F2(
+	function (a, b) {
+		return {$: 'LineTo', a: a, b: b};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$Move = F2(
+	function (a, b) {
+		return {$: 'Move', a: a, b: b};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$MoveTo = F2(
+	function (a, b) {
+		return {$: 'MoveTo', a: a, b: b};
+	});
+var mdgriffith$elm_style_animation$Animation$Model$Quadratic = function (a) {
+	return {$: 'Quadratic', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$QuadraticTo = function (a) {
+	return {$: 'QuadraticTo', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$Smooth = function (a) {
+	return {$: 'Smooth', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$SmoothQuadratic = function (a) {
+	return {$: 'SmoothQuadratic', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$SmoothQuadraticTo = function (a) {
+	return {$: 'SmoothQuadraticTo', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$SmoothTo = function (a) {
+	return {$: 'SmoothTo', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$Vertical = function (a) {
+	return {$: 'Vertical', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$VerticalTo = function (a) {
+	return {$: 'VerticalTo', a: a};
+};
+var mdgriffith$elm_style_animation$Animation$Model$mapPathMotion = F2(
+	function (fn, cmd) {
+		var mapCoords = function (coords) {
+			return A2(
+				elm$core$List$map,
+				function (_n1) {
+					var x = _n1.a;
+					var y = _n1.b;
+					return _Utils_Tuple2(
+						fn(x),
+						fn(y));
+				},
+				coords);
+		};
+		switch (cmd.$) {
+			case 'Move':
+				var m1 = cmd.a;
+				var m2 = cmd.b;
+				return A2(
+					mdgriffith$elm_style_animation$Animation$Model$Move,
+					fn(m1),
+					fn(m2));
+			case 'MoveTo':
+				var m1 = cmd.a;
+				var m2 = cmd.b;
+				return A2(
+					mdgriffith$elm_style_animation$Animation$Model$MoveTo,
+					fn(m1),
+					fn(m2));
+			case 'Line':
+				var m1 = cmd.a;
+				var m2 = cmd.b;
+				return A2(
+					mdgriffith$elm_style_animation$Animation$Model$Line,
+					fn(m1),
+					fn(m2));
+			case 'LineTo':
+				var m1 = cmd.a;
+				var m2 = cmd.b;
+				return A2(
+					mdgriffith$elm_style_animation$Animation$Model$LineTo,
+					fn(m1),
+					fn(m2));
+			case 'Horizontal':
+				var motion = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$Horizontal(
+					fn(motion));
+			case 'HorizontalTo':
+				var motion = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$HorizontalTo(
+					fn(motion));
+			case 'Vertical':
+				var motion = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$Vertical(
+					fn(motion));
+			case 'VerticalTo':
+				var motion = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$VerticalTo(
+					fn(motion));
+			case 'Curve':
+				var control1 = cmd.a.control1;
+				var control2 = cmd.a.control2;
+				var point = cmd.a.point;
+				return mdgriffith$elm_style_animation$Animation$Model$Curve(
+					{
+						control1: _Utils_Tuple2(
+							fn(control1.a),
+							fn(control1.b)),
+						control2: _Utils_Tuple2(
+							fn(control2.a),
+							fn(control2.b)),
+						point: _Utils_Tuple2(
+							fn(point.a),
+							fn(point.b))
+					});
+			case 'CurveTo':
+				var control1 = cmd.a.control1;
+				var control2 = cmd.a.control2;
+				var point = cmd.a.point;
+				return mdgriffith$elm_style_animation$Animation$Model$CurveTo(
+					{
+						control1: _Utils_Tuple2(
+							fn(control1.a),
+							fn(control1.b)),
+						control2: _Utils_Tuple2(
+							fn(control2.a),
+							fn(control2.b)),
+						point: _Utils_Tuple2(
+							fn(point.a),
+							fn(point.b))
+					});
+			case 'Quadratic':
+				var control = cmd.a.control;
+				var point = cmd.a.point;
+				return mdgriffith$elm_style_animation$Animation$Model$Quadratic(
+					{
+						control: _Utils_Tuple2(
+							fn(control.a),
+							fn(control.b)),
+						point: _Utils_Tuple2(
+							fn(point.a),
+							fn(point.b))
+					});
+			case 'QuadraticTo':
+				var control = cmd.a.control;
+				var point = cmd.a.point;
+				return mdgriffith$elm_style_animation$Animation$Model$QuadraticTo(
+					{
+						control: _Utils_Tuple2(
+							fn(control.a),
+							fn(control.b)),
+						point: _Utils_Tuple2(
+							fn(point.a),
+							fn(point.b))
+					});
+			case 'SmoothQuadratic':
+				var coords = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadratic(
+					mapCoords(coords));
+			case 'SmoothQuadraticTo':
+				var coords = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$SmoothQuadraticTo(
+					mapCoords(coords));
+			case 'Smooth':
+				var coords = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$Smooth(
+					mapCoords(coords));
+			case 'SmoothTo':
+				var coords = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$SmoothTo(
+					mapCoords(coords));
+			case 'ClockwiseArc':
+				var arc = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$ClockwiseArc(
+					function () {
+						var y = arc.y;
+						var x = arc.x;
+						var startAngle = arc.startAngle;
+						var radius = arc.radius;
+						var endAngle = arc.endAngle;
+						return _Utils_update(
+							arc,
+							{
+								endAngle: fn(endAngle),
+								radius: fn(radius),
+								startAngle: fn(startAngle),
+								x: fn(x),
+								y: fn(y)
+							});
+					}());
+			case 'AntiClockwiseArc':
+				var arc = cmd.a;
+				return mdgriffith$elm_style_animation$Animation$Model$AntiClockwiseArc(
+					function () {
+						var y = arc.y;
+						var x = arc.x;
+						var startAngle = arc.startAngle;
+						var radius = arc.radius;
+						var endAngle = arc.endAngle;
+						return _Utils_update(
+							arc,
+							{
+								endAngle: fn(endAngle),
+								radius: fn(radius),
+								startAngle: fn(startAngle),
+								x: fn(x),
+								y: fn(y)
+							});
+					}());
+			default:
+				return mdgriffith$elm_style_animation$Animation$Model$Close;
+		}
+	});
+var mdgriffith$elm_style_animation$Animation$Model$mapToMotion = F2(
+	function (fn, prop) {
+		switch (prop.$) {
+			case 'ExactProperty':
+				var name = prop.a;
+				var value = prop.b;
+				return A2(mdgriffith$elm_style_animation$Animation$Model$ExactProperty, name, value);
+			case 'ColorProperty':
+				var name = prop.a;
+				var m1 = prop.b;
+				var m2 = prop.c;
+				var m3 = prop.d;
+				var m4 = prop.e;
+				return A5(
+					mdgriffith$elm_style_animation$Animation$Model$ColorProperty,
+					name,
+					fn(m1),
+					fn(m2),
+					fn(m3),
+					fn(m4));
+			case 'ShadowProperty':
+				var name = prop.a;
+				var inset = prop.b;
+				var shadow = prop.c;
+				var size = shadow.size;
+				var red = shadow.red;
+				var offsetY = shadow.offsetY;
+				var offsetX = shadow.offsetX;
+				var green = shadow.green;
+				var blur = shadow.blur;
+				var blue = shadow.blue;
+				var alpha = shadow.alpha;
+				return A3(
+					mdgriffith$elm_style_animation$Animation$Model$ShadowProperty,
+					name,
+					inset,
+					{
+						alpha: fn(alpha),
+						blue: fn(blue),
+						blur: fn(blur),
+						green: fn(green),
+						offsetX: fn(offsetX),
+						offsetY: fn(offsetY),
+						red: fn(red),
+						size: fn(size)
+					});
+			case 'Property':
+				var name = prop.a;
+				var m1 = prop.b;
+				return A2(
+					mdgriffith$elm_style_animation$Animation$Model$Property,
+					name,
+					fn(m1));
+			case 'Property2':
+				var name = prop.a;
+				var m1 = prop.b;
+				var m2 = prop.c;
+				return A3(
+					mdgriffith$elm_style_animation$Animation$Model$Property2,
+					name,
+					fn(m1),
+					fn(m2));
+			case 'Property3':
+				var name = prop.a;
+				var m1 = prop.b;
+				var m2 = prop.c;
+				var m3 = prop.d;
+				return A4(
+					mdgriffith$elm_style_animation$Animation$Model$Property3,
+					name,
+					fn(m1),
+					fn(m2),
+					fn(m3));
+			case 'Property4':
+				var name = prop.a;
+				var m1 = prop.b;
+				var m2 = prop.c;
+				var m3 = prop.d;
+				var m4 = prop.e;
+				return A5(
+					mdgriffith$elm_style_animation$Animation$Model$Property4,
+					name,
+					fn(m1),
+					fn(m2),
+					fn(m3),
+					fn(m4));
+			case 'AngleProperty':
+				var name = prop.a;
+				var m1 = prop.b;
+				return A2(
+					mdgriffith$elm_style_animation$Animation$Model$AngleProperty,
+					name,
+					fn(m1));
+			case 'Points':
+				var ms = prop.a;
+				return mdgriffith$elm_style_animation$Animation$Model$Points(
+					A2(
+						elm$core$List$map,
+						function (_n1) {
+							var x = _n1.a;
+							var y = _n1.b;
+							return _Utils_Tuple2(
+								fn(x),
+								fn(y));
+						},
+						ms));
+			default:
+				var cmds = prop.a;
+				return mdgriffith$elm_style_animation$Animation$Model$Path(
+					A2(
+						elm$core$List$map,
+						mdgriffith$elm_style_animation$Animation$Model$mapPathMotion(fn),
+						cmds));
+		}
+	});
+var mdgriffith$elm_style_animation$Animation$setDefaultInterpolation = function (prop) {
+	var interp = mdgriffith$elm_style_animation$Animation$defaultInterpolationByProperty(prop);
+	return A2(
+		mdgriffith$elm_style_animation$Animation$Model$mapToMotion,
+		function (m) {
+			return _Utils_update(
+				m,
+				{interpolation: interp});
+		},
+		prop);
+};
+var elm$core$Basics$not = _Basics_not;
+var elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2(elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(x);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var elm$core$List$sortBy = _List_sortBy;
+var elm$core$List$sort = function (xs) {
+	return A2(elm$core$List$sortBy, elm$core$Basics$identity, xs);
+};
+var mdgriffith$elm_style_animation$Animation$Model$propertyName = function (prop) {
+	switch (prop.$) {
+		case 'ExactProperty':
+			var name = prop.a;
+			return name;
+		case 'ColorProperty':
+			var name = prop.a;
+			return name;
+		case 'ShadowProperty':
+			var name = prop.a;
+			return name;
+		case 'Property':
+			var name = prop.a;
+			return name;
+		case 'Property2':
+			var name = prop.a;
+			return name;
+		case 'Property3':
+			var name = prop.a;
+			return name;
+		case 'Property4':
+			var name = prop.a;
+			return name;
+		case 'AngleProperty':
+			var name = prop.a;
+			return name;
+		case 'Points':
+			return 'points';
+		default:
+			return 'path';
+	}
+};
+var mdgriffith$elm_style_animation$Animation$Render$dropWhile = F2(
+	function (predicate, list) {
+		dropWhile:
+		while (true) {
+			if (!list.b) {
+				return _List_Nil;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (predicate(x)) {
+					var $temp$predicate = predicate,
+						$temp$list = xs;
+					predicate = $temp$predicate;
+					list = $temp$list;
+					continue dropWhile;
+				} else {
+					return list;
+				}
+			}
+		}
+	});
+var mdgriffith$elm_style_animation$Animation$Render$takeWhile = function (predicate) {
+	var takeWhileMemo = F2(
+		function (memo, list) {
+			takeWhileMemo:
+			while (true) {
+				if (!list.b) {
+					return elm$core$List$reverse(memo);
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					if (predicate(x)) {
+						var $temp$memo = A2(elm$core$List$cons, x, memo),
+							$temp$list = xs;
+						memo = $temp$memo;
+						list = $temp$list;
+						continue takeWhileMemo;
+					} else {
+						return elm$core$List$reverse(memo);
+					}
+				}
+			}
+		});
+	return takeWhileMemo(_List_Nil);
+};
+var mdgriffith$elm_style_animation$Animation$Render$span = F2(
+	function (p, xs) {
+		return _Utils_Tuple2(
+			A2(mdgriffith$elm_style_animation$Animation$Render$takeWhile, p, xs),
+			A2(mdgriffith$elm_style_animation$Animation$Render$dropWhile, p, xs));
+	});
+var mdgriffith$elm_style_animation$Animation$Render$groupWhile = F2(
+	function (eq, xs_) {
+		if (!xs_.b) {
+			return _List_Nil;
+		} else {
+			var x = xs_.a;
+			var xs = xs_.b;
+			var _n1 = A2(
+				mdgriffith$elm_style_animation$Animation$Render$span,
+				eq(x),
+				xs);
+			var ys = _n1.a;
+			var zs = _n1.b;
+			return A2(
+				elm$core$List$cons,
+				A2(elm$core$List$cons, x, ys),
+				A2(mdgriffith$elm_style_animation$Animation$Render$groupWhile, eq, zs));
+		}
+	});
+var elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
+var mdgriffith$elm_style_animation$Animation$Render$isTransformation = function (prop) {
+	return A2(
+		elm$core$List$member,
+		mdgriffith$elm_style_animation$Animation$Model$propertyName(prop),
+		_List_fromArray(
+			['rotate', 'rotateX', 'rotateY', 'rotateZ', 'rotate3d', 'translate', 'translate3d', 'scale', 'scale3d']));
+};
+var mdgriffith$elm_style_animation$Animation$Render$warnForDoubleListedProperties = function (props) {
+	var _n0 = A2(
+		elm$core$List$map,
+		function (propGroup) {
+			var _n1 = elm$core$List$head(propGroup);
+			if (_n1.$ === 'Nothing') {
+				return '';
+			} else {
+				var name = _n1.a;
+				return (elm$core$List$length(propGroup) > 1) ? '' : '';
+			}
+		},
+		A2(
+			mdgriffith$elm_style_animation$Animation$Render$groupWhile,
+			elm$core$Basics$eq,
+			elm$core$List$sort(
+				A2(
+					elm$core$List$map,
+					mdgriffith$elm_style_animation$Animation$Model$propertyName,
+					A2(
+						elm$core$List$filter,
+						function (prop) {
+							return !mdgriffith$elm_style_animation$Animation$Render$isTransformation(prop);
+						},
+						props)))));
+	return props;
+};
+var mdgriffith$elm_style_animation$Animation$style = function (props) {
+	return mdgriffith$elm_style_animation$Animation$initialState(
+		A2(
+			elm$core$List$map,
+			mdgriffith$elm_style_animation$Animation$setDefaultInterpolation,
+			mdgriffith$elm_style_animation$Animation$Render$warnForDoubleListedProperties(props)));
+};
+var mdgriffith$elm_style_animation$Animation$top = function (_n0) {
+	var val = _n0.a;
+	var len = _n0.b;
+	return A3(
+		mdgriffith$elm_style_animation$Animation$length,
+		'top',
+		val,
+		mdgriffith$elm_style_animation$Animation$lengthUnitName(len));
+};
 var author$project$Main$buildPlayer = function (basicPlayer) {
 	var x = basicPlayer.x;
 	var y = basicPlayer.y;
@@ -8177,7 +8159,6 @@ var mdgriffith$elm_style_animation$Animation$update = F2(
 	});
 var author$project$Main$update = F2(
 	function (action, model) {
-		var me = model.me;
 		switch (action.$) {
 			case 'UserUpdate':
 				var players = action.a;
@@ -8226,28 +8207,16 @@ var author$project$Main$update = F2(
 				}();
 				var dx = _n1.a;
 				var dy = _n1.b;
-				var _n3 = _Utils_Tuple2(me.pos.x + dx, me.pos.y + dy);
-				var newx = _n3.a;
-				var newy = _n3.b;
 				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{
-							me: A3(author$project$Main$updatePlayer, model.me, newx, newy)
-						}),
+					model,
 					author$project$Main$wsSend(
-						_Utils_Tuple2(newx, newy)));
+						_Utils_Tuple2(dx, dy)));
 			default:
 				var animMsg = action.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							me: _Utils_update(
-								me,
-								{
-									style: A2(mdgriffith$elm_style_animation$Animation$update, animMsg, me.style)
-								}),
 							others: A2(
 								elm$core$List$map,
 								function (o) {
@@ -8841,26 +8810,10 @@ var author$project$Main$square = function (player) {
 		_List_Nil);
 };
 var author$project$Main$view = function (model) {
-	var me = model.me;
 	return A2(
 		elm$html$Html$div,
 		_List_Nil,
-		_Utils_ap(
-			_List_Nil,
-			_Utils_ap(
-				A2(
-					elm$core$List$map,
-					author$project$Main$square,
-					A2(
-						elm$core$List$filter,
-						function (o) {
-							return !_Utils_eq(o.name, me.name);
-						},
-						model.others)),
-				_List_fromArray(
-					[
-						author$project$Main$square(me)
-					]))));
+		A2(elm$core$List$map, author$project$Main$square, model.others));
 };
 var elm$browser$Browser$element = _Browser_element;
 var elm$core$Basics$always = F2(

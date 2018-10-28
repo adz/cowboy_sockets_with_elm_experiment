@@ -25,13 +25,16 @@ defmodule Server.SocketHandler do
   end
 
   def websocket_handle({:text, message}, req, state) do
-    encoded_msg = message |> Poison.decode!()
-    IO.puts("INCOMING MESSAGE")
-    IO.inspect(encoded_msg)
+    mario =
+      message
+      |> Poison.decode!()
+
+    IO.puts("INCOMING MARIO")
+    IO.inspect(mario)
     {cid, req2} = :cowboy_req.header("sec-websocket-key", req)
 
     # Put this mario in
-    MarioAgent.set(cid, encoded_msg)
+    MarioAgent.set(cid, mario)
 
     # Get all the marios
     everyone =

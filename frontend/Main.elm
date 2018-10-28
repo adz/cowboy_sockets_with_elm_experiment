@@ -42,18 +42,12 @@ main =
 
 
 type alias Model =
-    { me : Player, others : List Player }
+    { others : List Player }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { me =
-            { pos = { x = 0, y = 0 }
-            , colour = "silver"
-            , name = "Mario"
-            , style = Animation.style [ Animation.left (px 0), Animation.top (px 0) ]
-            }
-      , others = []
+    ( { others = []
       }
     , Cmd.none
     )
@@ -128,7 +122,7 @@ toDirection string =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Animation.subscription Animate ([ model.me.style ] ++ List.map .style model.others)
+        [ Animation.subscription Animate (List.map .style model.others)
         , Browser.Events.onKeyDown (D.map Move keyDecoder)
         , activeUsers UserUpdate
         ]
@@ -167,7 +161,7 @@ updatePlayer player x y =
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update action ({ me } as model) =
+update action model =
     case action of
         UserUpdate players ->
             let
@@ -201,31 +195,24 @@ update action ({ me } as model) =
 
                         Other ->
                             ( 0, 0 )
-
-                ( newx, newy ) =
-                    ( me.pos.x + dx, me.pos.y + dy )
             in
-            ( { model | me = updatePlayer model.me newx newy }
-            , wsSend ( newx, newy )
+            ( model
+            , wsSend ( dx, dy )
             )
 
         Animate animMsg ->
             ( { model
-                | me = { me | style = Animation.update animMsg me.style }
-                , others = List.map (\o -> { o | style = Animation.update animMsg o.style }) model.others
+                | others = List.map (\o -> { o | style = Animation.update animMsg o.style }) model.others
               }
             , Cmd.none
             )
 
 
 view : Model -> Html Msg
-view ({ me } as model) =
+view model =
     div
         []
-        ([]
-            ++ (model.others |> List.filter (\o -> o.name /= me.name) |> List.map square)
-            ++ [ square me ]
-        )
+        (model.others |> List.map square)
 
 
 square player =

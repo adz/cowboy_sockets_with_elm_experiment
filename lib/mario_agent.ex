@@ -5,8 +5,15 @@ defmodule MarioAgent do
     Agent.start_link(fn -> %{} end, name: __MODULE__)
   end
 
-  def set(who, what) do
-    Agent.update(__MODULE__, &Map.put(&1, who, what))
+  def set(who, mario) do
+    Agent.update(
+      __MODULE__,
+      &Map.update(&1, who, mario, fn oldMario ->
+        mario
+        |> Map.update("x", mario["x"], fn dX -> dX + oldMario["x"] end)
+        |> Map.update("y", mario["y"], fn dY -> dY + oldMario["y"] end)
+      end)
+    )
   end
 
   def add_client(pid) do
