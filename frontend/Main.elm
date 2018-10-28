@@ -59,6 +59,28 @@ init =
     )
 
 
+mergePlayers : List BasicPlayer -> List Player -> List Player
+mergePlayers newList oldList =
+    let
+        oldOne p =
+            oldList
+                |> List.filter (\o -> o.name == p.name)
+                |> List.head
+
+        mapNew n =
+            case oldOne n of
+                Nothing ->
+                    Debug.log "newplayer!" <|
+                        buildPlayer n
+
+                Just o ->
+                    Debug.log "updatedplayer!" <|
+                        updatePlayer o n.x n.y
+    in
+    newList
+        |> List.map mapNew
+
+
 buildPlayer ({ x, y, colour, name } as basicPlayer) =
     { pos = { x = x, y = y }
     , colour = colour
@@ -106,7 +128,7 @@ toDirection string =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Animation.subscription Animate [ model.me.style ]
+        [ Animation.subscription Animate ([ model.me.style ] ++ List.map .style model.others)
         , Browser.Events.onKeyDown (D.map Move keyDecoder)
         , activeUsers UserUpdate
         ]
@@ -149,8 +171,15 @@ update action ({ me } as model) =
     case action of
         UserUpdate players ->
             let
+                oldy =
+                    Debug.log "old-pos" (List.map .pos model.others)
+
+                count =
+                    Debug.log "new-pos" (List.map .pos others)
+
                 others =
-                    Debug.log "Players:" (players |> List.map buildPlayer)
+                    mergePlayers players model.others
+                        |> Debug.log "mergedplayers"
             in
             ( { model | others = others }, Cmd.none )
 
@@ -183,6 +212,7 @@ update action ({ me } as model) =
         Animate animMsg ->
             ( { model
                 | me = { me | style = Animation.update animMsg me.style }
+                , others = List.map (\o -> { o | style = Animation.update animMsg o.style }) model.others
               }
             , Cmd.none
             )
@@ -193,22 +223,21 @@ view ({ me } as model) =
     div
         []
         ([]
-            ++ (model.others |> List.map .style |> List.map square)
-            ++ [ square me.style ]
+            ++ (model.others |> List.filter (\o -> o.name /= me.name) |> List.map square)
+            ++ [ square me ]
         )
 
 
-square stylefn =
+square player =
     div
         ([ style "position" "absolute"
          , style "left" "0px"
          , style "padding" "0px"
          , style "width" (String.fromFloat halfSideLength ++ "px")
          , style "height" (String.fromFloat halfSideLength ++ "px")
-         , style "background-color" "#268bd2"
-         , style "color" "white"
+         , style "background-color" player.colour
          ]
-            ++ Animation.render stylefn
+            ++ Animation.render player.style
         )
         []
 

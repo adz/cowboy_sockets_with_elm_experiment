@@ -37,13 +37,11 @@ defmodule Server.SocketHandler do
     everyone =
       MarioAgent.get()
       |> Poison.encode!()
-      |> IO.inspect()
 
+    # Get all the browsers, and send them all the marios
     MarioAgent.get_clients()
-    |> IO.inspect()
     |> Enum.each(fn a -> send(a, everyone) end)
 
-    # {:reply, {:text, MarioAgent.get() |> Poison.encode!()}, req, state}
     {:ok, req2, state}
   end
 

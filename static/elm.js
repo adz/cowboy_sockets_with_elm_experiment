@@ -6463,8 +6463,15 @@ var author$project$Main$subscriptions = function (model) {
 				A2(
 				mdgriffith$elm_style_animation$Animation$subscription,
 				author$project$Main$Animate,
-				_List_fromArray(
-					[model.me.style])),
+				_Utils_ap(
+					_List_fromArray(
+						[model.me.style]),
+					A2(
+						elm$core$List$map,
+						function ($) {
+							return $.style;
+						},
+						model.others))),
 				elm$browser$Browser$Events$onKeyDown(
 				A2(elm$json$Json$Decode$map, author$project$Main$Move, author$project$Main$keyDecoder)),
 				author$project$Main$activeUsers(author$project$Main$UserUpdate)
@@ -6601,6 +6608,35 @@ var author$project$Main$updatePlayer = F3(
 					player.style)
 			});
 	});
+var elm$core$Debug$log = _Debug_log;
+var author$project$Main$mergePlayers = F2(
+	function (newList, oldList) {
+		var oldOne = function (p) {
+			return elm$core$List$head(
+				A2(
+					elm$core$List$filter,
+					function (o) {
+						return _Utils_eq(o.name, p.name);
+					},
+					oldList));
+		};
+		var mapNew = function (n) {
+			var _n0 = oldOne(n);
+			if (_n0.$ === 'Nothing') {
+				return A2(
+					elm$core$Debug$log,
+					'newplayer!',
+					author$project$Main$buildPlayer(n));
+			} else {
+				var o = _n0.a;
+				return A2(
+					elm$core$Debug$log,
+					'updatedplayer!',
+					A3(author$project$Main$updatePlayer, o, n.x, n.y));
+			}
+		};
+		return A2(elm$core$List$map, mapNew, newList);
+	});
 var elm$json$Json$Encode$int = _Json_wrap;
 var elm$json$Json$Encode$list = F2(
 	function (func, entries) {
@@ -6628,7 +6664,6 @@ var author$project$Main$wsSend = _Platform_outgoingPort(
 var elm$core$Basics$negate = function (n) {
 	return -n;
 };
-var elm$core$Debug$log = _Debug_log;
 var elm$core$Basics$neq = _Utils_notEqual;
 var elm$core$List$partition = F2(
 	function (pred, list) {
@@ -8148,8 +8183,26 @@ var author$project$Main$update = F2(
 				var players = action.a;
 				var others = A2(
 					elm$core$Debug$log,
-					'Players:',
-					A2(elm$core$List$map, author$project$Main$buildPlayer, players));
+					'mergedplayers',
+					A2(author$project$Main$mergePlayers, players, model.others));
+				var oldy = A2(
+					elm$core$Debug$log,
+					'old-pos',
+					A2(
+						elm$core$List$map,
+						function ($) {
+							return $.pos;
+						},
+						model.others));
+				var count = A2(
+					elm$core$Debug$log,
+					'new-pos',
+					A2(
+						elm$core$List$map,
+						function ($) {
+							return $.pos;
+						},
+						others));
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
@@ -8194,7 +8247,17 @@ var author$project$Main$update = F2(
 								me,
 								{
 									style: A2(mdgriffith$elm_style_animation$Animation$update, animMsg, me.style)
-								})
+								}),
+							others: A2(
+								elm$core$List$map,
+								function (o) {
+									return _Utils_update(
+										o,
+										{
+											style: A2(mdgriffith$elm_style_animation$Animation$update, animMsg, o.style)
+										});
+								},
+								model.others)
 						}),
 					elm$core$Platform$Cmd$none);
 		}
@@ -8755,7 +8818,7 @@ var mdgriffith$elm_style_animation$Animation$Render$render = function (animation
 	return _Utils_ap(styleAttr, otherAttrs);
 };
 var mdgriffith$elm_style_animation$Animation$render = mdgriffith$elm_style_animation$Animation$Render$render;
-var author$project$Main$square = function (stylefn) {
+var author$project$Main$square = function (player) {
 	return A2(
 		elm$html$Html$div,
 		_Utils_ap(
@@ -8772,10 +8835,9 @@ var author$project$Main$square = function (stylefn) {
 					elm$html$Html$Attributes$style,
 					'height',
 					elm$core$String$fromFloat(author$project$Main$halfSideLength) + 'px'),
-					A2(elm$html$Html$Attributes$style, 'background-color', '#268bd2'),
-					A2(elm$html$Html$Attributes$style, 'color', 'white')
+					A2(elm$html$Html$Attributes$style, 'background-color', player.colour)
 				]),
-			mdgriffith$elm_style_animation$Animation$render(stylefn)),
+			mdgriffith$elm_style_animation$Animation$render(player.style)),
 		_List_Nil);
 };
 var author$project$Main$view = function (model) {
@@ -8790,14 +8852,14 @@ var author$project$Main$view = function (model) {
 					elm$core$List$map,
 					author$project$Main$square,
 					A2(
-						elm$core$List$map,
-						function ($) {
-							return $.style;
+						elm$core$List$filter,
+						function (o) {
+							return !_Utils_eq(o.name, me.name);
 						},
 						model.others)),
 				_List_fromArray(
 					[
-						author$project$Main$square(me.style)
+						author$project$Main$square(me)
 					]))));
 };
 var elm$browser$Browser$element = _Browser_element;
